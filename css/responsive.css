@@ -1,0 +1,280 @@
+/* css/responsive.css - Responsive breakpoints (mobile-first) */
+
+/* ============================================================
+   TABLET (max-width: 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  /* Navigation: hide desktop nav, show hamburger */
+  .nav-desktop { display: none; }
+  .lang-selector { display: none; }
+  .btn-header { display: none; }
+  .menu-toggle { display: flex; }
+
+  /* Hero: full-bleed background */
+  .hero-section {
+    min-height: 80vh;
+    padding-top: calc(var(--header-height) + var(--space-8));
+    padding-bottom: var(--space-10);
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  /* Trust bar: adjust spacing */
+  .trust-bar {
+    margin-left: var(--space-5);
+    margin-right: var(--space-5);
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trust-stat {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .trust-stat:nth-child(even) {
+    border-right: none;
+  }
+
+  .trust-stat:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  /* Services: 2 columns */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Section split header: stack */
+  .section-header-split {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .section-header-split .section-header-right {
+    text-align: left;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  /* About: stack */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  /* Credentials: 2 columns */
+  .credentials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .download-portfolio-card {
+    grid-column: span 2;
+  }
+
+  /* Contact: stack */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  /* Footer: 2 columns */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* ============================================================
+   MOBILE (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  section {
+    padding: var(--space-10) 0;
+  }
+
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .section-header h2 {
+    font-size: var(--text-3xl);
+  }
+
+  /* Hero mobile */
+  .hero-section {
+    min-height: 80vh;
+    padding-top: calc(var(--header-height) + var(--space-6));
+    padding-bottom: var(--space-8);
+  }
+
+  .hero-title {
+    font-size: var(--text-3xl);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .hero-actions .btn,
+  .hero-actions .btn-play {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Trust bar */
+  .trust-bar {
+    padding: var(--space-5);
+    margin-top: var(--space-6);
+    margin-left: var(--space-4);
+    margin-right: var(--space-4);
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+
+  .trust-stat {
+    padding: var(--space-3);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .stat-number {
+    font-size: var(--text-xl);
+  }
+
+  /* Services: 1 column */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Credentials: 1 column */
+  .credentials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .download-portfolio-card {
+    grid-column: span 1;
+  }
+
+  /* Contact form */
+  .contact-form-panel {
+    padding: var(--space-5);
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  /* WhatsApp */
+  .whatsapp-float {
+    bottom: var(--space-4);
+    right: var(--space-4);
+    width: 48px;
+    height: 48px;
+  }
+
+  .whatsapp-float::before {
+    inset: -3px;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: var(--text-2xl);
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trust-stat {
+    border-right: none;
+  }
+
+  .trust-stat:nth-child(odd) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .contact-form-panel {
+    padding: var(--space-4);
+  }
+
+  .about-floating-stat {
+    bottom: var(--space-3);
+    right: var(--space-3);
+    padding: var(--space-4);
+    min-width: 140px;
+  }
+
+  .about-floating-stat .floating-number {
+    font-size: var(--text-2xl);
+  }
+
+  .footer-grid {
+    gap: var(--space-6);
+  }
+
+  .mobile-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   LARGE DESKTOP (min-width: 1440px)
+   ============================================================ */
+@media (min-width: 1440px) {
+  .services-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  .main-header,
+  .whatsapp-float,
+  .mobile-menu-overlay,
+  .hero-actions,
+  .contact-form-panel,
+  .btn-service-select {
+    display: none !important;
+  }
+
+  section {
+    padding: 1rem 0;
+    page-break-inside: avoid;
+  }
+
+  .trust-section { display: none !important; }
+
+  .main-footer {
+    background-color: #f0f0f0;
+  }
+
+  .footer-logo {
+    filter: none;
+  }
+}

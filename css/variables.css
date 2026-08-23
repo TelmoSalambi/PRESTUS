@@ -1,0 +1,170 @@
+/* css/variables.css - Design Tokens and Fonts */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Font Families */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Poppins', var(--font-sans);
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Font Sizes (Responsive clamp scale) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.813rem);
+  --text-sm: clamp(0.875rem, 0.82rem + 0.28vw, 0.938rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.063rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.38vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.65rem + 1.13vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 1.95rem + 1.5vw, 3rem);
+  --text-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+
+  /* Spacing Scale (8pt system) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-8: 3rem;      /* 48px */
+  --space-10: 4rem;     /* 64px */
+  --space-12: 6rem;     /* 96px */
+  --space-16: 8rem;     /* 128px */
+
+  /* Layout */
+  --container-max: 1200px;
+  --header-height: 76px;
+
+  /* Nexora-Style Clean Radius (subtle, not brutalist, not pill) */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+
+  /* Line Heights */
+  --lh-none: 1;
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  /* Animations (Fluid ease-out) */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Color Palette (Nexora Corporate Light) ---- */
+  --color-bg-base: #FFFFFF;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-alt: #F7F9FC;
+  --color-bg-hero: #EFF6FF;
+
+  --color-text-primary: #0F1B2D;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+
+  --color-brand-primary: #0B5FA5;   /* PRESTUS Blue */
+  --color-brand-dark: #063D6E;      /* Dark Blue */
+  --color-brand-light: #EAF3FB;     /* Light Blue */
+  --color-brand-lighter: #DBEAFE;
+
+  --color-accent: #00A8CC;          /* Cyan Accent */
+  --color-accent-dark: #0090B0;
+  --color-accent-light: #E0F7FA;
+
+  --color-border: #E5E7EB;
+  --color-border-hover: #D1D5DB;
+
+  --color-success: #10B981;
+  --color-success-light: #D1FAE5;
+  --color-error: #EF4444;
+  --color-error-light: #FEE2E2;
+
+  /* Shadows (Nexora elevated, soft, layered) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 50px -12px rgba(0, 0, 0, 0.12);
+  --shadow-float: 0 25px 60px -15px rgba(6, 61, 110, 0.15);
+
+  /* Service Icon Color Palette (Nexora-style colored circles) */
+  --icon-color-1: #0B5FA5;  /* Blue */
+  --icon-color-2: #00A8CC;  /* Cyan */
+  --icon-color-3: #10B981;  /* Green */
+  --icon-color-4: #F59E0B;  /* Amber */
+  --icon-color-5: #EF4444;  /* Red */
+  --icon-color-6: #0EA5E9;  /* Sky Blue (icon only, not brand) */
+  --icon-color-7: #06B6D4;  /* Teal */
+  --icon-color-8: #EC4899;  /* Pink */
+  --icon-color-9: #14B8A6;  /* Emerald */
+  --icon-color-10: #6366F1; /* Indigo */
+}
+
+/* ============================================================
+   DARK MODE COLORS (System Prefs & Manual Toggle)
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg-base: #0B0F19;
+    --color-bg-surface: #111827;
+    --color-bg-surface-alt: #1F2937;
+    --color-bg-hero: #0F172A;
+
+    --color-text-primary: #F8FAFC;
+    --color-text-secondary: #94A3B8;
+    --color-text-muted: #64748B;
+
+    --color-brand-primary: #38BDF8;
+    --color-brand-dark: #0B5FA5;
+    --color-brand-light: #1E293B;
+    --color-brand-lighter: #0F172A;
+
+    --color-accent: #22D3EE;
+    --color-accent-dark: #0891B2;
+    --color-accent-light: #083344;
+
+    --color-border: #1F2937;
+    --color-border-hover: #374151;
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
+    --shadow-float: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg-base: #0B0F19;
+  --color-bg-surface: #111827;
+  --color-bg-surface-alt: #1F2937;
+  --color-bg-hero: #0F172A;
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+
+  --color-brand-primary: #38BDF8;
+  --color-brand-dark: #0B5FA5;
+  --color-brand-light: #1E293B;
+  --color-brand-lighter: #0F172A;
+
+  --color-accent: #22D3EE;
+  --color-accent-dark: #0891B2;
+  --color-accent-light: #083344;
+
+  --color-border: #1F2937;
+  --color-border-hover: #374151;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
+  --shadow-float: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+}
+
