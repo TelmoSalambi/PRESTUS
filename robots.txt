@@ -1,0 +1,11 @@
+# robots.txt — PRESTUS - Comércio & Prestação de Serviços, (SU), LDA
+# https://www.prestus.com/
+
+User-agent: *
+Allow: /
+
+# Block internal development folders from indexing
+Disallow: /.agents/
+Disallow: /.previews/
+
+Sitemap: https://www.prestus.com/sitemap.xml

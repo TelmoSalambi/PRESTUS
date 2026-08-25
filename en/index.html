@@ -6,13 +6,22 @@
   <meta name="description" content="PRESTUS, (SU) LDA - Service provider and registered State supplier in Angola. 6th Class IRCOP license in Construction and Project Supervision, Healthcare, Cleaning, and IT.">
   <meta name="keywords" content="Prestus, Civil Construction, Project Supervision, State Supplier, Angola, Lubango, Luanda, Healthcare, Medical Supplies, Cleaning, IT">
   <meta name="author" content="PRESTUS, (SU) LDA">
-  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#07213C">
+
+  <!-- Geographic SEO (headquarters: Lubango, Huíla — approximate coordinates) -->
+  <meta name="geo.region" content="AO-HUI">
+  <meta name="geo.placename" content="Lubango, Huíla, Angola">
+  <meta name="geo.position" content="-14.9177;13.4925">
+  <meta name="ICBM" content="-14.9177, 13.4925">
+
   <title>PRESTUS - Commitment and Delivery | Construction, Supervision, Healthcare, and Services in Angola</title>
-  
+
   <!-- Canonical & Multilingual SEO -->
   <link rel="canonical" href="https://www.prestus.com/en/">
   <link rel="alternate" hreflang="pt" href="https://www.prestus.com/">
   <link rel="alternate" hreflang="en" href="https://www.prestus.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.prestus.com/">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -68,10 +77,30 @@
     ],
     "email": "prestuslda1@gmail.com",
     "foundingDate": "2022-09-30",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -14.9177,
+      "longitude": 13.4925
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Angola"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+244-926-903-666",
+        "contactType": "sales",
+        "areaServed": "AO",
+        "availableLanguage": ["Portuguese", "English"]
+      }
+    ],
     "founders": [
       {
         "@type": "Person",
-        "name": "Manuel Lutamba Tchiveio Tchimbanda"
+        "name": "Manuel Lutamba Tchiveio Tchimbanda",
+        "jobTitle": "General Manager",
+        "worksFor": { "@type": "Organization", "name": "PRESTUS - Comércio & Prestação de Serviços, (SU), LDA" }
       }
     ],
     "knowsAbout": [
@@ -85,9 +114,72 @@
     ]
   }
   </script>
+
+  <!-- WebSite schema (sitelinks & brand visibility) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PRESTUS — Commitment and Delivery",
+    "url": "https://www.prestus.com/en/",
+    "inLanguage": ["pt", "en"],
+    "publisher": { "@type": "Organization", "name": "PRESTUS - Comércio & Prestação de Serviços, (SU), LDA" }
+  }
+  </script>
+
+  <!--
+    SEO — TEAM MEMBERS: when the team is published, add one JSON-LD "Person"
+    block per team member so they appear in search results:
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Team Member Full Name",
+      "jobTitle": "Role / Position",
+      "image": "https://www.prestus.com/IMG/equipa/team-member-name.jpg",
+      "url": "https://www.prestus.com/en/#equipa",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "PRESTUS - Comércio & Prestação de Serviços, (SU), LDA",
+        "url": "https://www.prestus.com/en/"
+      }
+    }
+    </script>
+
+    The cards in section #equipa already include itemscope/itemtype="https://schema.org/Person"
+    with itemprop="name" and itemprop="jobTitle" ready to be filled in.
+  -->
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Corporate Topbar (contact strip) -->
+  <div class="topbar">
+    <div class="container topbar-container">
+      <div class="topbar-group">
+        <a href="tel:+244926903666" class="topbar-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span class="mono">+244 926 903 666</span>
+        </a>
+        <a href="mailto:prestuslda1@gmail.com" class="topbar-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          prestuslda1@gmail.com
+        </a>
+        <span class="topbar-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Lubango, Huíla — Angola
+        </span>
+      </div>
+      <div class="topbar-group topbar-group-right">
+        <span class="topbar-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 11l2 2 4-4"></path></svg>
+          Official State Supplier — SNCP No. 671/2025
+        </span>
+        <span class="topbar-item">NIF: <span class="mono">5001180177</span></span>
+      </div>
+    </div>
+  </div>
 
   <!-- Sticky Header -->
   <header class="main-header">
@@ -103,6 +195,7 @@
           <li><a href="#sobre" class="nav-link">About Us</a></li>
           <li><a href="#servicos" class="nav-link">What We Do</a></li>
           <li><a href="#credenciais" class="nav-link">Credentials</a></li>
+          <li><a href="#equipa" class="nav-link">Team</a></li>
           <li><a href="#contacto" class="nav-link">Contacts</a></li>
         </ul>
       </nav>
@@ -134,6 +227,7 @@
         <li><a href="#sobre" class="mobile-nav-link">About Us</a></li>
         <li><a href="#servicos" class="mobile-nav-link">What We Do</a></li>
         <li><a href="#credenciais" class="mobile-nav-link">Credentials</a></li>
+        <li><a href="#equipa" class="mobile-nav-link">Team</a></li>
         <li><a href="#contacto" class="mobile-nav-link">Contacts</a></li>
       </ul>
       <div class="mobile-menu-footer">
@@ -154,11 +248,17 @@
       </div>
       <div class="container">
         <div class="hero-content reveal">
+          <span class="hero-kicker">PRESTUS — General Commerce &amp; Services (SU), LDA</span>
           <h1 class="hero-title">Commitment and<br><em>Delivery</em> in Every Project</h1>
-          <p class="hero-subtitle">Integrated solutions in construction, healthcare, logistics, and technology with strict legal compliance in Angola.</p>
+          <p class="hero-subtitle">Integrated corporate solutions in construction, healthcare, logistics, and technology, executed with technical rigor and full legal compliance in Angola.</p>
+          <div class="hero-banner-badges">
+            <span class="hero-badge">IRCOP 6th Class License</span>
+            <span class="hero-badge">SNCP State Supplier</span>
+            <span class="hero-badge">AGT &amp; INSS Compliance</span>
+          </div>
           <div class="hero-actions">
-            <a href="#contacto" class="btn btn-primary">Request a Quote</a>
-            <a href="#servicos" class="btn btn-secondary">Our Services</a>
+            <a href="#contacto" class="btn btn-accent btn-lg">Request a Quote</a>
+            <a href="#servicos" class="btn btn-secondary btn-lg">Our Services</a>
           </div>
         </div>
       </div>
@@ -272,6 +372,25 @@
               <span class="floating-label">Construction & Supervision License</span>
             </div>
           </div>
+
+          <!-- Corporate Values Grid (Mission, Vision & Values) -->
+          <div class="values-grid">
+            <div class="value-card reveal">
+              <span class="value-number">01</span>
+              <h3>Mission</h3>
+              <p>To deliver services and solutions of excellence to the public and private sectors, with technical rigor, transparency, and full compliance with Angolan law.</p>
+            </div>
+            <div class="value-card reveal delay-1">
+              <span class="value-number">02</span>
+              <h3>Vision</h3>
+              <p>To be recognized as a strategic partner of reference in Angola, leading through operational quality, institutional credibility, and impact on national development.</p>
+            </div>
+            <div class="value-card reveal delay-2">
+              <span class="value-number">03</span>
+              <h3>Values</h3>
+              <p>Integrity, commitment to deadlines, social responsibility, continuous improvement, and respect for technical and regulatory standards in every executed project.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -289,91 +408,71 @@
       <div class="portfolio-carousel-wrapper" role="region" aria-label="Areas of activity carousel">
         <div class="portfolio-track" id="portfolio-track">
           <!-- Slide 1: Construção Civil -->
-          <div class="portfolio-slide" data-service="construcao" data-color="blue">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
-            </div>
+          <div class="portfolio-slide" data-service="construcao">
+            <div class="slide-img img-construcao" role="img" aria-label="Civil Construction and Public Works"></div>
             <h3>Civil Construction and Public Works</h3>
             <p>Traditional construction, reinforced concrete, metallic structures, coatings, and finishes up to 750M AKZ (IRCOP License nº 1637/CCOP/IRCOP/SC/2026).</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Civil Construction">Request a Quote</button>
           </div>
           <!-- Slide 2: Fiscalização -->
-          <div class="portfolio-slide" data-service="fiscalizacao" data-color="cyan">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            </div>
+          <div class="portfolio-slide" data-service="fiscalizacao">
+            <div class="slide-img img-fiscalizacao" role="img" aria-label="Public Works Supervision"></div>
             <h3>Public Works Supervision</h3>
             <p>Technical supervision, quality control, and auditing for buildings and roads up to 250M AKZ (IRCOP License nº 99/FO/IRCOP/SC/2024).</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Project Supervision">Request a Quote</button>
           </div>
           <!-- Slide 3: Saúde -->
-          <div class="portfolio-slide" data-service="saude" data-color="red">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-            </div>
+          <div class="portfolio-slide" data-service="saude">
+            <div class="slide-img img-saude" role="img" aria-label="Health and Medical Supplies"></div>
             <h3>Health and Medical Supplies</h3>
             <p>Supply of essential medications, specialized hospital furniture, diagnostic equipment (ultrasound, X-Ray), and medical consumables.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Health and Medical Supplies">Request a Quote</button>
           </div>
           <!-- Slide 4: Limpeza -->
-          <div class="portfolio-slide" data-service="limpeza" data-color="green">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
-            </div>
+          <div class="portfolio-slide" data-service="limpeza">
+            <div class="slide-img img-limpeza" role="img" aria-label="Cleaning, Sanitation and Disinfection"></div>
             <h3>Cleaning, Sanitation and Disinfection</h3>
             <p>Specialized hygiene, deep disinfection of buildings and offices, gardening, and urban waste management.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Cleaning and Sanitation">Request a Quote</button>
           </div>
           <!-- Slide 5: Informática -->
-          <div class="portfolio-slide" data-service="informatica" data-color="sky">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-            </div>
+          <div class="portfolio-slide" data-service="informatica">
+            <div class="slide-img img-it" role="img" aria-label="IT Materials and Networks"></div>
             <h3>IT Materials and Networks</h3>
             <p>Network installation, servers, routers, technical support, and sale of computers, printers, and IT consumables.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for IT Materials and Networks">Request a Quote</button>
           </div>
           <!-- Slide 6: Escritório -->
-          <div class="portfolio-slide" data-service="escritorio" data-color="amber">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </div>
+          <div class="portfolio-slide" data-service="escritorio">
+            <div class="slide-img img-office" role="img" aria-label="Office Furniture and Supplies"></div>
             <h3>Office Furniture and Supplies</h3>
             <p>Supply of desks, ergonomic chairs, cabinets, and various stationery materials for corporations.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Office Furniture">Request a Quote</button>
           </div>
           <!-- Slide 7: Bens Diversos -->
-          <div class="portfolio-slide" data-service="diversos" data-color="teal">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-            </div>
+          <div class="portfolio-slide" data-service="diversos">
+            <div class="slide-img img-logistics" role="img" aria-label="Supply of Diverse Goods and Services"></div>
             <h3>Supply of Diverse Goods and Services</h3>
             <p>Supply of foodstuffs, road transportation of passengers or merchandise, and corporate professional training.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Diverse Goods and Services">Request a Quote</button>
           </div>
           <!-- Slide 8: Alimentação -->
-          <div class="portfolio-slide" data-service="alimentacao" data-color="pink">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M2 12h20M20 12v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3M12 2v4M8 3v3M16 3v3"></path></svg>
-            </div>
+          <div class="portfolio-slide" data-service="alimentacao">
+            <div class="slide-img img-school-meals" role="img" aria-label="School Meals and Catering"></div>
             <h3>School Meals and Catering</h3>
             <p>School nutritional planning, daily meal preparation, rigorous quality control, and sanitary compliance.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for School Meals">Request a Quote</button>
           </div>
           <!-- Slide 9: Logística -->
-          <div class="portfolio-slide" data-service="logistica" data-color="emerald">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            </div>
+          <div class="portfolio-slide" data-service="logistica">
+            <div class="slide-img img-logistica-plan" role="img" aria-label="Logistics and Planning"></div>
             <h3>Logistics and Planning</h3>
             <p>Transportation coordination, stock optimization, and operational planning for supply chains.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Logistics and Planning">Request a Quote</button>
           </div>
           <!-- Slide 10: Pesca -->
-          <div class="portfolio-slide" data-service="pesca" data-color="indigo">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M23 12c-2.3 2.1-5.7 3-8.7 2.4-3.1-.6-5.8-2.6-7.3-5.4-1.2-2.3-1.4-5-.6-7.4 2.4-.8 5.1-.6 7.4.6 2.8 1.5 4.8 4.2 5.4 7.3.6 3-.3 6.4-2.4 8.7L23 12z"></path><circle cx="18" cy="9" r="1"></circle></svg>
-            </div>
+          <div class="portfolio-slide" data-service="pesca">
+            <div class="slide-img img-fishing" role="img" aria-label="Fishery Resources Management"></div>
             <h3>Fishery Resources Management</h3>
             <p>Catching, freezing, preservation, and commercialization of fish, supporting the development of coastal communities.</p>
             <button class="btn btn-secondary btn-sm btn-service-select" aria-label="Request a quote for Fishery Resources">Request a Quote</button>
@@ -436,6 +535,70 @@
       </div>
     </section>
 
+    <!-- Team Section (Our Team) -->
+    <section id="equipa" class="team-section" aria-label="Our team">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Team</span>
+          <h2>The professionals behind <em>PRESTUS</em></h2>
+          <p>A multidisciplinary team of engineering, supervision, healthcare, logistics, and administration, dedicated to serving our clients with excellence.</p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Team member cards: replace placeholders with real photos, names and roles -->
+          <div class="team-card reveal" itemscope itemtype="https://schema.org/Person">
+            <div class="team-photo" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="team-soon">Coming Soon</span>
+            </div>
+            <h3 itemprop="name">To be announced</h3>
+            <p class="team-role" itemprop="jobTitle">Management &amp; Direction</p>
+          </div>
+          <div class="team-card reveal delay-1" itemscope itemtype="https://schema.org/Person">
+            <div class="team-photo" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="team-soon">Coming Soon</span>
+            </div>
+            <h3 itemprop="name">To be announced</h3>
+            <p class="team-role" itemprop="jobTitle">Engineering &amp; Supervision</p>
+          </div>
+          <div class="team-card reveal delay-2" itemscope itemtype="https://schema.org/Person">
+            <div class="team-photo" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="team-soon">Coming Soon</span>
+            </div>
+            <h3 itemprop="name">To be announced</h3>
+            <p class="team-role" itemprop="jobTitle">Health &amp; Supplies</p>
+          </div>
+          <div class="team-card reveal delay-3" itemscope itemtype="https://schema.org/Person">
+            <div class="team-photo" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="team-soon">Coming Soon</span>
+            </div>
+            <h3 itemprop="name">To be announced</h3>
+            <p class="team-role" itemprop="jobTitle">Administration &amp; Logistics</p>
+          </div>
+        </div>
+
+        <p class="team-note reveal">We are preparing the official introduction of all our team members. Soon you will meet each professional, their role, and their journey at PRESTUS.</p>
+      </div>
+    </section>
+
+    <!-- Corporate CTA Band -->
+    <section class="cta-section" aria-label="Call to action">
+      <div class="container cta-inner reveal">
+        <div>
+          <span class="section-label section-label-light">Institutional Partnership</span>
+          <h2>Ready to start your <em>next project</em>?</h2>
+          <p>Speak with our commercial team and receive a detailed technical proposal, aligned with the requirements of your tender or project.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="#contacto" class="btn btn-gold btn-lg">Request a Proposal</a>
+          <a href="../PRESTUS PORTFÓLIO P2026.1.pdf" class="btn btn-ghost btn-lg" download="PRESTUS_Portfolio_2026.pdf">Download Portfolio</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Contacts, Form, and Map Section -->
     <section id="contacto" class="contact-section">
       <div class="container">
@@ -472,12 +635,18 @@
               </div>
             </div>
 
-            <!-- Styled Map Placeholder -->
+            <!-- Real Interactive Map (Google Maps — HQ: Lubango, Huíla) -->
             <div class="map-container">
-              <div class="map-placeholder">
-                <div class="map-icon-pulse"></div>
-                <span>Lubango & Luanda, Angola</span>
-                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Open Google Maps">View on Google Maps</a>
+              <iframe
+                class="map-iframe"
+                src="https://maps.google.com/maps?q=Bairro%20Dr.%20Ant%C3%B3nio%20Agostinho%20Neto%2C%20Lubango%2C%20Hu%C3%ADla%2C%20Angola&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="PRESTUS headquarters location — Dr. António Agostinho Neto, Lubango, Huíla"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="map-actions">
+                <span>HQ: Lubango, Huíla &bull; Branch: Luanda</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Bairro+Dr.+Ant%C3%B3nio+Agostinho+Neto+Lubango+Hu%C3%ADla+Angola" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Open PRESTUS location on Google Maps">Open in Google Maps</a>
               </div>
             </div>
           </div>
@@ -584,6 +753,7 @@
           <li><a href="#inicio">Home</a></li>
           <li><a href="#sobre">About Us</a></li>
           <li><a href="#credenciais">Certifications</a></li>
+          <li><a href="#equipa">Team</a></li>
           <li><a href="#contacto">Contact Us</a></li>
           <li><a href="../PRESTUS PORTFÓLIO P2026.1.pdf" download="PRESTUS_Portfolio_2026.pdf">Download Portfolio (PDF)</a></li>
         </ul>
@@ -600,7 +770,7 @@
     
     <div class="container footer-bottom">
       <p class="copyright">&copy; 2026 PRESTUS, (SU) LDA. All rights reserved.</p>
-      <p class="developer-credit">Digital Construction Partner: Antigravity</p>
+      <p class="developer-credit">Commitment • Rigor • Legal Compliance</p>
     </div>
   </footer>
 
