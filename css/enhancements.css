@@ -175,19 +175,6 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* Badges on dark hero context */
-.hero-section .hero-badge {
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.hero-section .hero-banner-badges {
-  justify-content: flex-end;
-}
-
 /* Animated scroll-down indicator */
 .hero-scroll-indicator {
   position: absolute;

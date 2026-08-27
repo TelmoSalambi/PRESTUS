@@ -225,32 +225,6 @@
   color: #FFFFFF;
 }
 
-/* Hero credential badges (corporate, on dark navy) */
-.hero-banner-badges {
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: var(--space-2);
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 0.45rem var(--space-4);
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
 .btn-play {
   display: inline-flex;
   align-items: center;
@@ -518,36 +492,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* Floating stats card overlaying image */
-.about-floating-stat {
-  position: absolute;
-  bottom: var(--space-5);
-  right: var(--space-5);
-  background-color: var(--color-brand-primary);
-  color: #FFFFFF;
-  padding: var(--space-5) var(--space-6);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  min-width: 180px;
-}
-
-.about-floating-stat .floating-number {
-  font-family: var(--font-display);
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  line-height: 1;
-}
-
-.about-floating-stat .floating-label {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  line-height: var(--lh-snug);
-  opacity: 0.85;
 }
 
 /* ============================================================
@@ -1119,14 +1063,14 @@
 /* ============================================================
    SERVICE IMAGE MAPPINGS
    ============================================================ */
-.img-construcao { background-image: url('../IMG/Gemini_Generated_Image_n85aicn85aicn85a.png'); }
-.img-fiscalizacao { background-image: url('../IMG/Gemini_Generated_Image_msdzxqmsdzxqmsdz.png'); }
-.img-saude { background-image: url('../IMG/Gemini_Generated_Image_873mtr873mtr873m.png'); }
-.img-limpeza { background-image: url('../IMG/Gemini_Generated_Image_eshc55eshc55eshc.png'); }
+.img-construcao { background-image: url('../IMG/Construção Civil.png'); }
+.img-fiscalizacao { background-image: url('../IMG/Fiscalização.png'); }
+.img-saude { background-image: url('../IMG/Saúde.png'); }
+.img-limpeza { background-image: url('../IMG/Limpeza.png'); }
 .img-it { background-image: url('../IMG/Gemini_Generated_Image_8jf59h8jf59h8jf5.png'); }
-.img-office { background-image: url('../IMG/Gemini_Generated_Image_3zh47q3zh47q3zh4.png'); }
-.img-logistics { background-image: url('../IMG/Gemini_Generated_Image_g3u3rng3u3rng3u3.png'); }
-.img-school-meals { background-image: url('../IMG/Gemini_Generated_Image_vp5fo8vp5fo8vp5f.png'); }
-.img-logistica-plan { background-image: url('../IMG/Gemini_Generated_Image_nubrncnubrncnubr.png'); }
-.img-fishing { background-image: url('../IMG/Gemini_Generated_Image_oov1imoov1imoov1.png'); }
+.img-office { background-image: url('../IMG/Escritório.png'); }
+.img-logistics { background-image: url('../IMG/Gemini_Generated_Image_nubrncnubrncnubr.png'); }
+.img-school-meals { background-image: url('../IMG/Merenda Escolar.png'); }
+.img-logistica-plan { background-image: url('../IMG/Logística.png'); }
+.img-fishing { background-image: url('../IMG/Pesca.png'); }
 

@@ -258,17 +258,6 @@
     grid-template-columns: 1fr;
   }
 
-  .about-floating-stat {
-    bottom: var(--space-3);
-    right: var(--space-3);
-    padding: var(--space-4);
-    min-width: 140px;
-  }
-
-  .about-floating-stat .floating-number {
-    font-size: var(--text-2xl);
-  }
-
   .footer-grid {
     gap: var(--space-6);
   }
