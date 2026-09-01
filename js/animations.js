@@ -1,25 +1,37 @@
 /**
  * js/animations.js
- * Scroll-reveal animations using IntersectionObserver.
+ * Advanced Institutional Scroll-Reveal & Dynamic Micro-Interactions System.
  * Respects prefers-reduced-motion.
  */
 
 (function () {
   'use strict';
 
-  // Respect user's motion preference
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (reducedMotion) {
-    // Immediately reveal all elements — no transitions
-    document.querySelectorAll('.reveal').forEach((el) => {
+    document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale').forEach((el) => {
       el.classList.add('revealed');
     });
     return;
   }
 
   /* --------------------------------------------------------
-     IntersectionObserver: reveal elements on scroll
+     Stagger Auto-Assigner for Grids (Values, Services, Credentials, Team)
+  -------------------------------------------------------- */
+  const gridContainers = document.querySelectorAll('.values-grid, .credentials-grid, .team-grid, .trust-grid, .services-grid');
+  gridContainers.forEach((container) => {
+    const children = container.children;
+    Array.from(children).forEach((child, idx) => {
+      if (!child.classList.contains('reveal')) {
+        child.classList.add('reveal');
+      }
+      child.classList.add(`delay-${(idx % 5) + 1}`);
+    });
+  });
+
+  /* --------------------------------------------------------
+     IntersectionObserver for Smooth Scroll Reveal
   -------------------------------------------------------- */
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -31,24 +43,28 @@
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: '0px 0px -48px 0px',
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px',
     }
   );
 
-  document.querySelectorAll('.reveal').forEach((el) => {
+  const revealSelector = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';
+  document.querySelectorAll(revealSelector).forEach((el) => {
     revealObserver.observe(el);
   });
 
   /* --------------------------------------------------------
-     Hero elements: trigger immediately on load
+     Hero Section Staggered Entrance
   -------------------------------------------------------- */
   function revealHeroElements() {
-    const heroElements = document.querySelectorAll('.hero-section .reveal, .hero-banner-section .reveal');
+    const heroElements = document.querySelectorAll('.hero-section .reveal, .hero-section .hero-kicker, .hero-section .hero-title, .hero-section .hero-subtitle, .hero-section .hero-actions');
     heroElements.forEach((el, index) => {
+      if (!el.classList.contains('reveal')) {
+        el.classList.add('reveal');
+      }
       setTimeout(() => {
         el.classList.add('revealed');
-      }, index * 120);
+      }, index * 140 + 100);
     });
   }
 
@@ -57,7 +73,4 @@
   } else {
     revealHeroElements();
   }
-
-  // WhatsApp pulse is already handled by components.css
-  // No dynamic injection needed
 })();

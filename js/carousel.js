@@ -1,6 +1,6 @@
 /**
  * js/carousel.js
- * Professional Portfolio Carousel with Autoplay, Drag-to-Swipe, and Responsive calculations.
+ * Continuous Professional Portfolio Carousel with Endless Autoplay, Drag-to-Swipe, and Fail-Safe Resume.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   let currentIndex = 0;
   let autoplayTimer = null;
-  const autoplayInterval = 5000; // 5 seconds
+  let resumeTimer = null;
+  const autoplayInterval = 3200; // 3.2 seconds continuous advance
   
   // Drag / Swipe State Variables
   let isDragging = false;
@@ -33,15 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.setAttribute('role', 'tab');
     dot.setAttribute('aria-label', `Ir para slide ${index + 1}`);
     dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-    dotsContainer.appendChild(dot);
+    if (dotsContainer) dotsContainer.appendChild(dot);
     
     dot.addEventListener('click', () => {
       goToSlide(index);
-      resetAutoplay();
+      triggerResumeAutoplay();
     });
   });
   
-  const dots = Array.from(dotsContainer.children);
+  const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
   
   // Update buttons and dots status
   function updateControls() {
@@ -60,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function getLimit() {
     const trackWidth = track.scrollWidth;
     const containerWidth = track.parentElement.clientWidth;
-    // Padding on sides is handled in CSS, so trackWidth - containerWidth is the limit
     return Math.max(0, trackWidth - containerWidth);
   }
   
@@ -74,17 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex = index;
     }
     
-    // Calculate slide offset relative to track container
     const slide = slides[currentIndex];
     const parentPadding = parseFloat(window.getComputedStyle(track).paddingLeft) || 0;
     
-    // Slide's position from track beginning
     let targetX = slide.offsetLeft - parentPadding;
-    
-    // Limit translation so track does not scroll past content
     const limit = getLimit();
-    if (targetX > limit) {
+    
+    if (targetX > limit && currentIndex === slides.length - 1) {
       targetX = limit;
+    } else if (targetX > limit) {
+      currentIndex = 0;
+      targetX = 0;
     }
     
     currentTranslate = -targetX;
@@ -98,19 +98,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Next / Prev actions
-  prevBtn.addEventListener('click', () => {
-    goToSlide(currentIndex - 1);
-    resetAutoplay();
-  });
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      triggerResumeAutoplay();
+    });
+  }
   
-  nextBtn.addEventListener('click', () => {
-    goToSlide(currentIndex + 1);
-    resetAutoplay();
-  });
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      triggerResumeAutoplay();
+    });
+  }
   
-  // Autoplay Logic
+  // Autoplay Logic — Never Permanently Stopped
   function startAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
+    stopAutoplay();
     autoplayTimer = setInterval(() => {
       goToSlide(currentIndex + 1);
     }, autoplayInterval);
@@ -123,25 +127,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  function resetAutoplay() {
+  // Immediate restart timer after any touch or manual action
+  function triggerResumeAutoplay(delay = 1800) {
     stopAutoplay();
-    startAutoplay();
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      startAutoplay();
+    }, delay);
   }
   
-  // Mouse / Touch Dragging Events
+  // Dragging / Touch Handlers
   slides.forEach((slide) => {
-    const slideImage = slide.querySelector('.portfolio-slide-img');
+    const slideImage = slide.querySelector('.portfolio-slide-img, .slide-img');
     if (slideImage) {
       slideImage.addEventListener('dragstart', (e) => e.preventDefault());
     }
   });
   
-  // Touch Events
   track.addEventListener('touchstart', touchStart, { passive: true });
   track.addEventListener('touchend', touchEnd);
   track.addEventListener('touchmove', touchMove, { passive: true });
   
-  // Mouse Events
   track.addEventListener('mousedown', dragStart);
   track.addEventListener('mouseup', dragEnd);
   track.addEventListener('mouseleave', dragEnd);
@@ -173,12 +179,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const diff = currentX - startX;
     currentTranslate = prevTranslate + diff;
     
-    // Bounce elastic limit
     const limit = -getLimit();
     if (currentTranslate > 0) {
-      currentTranslate = currentTranslate * 0.3; // Elastic bounce at start
+      currentTranslate = currentTranslate * 0.3;
     } else if (currentTranslate < limit) {
-      currentTranslate = limit + (currentTranslate - limit) * 0.3; // Elastic bounce at end
+      currentTranslate = limit + (currentTranslate - limit) * 0.3;
     }
   }
   
@@ -205,15 +210,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const movedBy = currentTranslate - prevTranslate;
     
-    // Snap threshold: if moved more than 50px, change slide
-    if (movedBy < -50 && currentIndex < slides.length - 1) {
-      currentIndex += 1;
-    } else if (movedBy > 50 && currentIndex > 0) {
-      currentIndex -= 1;
+    if (movedBy < -50) {
+      goToSlide(currentIndex + 1);
+    } else if (movedBy > 50) {
+      goToSlide(currentIndex - 1);
+    } else {
+      goToSlide(currentIndex);
     }
     
-    goToSlide(currentIndex);
-    startAutoplay();
+    triggerResumeAutoplay();
   }
   
   function touchEnd() {
@@ -225,14 +230,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const movedBy = currentTranslate - prevTranslate;
     
-    if (movedBy < -50 && currentIndex < slides.length - 1) {
-      currentIndex += 1;
-    } else if (movedBy > 50 && currentIndex > 0) {
-      currentIndex -= 1;
+    if (movedBy < -50) {
+      goToSlide(currentIndex + 1);
+    } else if (movedBy > 50) {
+      goToSlide(currentIndex - 1);
+    } else {
+      goToSlide(currentIndex);
     }
     
-    goToSlide(currentIndex);
-    startAutoplay();
+    triggerResumeAutoplay();
   }
   
   function animation() {
@@ -240,10 +246,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isDragging) requestAnimationFrame(animation);
   }
   
-  // Pause on hover
-  track.parentElement.addEventListener('mouseenter', stopAutoplay);
-  track.parentElement.addEventListener('mouseleave', startAutoplay);
+  // Brief pause on mouse enter, but auto-resumes after 2s even if cursor stays over it
+  if (track.parentElement) {
+    track.parentElement.addEventListener('mouseenter', () => {
+      triggerResumeAutoplay(2000);
+    });
+    
+    track.parentElement.addEventListener('mouseleave', () => {
+      startAutoplay();
+    });
+  }
   
+  // Watchdog: Ensure autoplay never dies permanently
+  setInterval(() => {
+    if (!autoplayTimer && !isDragging) {
+      startAutoplay();
+    }
+  }, 4000);
+
+  // Handle visibility change (tab switch / resume focus)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  });
+
   // Resize handler
   window.addEventListener('resize', () => {
     track.style.transition = 'none';
@@ -251,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
   });
   
-  // Initial slide setup and autoplay
+  // Initial slide setup and autoplay start
   goToSlide(0);
   startAutoplay();
 });
