@@ -312,11 +312,13 @@
   const modalCta = document.getElementById('modal-cta');
 
   let savedScrollY = 0;
+  let currentModalServiceKey = '';
 
   function openServiceModal(serviceKey) {
     const data = serviceDetails[serviceKey];
     if (!data || !modal) return;
 
+    currentModalServiceKey = serviceKey;
     savedScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 
     if (modalCategory) modalCategory.textContent = data.category;
@@ -333,7 +335,7 @@
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+    window.scrollTo({ top: savedScrollY, behavior: 'auto' });
   }
 
   if (modalClose) {
@@ -347,6 +349,10 @@
     modalCta.addEventListener('click', (e) => {
       e.preventDefault();
       closeServiceModal();
+      const formServiceSelect = document.getElementById('form-service');
+      if (formServiceSelect && currentModalServiceKey) {
+        formServiceSelect.value = currentModalServiceKey;
+      }
       const contactSection = document.getElementById('contacto');
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });

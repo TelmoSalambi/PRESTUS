@@ -52,6 +52,15 @@
     errorEl.textContent = '';
   }
 
+  const isEn = document.documentElement.lang === 'en';
+
+  const messages = {
+    name: isEn ? 'Please enter your full name.' : 'Por favor, insira o seu nome completo.',
+    email: isEn ? 'Please enter a valid e-mail address.' : 'Por favor, insira um e-mail válido.',
+    phone: isEn ? 'Please enter a valid phone number.' : 'Por favor, insira um número de telefone válido.',
+    service: isEn ? 'Please select an area of interest.' : 'Por favor, selecione uma área de interesse.',
+  };
+
   function validateField(key) {
     const field = fields[key];
     const errorEl = errors[key];
@@ -60,25 +69,25 @@
     switch (key) {
       case 'name':
         if (!value.trim() || value.trim().length < 2) {
-          setError(field, errorEl, 'Por favor, insira o seu nome completo.');
+          setError(field, errorEl, messages.name);
           return false;
         }
         break;
       case 'email':
         if (!validateEmail(value)) {
-          setError(field, errorEl, 'Por favor, insira um e-mail válido.');
+          setError(field, errorEl, messages.email);
           return false;
         }
         break;
       case 'phone':
         if (!validatePhone(value)) {
-          setError(field, errorEl, 'Por favor, insira um número de telefone válido.');
+          setError(field, errorEl, messages.phone);
           return false;
         }
         break;
       case 'service':
         if (!value) {
-          setError(field, errorEl, 'Por favor, selecione uma área de interesse.');
+          setError(field, errorEl, messages.service);
           return false;
         }
         break;
