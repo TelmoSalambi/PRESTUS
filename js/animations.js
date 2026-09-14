@@ -17,9 +17,9 @@
   }
 
   /* --------------------------------------------------------
-     Stagger Auto-Assigner for Grids (Values, Services, Credentials, Team)
+     Stagger Auto-Assigner for Grids (Values, Services, Credentials)
   -------------------------------------------------------- */
-  const gridContainers = document.querySelectorAll('.values-grid, .credentials-grid, .team-grid, .trust-grid, .services-grid');
+  const gridContainers = document.querySelectorAll('.values-grid, .credentials-grid, .trust-grid, .services-grid');
   gridContainers.forEach((container) => {
     const children = container.children;
     Array.from(children).forEach((child, idx) => {

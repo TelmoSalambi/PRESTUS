@@ -132,29 +132,7 @@
   }
   </script>
 
-  <!--
-    SEO — MEMBROS DA EQUIPA: quando a equipa for publicada, adicione um bloco
-    JSON-LD "Person" por colaborador, para que apareçam nos resultados de pesquisa:
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Nome Completo do Colaborador",
-      "jobTitle": "Cargo / Função",
-      "image": "https://www.prestus.com/IMG/equipa/nome-do-colaborador.jpg",
-      "url": "https://www.prestus.com/#equipa",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "PRESTUS - Comércio & Prestação de Serviços, (SU), LDA",
-        "url": "https://www.prestus.com/"
-      }
-    }
-    </script>
-
-    Os cartões da secção #equipa já incluem itemscope/itemtype="https://schema.org/Person"
-    com itemprop="name" e itemprop="jobTitle" prontos a preencher.
-  -->
+  
 </head>
 <body>
   <a href="#main-content" class="skip-link">Saltar para o conteúdo principal</a>
@@ -200,7 +178,6 @@
           <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
           <li><a href="#servicos" class="nav-link">O que Fazemos</a></li>
           <li><a href="#credenciais" class="nav-link">Credenciais</a></li>
-          <li><a href="#equipa" class="nav-link">Equipa</a></li>
           <li><a href="#contacto" class="nav-link">Contactos</a></li>
         </ul>
       </nav>
@@ -232,7 +209,6 @@
         <li><a href="#sobre" class="mobile-nav-link">Sobre Nós</a></li>
         <li><a href="#servicos" class="mobile-nav-link">O que Fazemos</a></li>
         <li><a href="#credenciais" class="mobile-nav-link">Credenciais</a></li>
-        <li><a href="#equipa" class="mobile-nav-link">Equipa</a></li>
         <li><a href="#contacto" class="mobile-nav-link">Contactos</a></li>
       </ul>
       <div class="mobile-menu-footer">
@@ -579,55 +555,6 @@
       </div>
     </section>
 
-    <!-- Team Section (A Nossa Equipa) -->
-    <section id="equipa" class="team-section" aria-label="A nossa equipa">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-label">Equipa</span>
-          <h2>Os profissionais por trás da <em>PRESTUS</em></h2>
-          <p>Uma equipa multidisciplinar de engenharia, fiscalização, saúde, logística e administração, dedicada a servir os nossos clientes com excelência.</p>
-        </div>
-
-        <div class="team-grid">
-          <!-- Team member cards: replace placeholders with real photos, names and roles -->
-          <div class="team-card reveal" itemscope itemtype="https://schema.org/Person">
-            <div class="team-photo" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              <span class="team-soon">Em Breve</span>
-            </div>
-            <h3 itemprop="name">A anunciar</h3>
-            <p class="team-role" itemprop="jobTitle">Direção &amp; Gestão</p>
-          </div>
-          <div class="team-card reveal delay-1" itemscope itemtype="https://schema.org/Person">
-            <div class="team-photo" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              <span class="team-soon">Em Breve</span>
-            </div>
-            <h3 itemprop="name">A anunciar</h3>
-            <p class="team-role" itemprop="jobTitle">Engenharia &amp; Fiscalização</p>
-          </div>
-          <div class="team-card reveal delay-2" itemscope itemtype="https://schema.org/Person">
-            <div class="team-photo" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              <span class="team-soon">Em Breve</span>
-            </div>
-            <h3 itemprop="name">A anunciar</h3>
-            <p class="team-role" itemprop="jobTitle">Saúde &amp; Fornecimentos</p>
-          </div>
-          <div class="team-card reveal delay-3" itemscope itemtype="https://schema.org/Person">
-            <div class="team-photo" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              <span class="team-soon">Em Breve</span>
-            </div>
-            <h3 itemprop="name">A anunciar</h3>
-            <p class="team-role" itemprop="jobTitle">Administração &amp; Logística</p>
-          </div>
-        </div>
-
-        <p class="team-note reveal">Estamos a preparar a apresentação oficial de todos os nossos colaboradores. Em breve poderá conhecer cada profissional, a sua função e o seu percurso na PRESTUS.</p>
-      </div>
-    </section>
-
     <!-- FAQ Section (Perguntas Frequentes Institucionais) -->
     <section id="faq" class="faq-section">
       <div class="container">
@@ -763,6 +690,11 @@
           <!-- Contact Form Container -->
           <div class="contact-form-panel reveal">
             <form id="contact-form" novalidate>
+              <!-- Anti-spam honeypot (hidden from humans; bots fill it) -->
+              <div style="display: none;" aria-hidden="true">
+                <label for="website_hp">Website</label>
+                <input type="text" id="website_hp" name="honeypot" tabindex="-1" autocomplete="off">
+              </div>
               <div class="form-group">
                 <label for="form-name">Nome Completo</label>
                 <input type="text" id="form-name" name="name" required placeholder="Ex: Manuel Silva">
@@ -812,7 +744,7 @@
             <!-- Success/Error Feedback Notifications -->
             <div id="form-status-success" class="form-status-banner success-banner" aria-hidden="true">
               <h4>Mensagem Enviada!</h4>
-              <p>Simulação realizada com sucesso. Agradecemos o seu contacto e responderemos brevemente.</p>
+              <p>Agradecemos o seu contacto. A nossa equipa responderá em 24 a 48 horas úteis.</p>
             </div>
             <div id="form-status-error" class="form-status-banner error-banner" aria-hidden="true">
               <h4>Erro ao Enviar</h4>
@@ -879,7 +811,6 @@
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre Nós</a></li>
           <li><a href="#credenciais">Certificações</a></li>
-          <li><a href="#equipa">Equipa</a></li>
           <li><a href="#contacto">Fale Connosco</a></li>
           <li><a href="PRESTUS_Portfolio_2026.pdf" download="PRESTUS_Portfolio_2026.pdf">Descarregar Portfólio (PDF)</a></li>
         </ul>

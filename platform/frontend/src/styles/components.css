@@ -1,0 +1,702 @@
+/* css/components.css - Layout and Interactivity Components */
+
+/* ============================================================
+   CORPORATE TOPBAR (contact strip, scrolls away)
+   ============================================================ */
+.topbar {
+  background-color: var(--color-brand-dark);
+  color: rgba(255, 255, 255, 0.85);
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  font-size: var(--text-xs);
+  position: relative;
+  z-index: 99;
+}
+
+.topbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.topbar-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.topbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color var(--transition-fast);
+}
+
+a.topbar-item:hover {
+  color: var(--color-accent);
+}
+
+.topbar-item svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--color-accent);
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.topbar-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  color: var(--color-accent);
+}
+
+.topbar-badge svg {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ============================================================
+   STICKY HEADER (Corporate: solid white, gold accent line)
+   ============================================================ */
+.main-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  transition: box-shadow var(--transition-normal);
+}
+
+.main-header.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  height: 100%;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+}
+
+.header-logo:hover {
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   NAVIGATION (Desktop)
+   ============================================================ */
+.nav-desktop {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  position: relative;
+  padding: var(--space-2) 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-brand-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-brand-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ============================================================
+   HEADER UTILITIES
+   ============================================================ */
+.header-utilities {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.lang-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.lang-btn {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 2px 4px;
+  transition: color var(--transition-fast);
+}
+
+.lang-btn.active,
+.lang-btn:hover {
+  color: var(--color-brand-primary);
+}
+
+.lang-divider {
+  font-size: var(--text-xs);
+  color: var(--color-border);
+}
+
+/* ============================================================
+   MOBILE HAMBURGER TOGGLE
+   ============================================================ */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  z-index: 110;
+}
+
+.hamburger-box {
+  width: 24px;
+  height: 18px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  position: absolute;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.hamburger-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: '';
+  display: block;
+}
+
+.hamburger-inner::before { top: -8px; }
+.hamburger-inner::after { bottom: -8px; }
+
+/* Hamburger → X */
+.menu-toggle[aria-expanded="true"] .hamburger-inner {
+  background-color: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .hamburger-inner::before {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .hamburger-inner::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================================================
+   MOBILE MENU OVERLAY DRAWER
+   ============================================================ */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(15, 23, 42, 0.4);
+  z-index: 95;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-mobile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--shadow-xl);
+  padding: calc(var(--header-height) + var(--space-6)) var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform var(--transition-normal);
+}
+
+.mobile-menu-overlay.open .nav-mobile {
+  transform: translateX(0);
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.mobile-nav-link {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  display: block;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-brand-primary);
+}
+
+.mobile-menu-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.mobile-lang-selector {
+  display: flex;
+  gap: var(--space-4);
+  padding-bottom: var(--space-2);
+}
+
+.mobile-lang-selector .lang-btn {
+  font-size: var(--text-sm);
+}
+
+/* ============================================================
+   FORM SYSTEM
+   ============================================================ */
+.form-group {
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-group label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem var(--space-4);
+  font-size: var(--text-sm);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px var(--color-brand-light);
+}
+
+/* Validation */
+.form-group input.invalid,
+.form-group select.invalid,
+.form-group textarea.invalid {
+  border-color: var(--color-error);
+}
+
+.error-msg {
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  font-weight: 500;
+  min-height: 1.25em;
+  display: block;
+}
+
+/* Form Submit */
+.btn-submit {
+  width: 100%;
+  position: relative;
+  border-radius: var(--radius-md);
+}
+
+.btn-submit.loading .btn-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.btn-spinner {
+  display: none;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #FFFFFF;
+  animation: spin 0.8s linear infinite;
+}
+
+.btn-submit.loading .btn-spinner {
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Feedback Banners */
+.form-status-banner {
+  display: none;
+  padding: var(--space-4);
+  margin-top: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.form-status-banner.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-banner {
+  background-color: var(--color-success-light);
+  border-color: var(--color-success);
+  color: #065F46;
+}
+
+.error-banner {
+  background-color: var(--color-error-light);
+  border-color: var(--color-error);
+  color: #991B1B;
+}
+
+.form-status-banner h4 {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+.form-status-banner p {
+  font-size: var(--text-xs);
+  color: inherit;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form highlight animation for service pre-selection */
+@keyframes highlightPulse {
+  0% { box-shadow: 0 0 0 3px var(--color-brand-light); }
+  50% { box-shadow: 0 0 0 6px var(--color-brand-light); }
+  100% { box-shadow: 0 0 0 3px var(--color-brand-light); }
+}
+
+.form-group select.highlighted {
+  border-color: var(--color-brand-primary);
+  animation: highlightPulse 1s ease 2;
+}
+
+/* ============================================================
+   WHATSAPP FLOATING BUTTON
+   ============================================================ */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  background-color: #25D366;
+  color: #FFFFFF;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  z-index: 90;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  text-decoration: none;
+  animation: whatsappFloatBounce 3.5s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.12) rotate(4deg);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float:active {
+  transform: scale(0.95);
+}
+
+.whatsapp-icon {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  animation: whatsappIconShake 3.5s ease-in-out infinite;
+}
+
+/* Dual expanding pulse rings */
+.whatsapp-float::before,
+.whatsapp-float::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background-color: rgba(37, 211, 102, 0.4);
+  z-index: -1;
+  animation: whatsappRipple 2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+.whatsapp-float::after {
+  animation-delay: 1s;
+}
+
+@keyframes whatsappFloatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes whatsappIconShake {
+  0%, 80%, 100% { transform: rotate(0deg); }
+  85% { transform: rotate(-14deg); }
+  90% { transform: rotate(14deg); }
+  95% { transform: rotate(-8deg); }
+}
+
+@keyframes whatsappRipple {
+  0% { transform: scale(0.85); opacity: 0.8; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   11. CORPORATE MARQUEE TICKER
+   -------------------------------------------------------------------------- */
+.corporate-marquee {
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 0;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeLoop 35s linear infinite;
+}
+
+.corporate-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.marquee-content span {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+}
+
+.marquee-dot {
+  color: var(--color-brand-primary);
+  font-size: 1.2rem;
+}
+
+@keyframes marqueeLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --------------------------------------------------------------------------
+   12. SERVICE QUICK VIEW MODAL
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(7, 33, 60, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  max-width: 620px;
+  width: 100%;
+  padding: var(--space-8);
+  position: relative;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-5);
+  background: transparent;
+  border: none;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+  color: var(--color-brand-primary);
+}
+
+.modal-header h3 {
+  font-size: var(--text-2xl);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.modal-body {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.modal-body p {
+  margin-bottom: var(--space-3);
+}
+
+.modal-body ul {
+  margin-top: var(--space-3);
+  padding-left: var(--space-5);
+}
+
+.modal-body li {
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}

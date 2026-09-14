@@ -1,0 +1,12 @@
+{
+  "name": "prestus-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PRESTUS — Plataforma Integrada (React Frontend + Node.js/Express Backend + Firebase Firestore)",
+  "scripts": {
+    "dev:frontend": "npm --prefix platform/frontend run dev",
+    "dev:backend": "npm --prefix platform/backend run dev",
+    "build:frontend": "npm --prefix platform/frontend run build",
+    "start:backend": "npm --prefix platform/backend start"
+  }
+}
