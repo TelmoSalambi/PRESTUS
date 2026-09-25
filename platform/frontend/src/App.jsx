@@ -17,10 +17,13 @@ import About from './components/About.jsx';
 import Services from './components/Services.jsx';
 import Credentials from './components/Credentials.jsx';
 import Faq from './components/Faq.jsx';
+import News from './components/News.jsx';
 import CtaBand from './components/CtaBand.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
+import BackToTop from './components/BackToTop.jsx';
+import ScrollProgress from './components/ScrollProgress.jsx';
 import ServiceModal from './components/ServiceModal.jsx';
 import { useScrollReveal } from './hooks/useScrollReveal.js';
 
@@ -96,6 +99,7 @@ export default function App() {
 
   return (
     <>
+      <ScrollProgress />
       <a href="#main-content" className="skip-link">
         {t('skipLink')}
       </a>
@@ -111,12 +115,14 @@ export default function App() {
         <Services onOpenService={setActiveService} />
         <Credentials />
         <Faq />
+        <News />
         <CtaBand />
         <Contact preselectedService={preselectedService} />
       </main>
 
       <Footer />
       <WhatsAppButton />
+      <BackToTop />
 
       <ServiceModal
         serviceKey={activeService}

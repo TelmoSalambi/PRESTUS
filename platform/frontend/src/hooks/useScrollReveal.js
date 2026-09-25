@@ -6,8 +6,8 @@
 import { useEffect } from 'react';
 
 const GRID_SELECTOR =
-  '.values-grid, .credentials-grid, .trust-grid, .services-grid, .about-features, .faq-container, .portfolio-track, .news-grid';
-const REVEAL_SELECTOR = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';
+  '.values-grid, .credentials-grid, .trust-grid, .about-features, .faq-container, .portfolio-track, .news-grid';
+const REVEAL_SELECTOR = '.reveal, .reveal-up';
 const HERO_SELECTOR =
   '.hero-section .reveal, .hero-section .hero-kicker, .hero-section .hero-title, .hero-section .hero-subtitle, .hero-section .hero-actions';
 

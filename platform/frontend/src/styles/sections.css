@@ -318,34 +318,8 @@
   color: #ffffff;
 }
 
-.btn-play {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: none;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-pill);
-  padding: 0.65rem var(--space-5);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.btn-play:hover {
-  border-color: var(--color-brand-primary);
-  color: var(--color-brand-primary);
-}
-
-.btn-play svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
 /* ============================================================
-   TRUST/STATS BAR (Nexora: floating white card with shadow)
+   TRUST/STATS BAR (floating white card with shadow)
    ============================================================ */
 .trust-section {
   position: relative;
@@ -434,7 +408,7 @@
 }
 
 /* ============================================================
-   ABOUT SECTION (Nexora: text left, image right with floating stat)
+   ABOUT SECTION (text left, image right with floating stat)
    ============================================================ */
 .about-section {
   background-color: var(--color-bg-surface-alt);
@@ -526,7 +500,9 @@
   border-radius: calc(var(--radius-xl) + 2px);
   z-index: 0;
   pointer-events: none;
-  transition: transform var(--transition-normal), opacity var(--transition-normal);
+  transition:
+    transform var(--transition-normal),
+    opacity var(--transition-normal);
 }
 
 .about-visual:hover .about-image-frame::before {
@@ -542,7 +518,9 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--color-border);
-  box-shadow: 0 16px 36px -10px rgba(7, 33, 60, 0.16), 0 0 0 1px rgba(12, 59, 102, 0.05);
+  box-shadow:
+    0 16px 36px -10px rgba(7, 33, 60, 0.16),
+    0 0 0 1px rgba(12, 59, 102, 0.05);
   background-color: var(--color-bg-surface-alt);
 }
 
@@ -576,7 +554,9 @@
   border-left: 3px solid var(--color-accent);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-float);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .about-floating-card:hover {
@@ -743,79 +723,6 @@
 /* Map Placeholder */
 .map-container {
   margin-top: var(--space-4);
-}
-
-.map-placeholder {
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-10) var(--space-6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  text-align: center;
-  min-height: 200px;
-  position: relative;
-  overflow: hidden;
-}
-
-.map-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(11, 95, 165, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(11, 95, 165, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.map-placeholder span {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  font-family: var(--font-mono);
-  position: relative;
-  z-index: 1;
-}
-
-.map-icon-pulse {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: var(--color-brand-primary);
-  position: relative;
-  z-index: 1;
-}
-
-.map-icon-pulse::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  background-color: rgba(11, 95, 165, 0.2);
-  animation: mapPulse 2s ease-out infinite;
-}
-
-.map-icon-pulse::after {
-  content: '';
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  background-color: rgba(11, 95, 165, 0.1);
-  animation: mapPulse 2s ease-out infinite 0.5s;
-}
-
-@keyframes mapPulse {
-  0% {
-    transform: scale(0.8);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
 }
 
 /* Contact Form Panel */
@@ -1007,6 +914,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  cursor: pointer;
   transition:
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),

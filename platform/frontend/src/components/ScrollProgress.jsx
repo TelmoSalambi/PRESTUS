@@ -28,10 +28,7 @@ export default function ScrollProgress() {
 
   return (
     <div className="scroll-progress" aria-hidden="true">
-      <span
-        className="scroll-progress-fill"
-        style={{ transform: `scaleX(${progress})` }}
-      ></span>
+      <span className="scroll-progress-fill" style={{ transform: `scaleX(${progress})` }}></span>
     </div>
   );
 }

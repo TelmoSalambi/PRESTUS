@@ -79,7 +79,7 @@ a.topbar-item:hover {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background-color: #ffffff;
+  background-color: var(--color-bg-surface);
   border-bottom: 1px solid var(--color-border);
   z-index: 100;
   display: flex;

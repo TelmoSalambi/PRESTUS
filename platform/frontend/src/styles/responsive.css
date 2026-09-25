@@ -56,23 +56,6 @@
     border-bottom: none;
   }
 
-  /* Services: 2 columns */
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Section split header: stack */
-  .section-header-split {
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .section-header-split .section-header-right {
-    text-align: left;
-    align-items: flex-start;
-    padding-top: 0;
-  }
-
   /* About: stack */
   .about-grid {
     grid-template-columns: 1fr;
@@ -172,8 +155,7 @@
     width: 100%;
   }
 
-  .hero-actions .btn,
-  .hero-actions .btn-play {
+  .hero-actions .btn {
     width: auto;
     flex: 1 1 auto;
     min-width: 150px;
@@ -202,11 +184,6 @@
 
   .stat-number {
     font-size: var(--text-xl);
-  }
-
-  /* Services: 1 column */
-  .services-grid {
-    grid-template-columns: 1fr;
   }
 
   /* Credentials: 1 column */

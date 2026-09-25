@@ -101,6 +101,7 @@ export default function Header() {
     { href: '#sobre', label: t('nav.about'), id: 'sobre' },
     { href: '#servicos', label: t('nav.services'), id: 'servicos' },
     { href: '#credenciais', label: t('nav.credentials'), id: 'credenciais' },
+    { href: '#noticias', label: t('nav.news'), id: 'noticias' },
     { href: '#faq', label: t('nav.faq'), id: 'faq' },
     { href: '#contacto', label: t('nav.contact'), id: 'contacto' },
   ];

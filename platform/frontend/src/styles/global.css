@@ -110,35 +110,6 @@ section {
   line-height: var(--lh-relaxed);
 }
 
-/* Split header (Nexora: left heading, right description + link) */
-.section-header-split {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-10);
-  margin-bottom: var(--space-10);
-}
-
-.section-header-split .section-header-left {
-  max-width: 480px;
-}
-
-.section-header-split .section-header-right {
-  max-width: 400px;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-4);
-  padding-top: var(--space-4);
-}
-
-.section-header-right p {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  line-height: var(--lh-relaxed);
-}
-
 /* ============================================================
    BUTTONS SYSTEM (Corporate: squared, uppercase, tracked)
    ============================================================ */
@@ -165,7 +136,7 @@ section {
   transform: scale(0.97);
 }
 
-/* Primary Button (Nexora teal/brand fill, white text) */
+/* Primary Button (brand fill, white text) */
 .btn-primary {
   background-color: var(--color-accent-dark);
   color: #ffffff;
@@ -177,7 +148,7 @@ section {
   border-color: var(--color-brand-primary);
 }
 
-/* Secondary/Outline Button (Nexora: dark outline, dark text) */
+/* Secondary/Outline Button (dark outline, dark text) */
 .btn-secondary {
   background-color: transparent;
   color: var(--color-text-primary);
@@ -244,25 +215,6 @@ section {
   font-size: var(--text-xs);
 }
 
-/* Text link arrow */
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--color-brand-primary);
-  font-weight: 600;
-  text-decoration: none;
-  font-size: var(--text-sm);
-  transition:
-    color var(--transition-fast),
-    gap var(--transition-fast);
-}
-
-.text-link:hover {
-  color: var(--color-brand-dark);
-  gap: var(--space-3);
-}
-
 /* ============================================================
    REVEAL SCROLL ANIMATION SYSTEM (HIGH-END CORPORATE)
    ============================================================ */
@@ -273,30 +225,9 @@ section {
   will-change: opacity, transform;
 }
 
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-36px);
-  will-change: opacity, transform;
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(36px);
-  will-change: opacity, transform;
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.93);
-  will-change: opacity, transform;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .reveal,
-  .reveal-up,
-  .reveal-left,
-  .reveal-right,
-  .reveal-scale {
+  .reveal-up {
     transition:
       opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
@@ -329,10 +260,7 @@ section {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal-up,
-  .reveal-left,
-  .reveal-right,
-  .reveal-scale {
+  .reveal-up {
     opacity: 1;
     transform: none;
   }
@@ -342,10 +270,7 @@ section {
    (a classe .reveal só deve esconder enquanto o JS está a animar) */
 @media (scripting: none) {
   .reveal,
-  .reveal-up,
-  .reveal-left,
-  .reveal-right,
-  .reveal-scale {
+  .reveal-up {
     opacity: 1;
     transform: none;
   }
