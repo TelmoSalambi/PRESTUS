@@ -1,4 +1,4 @@
-﻿import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { PORTFOLIO_FILE } from '../config.js';
 
 export default function Footer() {
@@ -15,9 +15,7 @@ export default function Footer() {
           <img src="/Logo.png" alt="PRESTUS Logo" className="footer-logo" />
           <p className="footer-desc">{t('footer.description')}</p>
           <div className="footer-tax-info">
-            <p>
-              {t('topbar.nif')}
-            </p>
+            <p>{t('topbar.nif')}</p>
           </div>
         </div>
 
@@ -44,7 +42,13 @@ export default function Footer() {
               <a href="#sobre">{t('nav.about')}</a>
             </li>
             <li>
+              <a href="#servicos">{t('nav.services')}</a>
+            </li>
+            <li>
               <a href="#credenciais">{t('nav.credentials')}</a>
+            </li>
+            <li>
+              <a href="#faq">{t('faq.label', 'FAQ')}</a>
             </li>
             <li>
               <a href="#contacto">{t('nav.contact')}</a>
@@ -63,8 +67,7 @@ export default function Footer() {
           <p>{t('footer.officeHuila')}</p>
           <p>{t('footer.officeLuanda')}</p>
           <p>
-            {t('footer.emailLabel', 'Email:')}{' '}
-            <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+            {t('footer.emailLabel', 'Email:')} <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
           </p>
         </div>
       </div>

@@ -6,12 +6,7 @@ export default function Hero() {
   return (
     <section id="inicio" className="hero-section">
       <div className="hero-bg-image">
-        <img
-          src="/IMG/Banner 01.webp"
-          alt={t('hero.imgAlt')}
-          loading="eager"
-          decoding="async"
-        />
+        <img src="/IMG/Banner 01.webp" alt={t('hero.imgAlt')} loading="eager" decoding="async" />
       </div>
       <div className="container">
         <div className="hero-content reveal">
@@ -35,6 +30,15 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      <a
+        href="#sobre"
+        className="hero-scroll-indicator"
+        aria-label={t('hero.scrollDown', 'Rolar para baixo')}
+      >
+        <span className="scroll-mouse"></span>
+        <span className="scroll-text">EXPLORAR</span>
+      </a>
     </section>
   );
 }

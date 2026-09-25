@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
 
@@ -18,7 +18,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-// Lock body scroll when mobile menu is open (ref-counted)
+  // Lock body scroll when mobile menu is open (ref-counted)
   useEffect(() => {
     if (isMobileOpen) {
       lockScroll();
@@ -53,7 +53,7 @@ export default function Header() {
       {
         rootMargin: '-40% 0px -55% 0px',
         threshold: 0,
-      }
+      },
     );
 
     sections.forEach((s) => observer.observe(s));
@@ -68,7 +68,7 @@ export default function Header() {
     { href: '#inicio', label: t('nav.home'), id: 'inicio' },
     { href: '#sobre', label: t('nav.about'), id: 'sobre' },
     { href: '#servicos', label: t('nav.services'), id: 'servicos' },
-{ href: '#credenciais', label: t('nav.credentials'), id: 'credenciais' },
+    { href: '#credenciais', label: t('nav.credentials'), id: 'credenciais' },
     { href: '#contacto', label: t('nav.contact'), id: 'contacto' },
   ];
 
@@ -180,7 +180,7 @@ export default function Header() {
                   setIsMobileOpen(false);
                 }}
               >
-{t('header.langEn', 'English')}
+                {t('header.langEn', 'English')}
               </button>
             </div>
             <a

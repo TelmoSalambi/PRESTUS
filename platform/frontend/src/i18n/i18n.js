@@ -11,19 +11,17 @@ import en from '../locales/en.js';
 
 const savedLang = typeof window !== 'undefined' ? localStorage.getItem('prestus_lang') : null;
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      pt,
-      en,
-    },
-    lng: savedLang || 'pt',
-    fallbackLng: 'pt',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources: {
+    pt,
+    en,
+  },
+  lng: savedLang || 'pt',
+  fallbackLng: 'pt',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 i18n.on('languageChanged', (lng) => {
   if (typeof window !== 'undefined') {

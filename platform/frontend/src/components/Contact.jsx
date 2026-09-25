@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+﻿import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SERVICES } from '../data/services.js';
 import { OFFICE_COORDINATES } from '../config.js';
@@ -12,6 +12,8 @@ export default function Contact({ preselectedService }) {
     email: '',
     phone: '',
     service: '',
+    budget: '',
+    deadline: '',
     message: '',
     honeypot: '',
   });
@@ -22,12 +24,12 @@ export default function Contact({ preselectedService }) {
   const [statusMessage, setStatusMessage] = useState(null);
 
   // Update selected service if parent triggers it (via cards or modal)
-  useEffect(() => {
-    if (preselectedService) {
-      setFormData((prev) => ({ ...prev, service: preselectedService }));
-      setErrors((prev) => ({ ...prev, service: null }));
-    }
-  }, [preselectedService]);
+  const [prevPreselectedService, setPrevPreselectedService] = useState(preselectedService);
+  if (preselectedService && preselectedService !== prevPreselectedService) {
+    setPrevPreselectedService(preselectedService);
+    setFormData((prev) => ({ ...prev, service: preselectedService }));
+    setErrors((prev) => ({ ...prev, service: null }));
+  }
 
   const validateField = (name, value) => {
     let error = null;
@@ -105,7 +107,7 @@ export default function Contact({ preselectedService }) {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -114,7 +116,9 @@ export default function Contact({ preselectedService }) {
           email: formData.email.trim(),
           phone: formData.phone.trim(),
           service: formData.service,
-          message: formData.message.trim(),
+          budget: formData.budget.trim(),
+          deadline: formData.deadline.trim(),
+          description: formData.message.trim(),
         }),
       });
 
@@ -130,6 +134,8 @@ export default function Contact({ preselectedService }) {
         email: '',
         phone: '',
         service: '',
+        budget: '',
+        deadline: '',
         message: '',
         honeypot: '',
       });
@@ -345,6 +351,31 @@ export default function Contact({ preselectedService }) {
                   value={formData.message}
                   onChange={handleChange}
                 />
+              </div>
+
+              <div className="form-row">
+                <div className="form-group form-group-half">
+                  <label htmlFor="form-budget">{t('contact.form.budget')}</label>
+                  <input
+                    type="text"
+                    id="form-budget"
+                    name="budget"
+                    placeholder={t('contact.form.budgetPlaceholder')}
+                    value={formData.budget}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group form-group-half">
+                  <label htmlFor="form-deadline">{t('contact.form.deadline')}</label>
+                  <input
+                    type="text"
+                    id="form-deadline"
+                    name="deadline"
+                    placeholder={t('contact.form.deadlinePlaceholder')}
+                    value={formData.deadline}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
 
               <button

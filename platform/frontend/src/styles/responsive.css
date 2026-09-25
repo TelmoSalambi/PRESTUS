@@ -5,13 +5,23 @@
    ============================================================ */
 @media (max-width: 1024px) {
   /* Navigation: hide desktop nav, show hamburger */
-  .nav-desktop { display: none; }
-  .lang-selector { display: none; }
-  .btn-header { display: none; }
-  .menu-toggle { display: flex; }
+  .nav-desktop {
+    display: none;
+  }
+  .lang-selector {
+    display: none;
+  }
+  .btn-header {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
 
   /* Corporate topbar: show only essential items on tablet */
-  .topbar-group-right { display: none; }
+  .topbar-group-right {
+    display: none;
+  }
 
   /* Hero: full-bleed background */
   .hero-section {
@@ -42,7 +52,7 @@
     border-right: none;
   }
 
-  .trust-stat:nth-last-child(-n+2) {
+  .trust-stat:nth-last-child(-n + 2) {
     border-bottom: none;
   }
 
@@ -67,6 +77,23 @@
   .about-grid {
     grid-template-columns: 1fr;
     gap: var(--space-8);
+  }
+
+  .about-visual {
+    margin-bottom: var(--space-2);
+  }
+
+  .about-image-frame::before {
+    inset: 8px -6px -6px 6px;
+  }
+
+  .about-floating-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: calc(var(--space-4) * -1);
+    margin-inline: var(--space-3);
+    max-width: fit-content;
   }
 
   /* Credentials: 2 columns */
@@ -113,7 +140,9 @@
   }
 
   /* Corporate topbar hidden on mobile — contacts live in the footer */
-  .topbar { display: none; }
+  .topbar {
+    display: none;
+  }
 
   .container {
     padding-left: var(--space-4);
@@ -252,18 +281,25 @@
     gap: var(--space-6);
   }
 
+  .about-floating-card {
+    margin-inline: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .about-floating-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .about-floating-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
   .mobile-cta-btn {
     width: 100%;
     text-align: center;
-  }
-}
-
-/* ============================================================
-   LARGE DESKTOP (min-width: 1440px)
-   ============================================================ */
-@media (min-width: 1440px) {
-  .services-grid {
-    grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -287,7 +323,9 @@
     page-break-inside: avoid;
   }
 
-  .trust-section { display: none !important; }
+  .trust-section {
+    display: none !important;
+  }
 
   .main-footer {
     background-color: #f0f0f0;

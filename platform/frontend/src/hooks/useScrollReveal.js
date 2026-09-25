@@ -1,4 +1,4 @@
-﻿/**
+/**
  * src/hooks/useScrollReveal.js
  * React hook replicating the institutional animations and scroll-reveal system.
  * Respects prefers-reduced-motion.
@@ -6,7 +6,7 @@
 import { useEffect } from 'react';
 
 const GRID_SELECTOR =
-  '.values-grid, .credentials-grid, .trust-grid, .services-grid';
+  '.values-grid, .credentials-grid, .trust-grid, .services-grid, .about-features, .faq-container, .portfolio-track, .news-grid';
 const REVEAL_SELECTOR = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';
 const HERO_SELECTOR =
   '.hero-section .reveal, .hero-section .hero-kicker, .hero-section .hero-title, .hero-section .hero-subtitle, .hero-section .hero-actions';
@@ -24,17 +24,17 @@ export function useScrollReveal(deps = []) {
       return;
     }
 
-    // Auto-stagger for grid items (reset previous delay classes to avoid accumulation)
+    // Auto-stagger for grid and list items (reset previous delay classes)
     const gridContainers = document.querySelectorAll(GRID_SELECTOR);
     gridContainers.forEach((container) => {
       Array.from(container.children).forEach((child, idx) => {
         if (!child.classList.contains('reveal')) {
           child.classList.add('reveal');
         }
-        for (let i = 1; i <= 5; i += 1) {
+        for (let i = 1; i <= 6; i += 1) {
           child.classList.remove(`delay-${i}`);
         }
-        child.classList.add(`delay-${(idx % 5) + 1}`);
+        child.classList.add(`delay-${(idx % 6) + 1}`);
       });
     });
 
@@ -49,9 +49,9 @@ export function useScrollReveal(deps = []) {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px',
-      }
+        threshold: 0.05,
+        rootMargin: '0px 0px -10px 0px',
+      },
     );
 
     const elements = document.querySelectorAll(REVEAL_SELECTOR);
@@ -66,9 +66,12 @@ export function useScrollReveal(deps = []) {
       if (!el.classList.contains('reveal')) {
         el.classList.add('reveal');
       }
-      const t = setTimeout(() => {
-        el.classList.add('revealed');
-      }, index * 140 + 100);
+      const t = setTimeout(
+        () => {
+          el.classList.add('revealed');
+        },
+        index * 140 + 100,
+      );
       timers.push(t);
     });
 
@@ -76,5 +79,7 @@ export function useScrollReveal(deps = []) {
       revealObserver.disconnect();
       timers.forEach(clearTimeout);
     };
+    // Custom hook: deps are forwarded from the caller
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }

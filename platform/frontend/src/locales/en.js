@@ -80,6 +80,8 @@ export default {
         'Operational presence and own headquarters in Angola',
       ],
       imgAlt: 'PRESTUS Team and Planning',
+      badgeTitle: 'Structure & Operational Rigor',
+      badgeSubtitle: 'Dedicated headquarters & active presence in Angola',
       values: [
         {
           number: '01',
@@ -154,6 +156,21 @@ export default {
       },
     },
 
+    news: {
+      label: 'News & Projects',
+      titleA: 'Ongoing Works & ',
+      titleEm: 'News',
+      subtitle:
+        'Follow our on-site interventions, recent awards, and institutional updates.',
+      allCategories: 'All',
+      readMore: 'Read Article',
+      readTimePrefix: 'Reading:',
+      modalCta: 'Request a Proposal for a Similar Project',
+      closeModal: 'Close article',
+      authorPrefix: 'Published by:',
+      datePrefix: 'Date:',
+      empty: 'No news found for this category.',
+    },
 
     faq: {
       label: 'Institutional Clarifications',
@@ -202,8 +219,10 @@ export default {
       subtitle: 'Contact us for partnerships or quotations.',
       info: {
         hqTitle: 'Headquarters (Lubango, Huíla):',
-        hqLine1: 'Bairro Dr. António Agostinho Neto (near the Military Court and Swapo Bridge), Lubango, Huíla',
-        hqLine2: 'Commercial Address: Rua Deolinda Rodrigues, Napoleão building, 3rd floor, Apt. 8 – Lubango',
+        hqLine1:
+          'Bairro Dr. António Agostinho Neto (near the Military Court and Swapo Bridge), Lubango, Huíla',
+        hqLine2:
+          'Commercial Address: Rua Deolinda Rodrigues, Napoleão building, 3rd floor, Apt. 8 – Lubango',
         officeTitle: 'Office (Luanda):',
         officeLine: 'Rua V, Edifício Gabela, Kifica - Belas, Luanda',
         phonesTitle: 'Phone & WhatsApp:',
@@ -217,8 +236,10 @@ export default {
         email: 'prestuslda1@gmail.com',
         nifTitle: 'Company Tax ID:',
         nif: '5001180177',
-        mapTitle: 'PRESTUS headquarters location — Banco BIC building, Rua Hoji Ya Henda, Lubango, Huíla',
-        mapCaption: 'Banco BIC Building, Rua Hoji Ya Henda • Near Irene Neto Maternity Hospital, Lubango',
+        mapTitle:
+          'PRESTUS headquarters location — Banco BIC building, Rua Hoji Ya Henda, Lubango, Huíla',
+        mapCaption:
+          'Banco BIC Building, Rua Hoji Ya Henda • Near Irene Neto Maternity Hospital, Lubango',
         mapOpen: 'Open in Google Maps',
         mapOpenAria: 'Open PRESTUS location in Google Maps',
       },
@@ -235,6 +256,10 @@ export default {
         servicePlaceholder: 'Select an area...',
         message: 'Message / Requirements',
         messagePlaceholder: 'Describe the general requirements of your project...',
+        budget: 'Estimated Budget',
+        budgetPlaceholder: 'E.g.: 50,000,000 AKZ',
+        deadline: 'Desired Deadline',
+        deadlinePlaceholder: 'E.g.: 3 months',
         submit: 'Send Message',
         errors: {
           name: 'Please enter your full name.',
@@ -243,9 +268,11 @@ export default {
           service: 'Please select an area of interest.',
         },
         successTitle: 'Message Sent!',
-        successText: 'We have received your request. Our commercial team replies within 24–48 business hours.',
+        successText:
+          'We have received your request. Our commercial team replies within 24–48 business hours.',
         errorTitle: 'Error Sending',
-        errorText: 'Please check the form and try again. If the problem persists, contact us via WhatsApp.',
+        errorText:
+          'Please check the form and try again. If the problem persists, contact us via WhatsApp.',
       },
     },
 

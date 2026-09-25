@@ -62,15 +62,8 @@ export default function Services({ onOpenService }) {
       prevTranslateRef.current = -targetX;
       setTrackPosition(-targetX);
     },
-    [getLimit, setTrackPosition]
+    [getLimit, setTrackPosition],
   );
-
-  const startAutoplay = useCallback(() => {
-    stopAutoplay();
-    autoplayTimerRef.current = setInterval(() => {
-      goToSlide(currentIndex + 1);
-    }, autoplayInterval);
-  }, [currentIndex, goToSlide]);
 
   const stopAutoplay = useCallback(() => {
     if (autoplayTimerRef.current) {
@@ -78,6 +71,13 @@ export default function Services({ onOpenService }) {
       autoplayTimerRef.current = null;
     }
   }, []);
+
+  const startAutoplay = useCallback(() => {
+    stopAutoplay();
+    autoplayTimerRef.current = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, autoplayInterval);
+  }, [currentIndex, goToSlide, stopAutoplay]);
 
   const triggerResumeAutoplay = useCallback(() => {
     stopAutoplay();
@@ -160,7 +160,7 @@ export default function Services({ onOpenService }) {
           onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
           onTouchEnd={handleDragEnd}
         >
-          {SERVICES.map((service, index) => {
+          {SERVICES.map((service) => {
             const data = serviceItems[service.id] || {};
             return (
               <div
@@ -204,7 +204,17 @@ export default function Services({ onOpenService }) {
               triggerResumeAutoplay();
             }}
           >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
@@ -235,7 +245,17 @@ export default function Services({ onOpenService }) {
               triggerResumeAutoplay();
             }}
           >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>

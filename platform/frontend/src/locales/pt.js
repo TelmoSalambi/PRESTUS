@@ -80,6 +80,8 @@ export default {
         'Presença operacional e sede própria em Angola',
       ],
       imgAlt: 'Equipa e Planeamento PRESTUS',
+      badgeTitle: 'Estrutura & Rigor Operacional',
+      badgeSubtitle: 'Sede própria e presença ativa em Angola',
       values: [
         {
           number: '01',
@@ -154,12 +156,12 @@ export default {
       },
     },
 
-
     news: {
       label: 'Atualidade e Projetos',
       titleA: 'Obras em Curso & ',
       titleEm: 'Notícias',
-      subtitle: 'Acompanhe as nossas intervenções no terreno, adjudicações recentes e atualizações institucionais.',
+      subtitle:
+        'Acompanhe as nossas intervenções no terreno, adjudicações recentes e atualizações institucionais.',
       allCategories: 'Todos',
       readMore: 'Ler Artigo',
       readTimePrefix: 'Leitura:',
@@ -217,8 +219,10 @@ export default {
       subtitle: 'Entre em contacto para parcerias ou orçamentos.',
       info: {
         hqTitle: 'Sede (Lubango, Huíla):',
-        hqLine1: 'Bairro Dr. António Agostinho Neto (próximo ao Tribunal Militar e Ponte da Swapo), Lubango, Huíla',
-        hqLine2: 'Endereço Comercial: Rua Deolinda Rodrigues, prédio do Napoleão, 3.º andar, Apt. 8 – Lubango',
+        hqLine1:
+          'Bairro Dr. António Agostinho Neto (próximo ao Tribunal Militar e Ponte da Swapo), Lubango, Huíla',
+        hqLine2:
+          'Endereço Comercial: Rua Deolinda Rodrigues, prédio do Napoleão, 3.º andar, Apt. 8 – Lubango',
         officeTitle: 'Escritório (Luanda):',
         officeLine: 'Rua V, Edifício Gabela, Kifica - Belas, Luanda',
         phonesTitle: 'Contactos Telefónicos & WhatsApp:',
@@ -232,8 +236,10 @@ export default {
         email: 'prestuslda1@gmail.com',
         nifTitle: 'NIF da Empresa:',
         nif: '5001180177',
-        mapTitle: 'Localização da sede da PRESTUS — Prédio do Banco BIC, Rua Hoji Ya Henda, Lubango, Huíla',
-        mapCaption: 'Prédio Banco BIC, Rua Hoji Ya Henda • Próximo da Maternidade Irene Neto, Lubango',
+        mapTitle:
+          'Localização da sede da PRESTUS — Prédio do Banco BIC, Rua Hoji Ya Henda, Lubango, Huíla',
+        mapCaption:
+          'Prédio Banco BIC, Rua Hoji Ya Henda • Próximo da Maternidade Irene Neto, Lubango',
         mapOpen: 'Abrir no Google Maps',
         mapOpenAria: 'Abrir a localização da PRESTUS no Google Maps',
       },
@@ -250,6 +256,10 @@ export default {
         servicePlaceholder: 'Selecione uma área...',
         message: 'Mensagem / Requisitos',
         messagePlaceholder: 'Descreva os requisitos gerais do seu projeto...',
+        budget: 'Orçamento Estimado',
+        budgetPlaceholder: 'Ex: 50.000.000 AKZ',
+        deadline: 'Prazo Pretendido',
+        deadlinePlaceholder: 'Ex: 3 meses',
         submit: 'Enviar Mensagem',
         errors: {
           name: 'Por favor, insira o seu nome completo.',
@@ -260,7 +270,8 @@ export default {
         successTitle: 'Mensagem Enviada!',
         successText: 'Recebemos o seu pedido. A nossa equipa comercial responde em 24–48h úteis.',
         errorTitle: 'Erro ao Enviar',
-        errorText: 'Verifique o formulário e tente novamente. Se persistir, contacte-nos por WhatsApp.',
+        errorText:
+          'Verifique o formulário e tente novamente. Se persistir, contacte-nos por WhatsApp.',
       },
     },
 

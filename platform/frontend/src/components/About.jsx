@@ -36,13 +36,36 @@ export default function About() {
           </div>
 
           <div className="about-visual reveal">
-            <div className="about-image-wrapper">
-              <img
-                src="/IMG/Quem somos.webp"
-                alt={t('about.imgAlt')}
-                loading="lazy"
-                decoding="async"
-              />
+            <div className="about-image-frame">
+              <div className="about-image-wrapper">
+                <img
+                  src="/IMG/Quem somos.webp"
+                  alt={t('about.imgAlt')}
+                  width="1024"
+                  height="767"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="about-floating-card">
+                <div className="about-floating-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <polyline points="9 12 11 14 15 10" />
+                  </svg>
+                </div>
+                <div className="about-floating-content">
+                  <span className="about-floating-title">{t('about.badgeTitle')}</span>
+                  <span className="about-floating-sub">{t('about.badgeSubtitle')}</span>
+                </div>
+              </div>
             </div>
           </div>
 

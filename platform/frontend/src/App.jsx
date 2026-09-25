@@ -43,7 +43,9 @@ export default function App() {
   const scrollToSection = useCallback((id) => {
     const target = document.getElementById(id);
     if (!target) return;
-    const rawHeight = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
+    const rawHeight = getComputedStyle(document.documentElement)
+      .getPropertyValue('--header-height')
+      .trim();
     const parsed = Number.parseInt(rawHeight, 10);
     const headerHeight = Number.isNaN(parsed) ? HEADER_OFFSET_DEFAULT : parsed;
     const offsetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
@@ -57,7 +59,7 @@ export default function App() {
       setActiveService(null);
       scrollToSection('contacto');
     },
-    [scrollToSection]
+    [scrollToSection],
   );
 
   // Global smooth-scroll for in-page anchor links (footer, hero, CTA buttons...)

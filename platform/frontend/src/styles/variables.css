@@ -21,19 +21,19 @@
   --text-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
 
   /* Spacing Scale (8pt system) */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.5rem;    /* 24px */
-  --space-6: 2rem;      /* 32px */
-  --space-8: 3rem;      /* 48px */
-  --space-10: 4rem;     /* 64px */
-  --space-12: 6rem;     /* 96px */
-  --space-16: 8rem;     /* 128px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-8: 3rem; /* 48px */
+  --space-10: 4rem; /* 64px */
+  --space-12: 6rem; /* 96px */
+  --space-16: 8rem; /* 128px */
 
   /* Layout */
-  --container-max: 1200px;
+  --container-max: 1280px;
   --header-height: 80px;
   --topbar-height: 40px;
 
@@ -57,32 +57,32 @@
   --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* ---- Color Palette (Corporate Institutional — Navy & Gold) ---- */
-  --color-bg-base: #FFFFFF;
-  --color-bg-surface: #FFFFFF;
-  --color-bg-surface-alt: #F4F6F8;
-  --color-bg-hero: #0A2440;
-  --color-bg-dark-band: #07213C;
+  --color-bg-base: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-alt: #f4f6f8;
+  --color-bg-hero: #0a2440;
+  --color-bg-dark-band: #07213c;
 
   --color-text-primary: #101820;
-  --color-text-secondary: #45515E;
-  --color-text-muted: #8A94A0;
+  --color-text-secondary: #45515e;
+  --color-text-muted: #8a94a0;
 
-  --color-brand-primary: #0C3B66;   /* PRESTUS Corporate Navy */
-  --color-brand-dark: #07213C;      /* Deep Navy */
-  --color-brand-light: #E9EEF4;     /* Light Navy Tint */
-  --color-brand-lighter: #D7E1EC;
+  --color-brand-primary: #0c3b66; /* PRESTUS Corporate Navy */
+  --color-brand-dark: #07213c; /* Deep Navy */
+  --color-brand-light: #e9eef4; /* Light Navy Tint */
+  --color-brand-lighter: #d7e1ec;
 
-  --color-accent: #C9A227;          /* Corporate Gold */
-  --color-accent-dark: #A98820;
-  --color-accent-light: #F7F0DA;
+  --color-accent: #c9a227; /* Corporate Gold */
+  --color-accent-dark: #a98820;
+  --color-accent-light: #f7f0da;
 
-  --color-border: #DCE1E7;
-  --color-border-hover: #B9C2CC;
+  --color-border: #dce1e7;
+  --color-border-hover: #b9c2cc;
 
-  --color-success: #10B981;
-  --color-success-light: #D1FAE5;
-  --color-error: #EF4444;
-  --color-error-light: #FEE2E2;
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-error: #ef4444;
+  --color-error-light: #fee2e2;
 
   /* Shadows (Nexora elevated, soft, layered) */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -93,44 +93,44 @@
   --shadow-float: 0 25px 60px -15px rgba(6, 61, 110, 0.15);
 
   /* Service Icon Palette (Corporate: unified navy with gold accents) */
-  --icon-color-1: #0C3B66;  /* Navy */
-  --icon-color-2: #0C3B66;  /* Navy */
-  --icon-color-3: #0C3B66;  /* Navy */
-  --icon-color-4: #0C3B66;  /* Navy */
-  --icon-color-5: #0C3B66;  /* Navy */
-  --icon-color-6: #0C3B66;  /* Navy */
-  --icon-color-7: #0C3B66;  /* Navy */
-  --icon-color-8: #0C3B66;  /* Navy */
-  --icon-color-9: #0C3B66;  /* Navy */
-  --icon-color-10: #0C3B66; /* Navy */
+  --icon-color-1: #0c3b66; /* Navy */
+  --icon-color-2: #0c3b66; /* Navy */
+  --icon-color-3: #0c3b66; /* Navy */
+  --icon-color-4: #0c3b66; /* Navy */
+  --icon-color-5: #0c3b66; /* Navy */
+  --icon-color-6: #0c3b66; /* Navy */
+  --icon-color-7: #0c3b66; /* Navy */
+  --icon-color-8: #0c3b66; /* Navy */
+  --icon-color-9: #0c3b66; /* Navy */
+  --icon-color-10: #0c3b66; /* Navy */
 }
 
 /* ============================================================
    DARK MODE COLORS (System Prefs & Manual Toggle)
    ============================================================ */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-bg-base: #0A1622;
-    --color-bg-surface: #0F1F30;
-    --color-bg-surface-alt: #16293D;
+  :root:not([data-theme='light']) {
+    --color-bg-base: #0a1622;
+    --color-bg-surface: #0f1f30;
+    --color-bg-surface-alt: #16293d;
     --color-bg-hero: #071525;
-    --color-bg-dark-band: #040D18;
+    --color-bg-dark-band: #040d18;
 
-    --color-text-primary: #F2F5F8;
-    --color-text-secondary: #9AA7B4;
-    --color-text-muted: #5E6E7E;
+    --color-text-primary: #f2f5f8;
+    --color-text-secondary: #9aa7b4;
+    --color-text-muted: #5e6e7e;
 
-    --color-brand-primary: #4A8DC7;
-    --color-brand-dark: #0C3B66;
-    --color-brand-light: #16293D;
-    --color-brand-lighter: #0F1F30;
+    --color-brand-primary: #4a8dc7;
+    --color-brand-dark: #0c3b66;
+    --color-brand-light: #16293d;
+    --color-brand-lighter: #0f1f30;
 
-    --color-accent: #D4AB2E;
-    --color-accent-dark: #B8941F;
-    --color-accent-light: #2A2410;
+    --color-accent: #d4ab2e;
+    --color-accent-dark: #b8941f;
+    --color-accent-light: #2a2410;
 
-    --color-border: #1E3247;
-    --color-border-hover: #2E465E;
+    --color-border: #1e3247;
+    --color-border-hover: #2e465e;
 
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -141,28 +141,28 @@
   }
 }
 
-[data-theme="dark"] {
-  --color-bg-base: #0A1622;
-  --color-bg-surface: #0F1F30;
-  --color-bg-surface-alt: #16293D;
+[data-theme='dark'] {
+  --color-bg-base: #0a1622;
+  --color-bg-surface: #0f1f30;
+  --color-bg-surface-alt: #16293d;
   --color-bg-hero: #071525;
-  --color-bg-dark-band: #040D18;
+  --color-bg-dark-band: #040d18;
 
-  --color-text-primary: #F2F5F8;
-  --color-text-secondary: #9AA7B4;
-  --color-text-muted: #5E6E7E;
+  --color-text-primary: #f2f5f8;
+  --color-text-secondary: #9aa7b4;
+  --color-text-muted: #5e6e7e;
 
-  --color-brand-primary: #4A8DC7;
-  --color-brand-dark: #0C3B66;
-  --color-brand-light: #16293D;
-  --color-brand-lighter: #0F1F30;
+  --color-brand-primary: #4a8dc7;
+  --color-brand-dark: #0c3b66;
+  --color-brand-light: #16293d;
+  --color-brand-lighter: #0f1f30;
 
-  --color-accent: #D4AB2E;
-  --color-accent-dark: #B8941F;
-  --color-accent-light: #2A2410;
+  --color-accent: #d4ab2e;
+  --color-accent-dark: #b8941f;
+  --color-accent-light: #2a2410;
 
-  --color-border: #1E3247;
-  --color-border-hover: #2E465E;
+  --color-border: #1e3247;
+  --color-border-hover: #2e465e;
 
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -171,4 +171,3 @@
   --shadow-xl: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
   --shadow-float: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
 }
-

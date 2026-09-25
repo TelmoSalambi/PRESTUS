@@ -3,7 +3,9 @@ import { WHATSAPP_NUMBER } from '../config.js';
 
 export default function WhatsAppButton() {
   const { t } = useTranslation();
-  const encodedMsg = encodeURIComponent(t('whatsapp.message') || 'Olá PRESTUS! Gostaria de solicitar uma proposta.');
+  const encodedMsg = encodeURIComponent(
+    t('whatsapp.message') || 'Olá PRESTUS! Gostaria de solicitar uma proposta.',
+  );
 
   return (
     <a

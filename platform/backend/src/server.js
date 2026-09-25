@@ -67,6 +67,19 @@ if (process.env.NODE_ENV !== 'test') {
   const server = app.listen(PORT, () => {
     console.log(`🚀 PRESTUS API server running on port ${PORT} [http://localhost:${PORT}]`);
   });
+
+  // Mensagem clara quando a porta já estiver em uso (ex.: processo órfão de um
+  // dev server anterior), em vez de um stack trace de 'Unhandled error event'.
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(
+        `\n❌ A porta ${PORT} já está em uso por outro processo.\n` +
+          `   Rode 'npm run predev' (ou 'node scripts/free-ports.js') para liberá-la e tente novamente.\n`
+      );
+      process.exit(1);
+    }
+    throw err;
+  });
 }
 
 export default app;

@@ -79,7 +79,7 @@ a.topbar-item:hover {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
   z-index: 100;
   display: flex;
@@ -164,25 +164,6 @@ a.topbar-item:hover {
   transform-origin: left;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform var(--transition-fast);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
 /* ============================================================
    HEADER UTILITIES
    ============================================================ */
@@ -243,7 +224,9 @@ a.topbar-item:hover {
   height: 2px;
   background-color: var(--color-text-primary);
   position: absolute;
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
 .hamburger-inner {
@@ -257,19 +240,23 @@ a.topbar-item:hover {
   display: block;
 }
 
-.hamburger-inner::before { top: -8px; }
-.hamburger-inner::after { bottom: -8px; }
+.hamburger-inner::before {
+  top: -8px;
+}
+.hamburger-inner::after {
+  bottom: -8px;
+}
 
 /* Hamburger → X */
-.menu-toggle[aria-expanded="true"] .hamburger-inner {
+.menu-toggle[aria-expanded='true'] .hamburger-inner {
   background-color: transparent;
 }
 
-.menu-toggle[aria-expanded="true"] .hamburger-inner::before {
+.menu-toggle[aria-expanded='true'] .hamburger-inner::before {
   transform: translateY(8px) rotate(45deg);
 }
 
-.menu-toggle[aria-expanded="true"] .hamburger-inner::after {
+.menu-toggle[aria-expanded='true'] .hamburger-inner::after {
   transform: translateY(-8px) rotate(-45deg);
 }
 
@@ -286,7 +273,9 @@ a.topbar-item:hover {
   z-index: 95;
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  transition:
+    opacity var(--transition-normal),
+    visibility var(--transition-normal);
 }
 
 .mobile-menu-overlay.open {
@@ -379,7 +368,9 @@ a.topbar-item:hover {
   border: 1px solid var(--color-border);
   color: var(--color-text-primary);
   border-radius: var(--radius-md);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .form-group input:focus,
@@ -424,7 +415,7 @@ a.topbar-item:hover {
   height: 20px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: #FFFFFF;
+  border-top-color: #ffffff;
   animation: spin 0.8s linear infinite;
 }
 
@@ -433,7 +424,9 @@ a.topbar-item:hover {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Feedback Banners */
@@ -453,13 +446,13 @@ a.topbar-item:hover {
 .success-banner {
   background-color: var(--color-success-light);
   border-color: var(--color-success);
-  color: #065F46;
+  color: #065f46;
 }
 
 .error-banner {
   background-color: var(--color-error-light);
   border-color: var(--color-error);
-  color: #991B1B;
+  color: #991b1b;
 }
 
 .form-status-banner h4 {
@@ -473,15 +466,27 @@ a.topbar-item:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Form highlight animation for service pre-selection */
 @keyframes highlightPulse {
-  0% { box-shadow: 0 0 0 3px var(--color-brand-light); }
-  50% { box-shadow: 0 0 0 6px var(--color-brand-light); }
-  100% { box-shadow: 0 0 0 3px var(--color-brand-light); }
+  0% {
+    box-shadow: 0 0 0 3px var(--color-brand-light);
+  }
+  50% {
+    box-shadow: 0 0 0 6px var(--color-brand-light);
+  }
+  100% {
+    box-shadow: 0 0 0 3px var(--color-brand-light);
+  }
 }
 
 .form-group select.highlighted {
@@ -496,8 +501,8 @@ a.topbar-item:hover {
   position: fixed;
   bottom: var(--space-6);
   right: var(--space-6);
-  background-color: #25D366;
-  color: #FFFFFF;
+  background-color: #25d366;
+  color: #ffffff;
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -506,7 +511,9 @@ a.topbar-item:hover {
   justify-content: center;
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
   z-index: 90;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
   text-decoration: none;
   animation: whatsappFloatBounce 3.5s ease-in-out infinite;
 }
@@ -544,27 +551,48 @@ a.topbar-item:hover {
 }
 
 @keyframes whatsappFloatBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
 }
 
 @keyframes whatsappIconShake {
-  0%, 80%, 100% { transform: rotate(0deg); }
-  85% { transform: rotate(-14deg); }
-  90% { transform: rotate(14deg); }
-  95% { transform: rotate(-8deg); }
+  0%,
+  80%,
+  100% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(-14deg);
+  }
+  90% {
+    transform: rotate(14deg);
+  }
+  95% {
+    transform: rotate(-8deg);
+  }
 }
 
 @keyframes whatsappRipple {
-  0% { transform: scale(0.85); opacity: 0.8; }
-  100% { transform: scale(1.65); opacity: 0; }
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
 }
 
 /* --------------------------------------------------------------------------
    11. CORPORATE MARQUEE TICKER
    -------------------------------------------------------------------------- */
 .corporate-marquee {
-  background: var(--color-bg-alt);
+  background: var(--color-bg-surface-alt);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   padding: 0.85rem 0;
@@ -605,8 +633,12 @@ a.topbar-item:hover {
 }
 
 @keyframes marqueeLoop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -624,7 +656,9 @@ a.topbar-item:hover {
   padding: var(--space-4);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
 }
 
 .modal-overlay.active {
@@ -699,4 +733,22 @@ a.topbar-item:hover {
   justify-content: flex-end;
   border-top: 1px solid var(--color-border);
   padding-top: var(--space-4);
+}
+
+/* Form Row (side-by-side fields) */
+.form-row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.form-group-half {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
 }

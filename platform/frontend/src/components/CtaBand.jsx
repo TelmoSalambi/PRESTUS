@@ -7,9 +7,7 @@ export default function CtaBand() {
     <section className="cta-section" aria-label={t('cta.label')}>
       <div className="container cta-inner reveal">
         <div>
-          <span className="section-label section-label-light">
-            {t('cta.label')}
-          </span>
+          <span className="section-label section-label-light">{t('cta.label')}</span>
           <h2>
             {t('cta.titleA')}
             <em>{t('cta.titleEm')}</em>
