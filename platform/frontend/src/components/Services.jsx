@@ -14,8 +14,14 @@ export default function Services({ onOpenService }) {
   const prevTranslateRef = useRef(0);
   const autoplayTimerRef = useRef(null);
   const resumeTimerRef = useRef(null);
+  const currentIndexRef = useRef(0);
 
   const autoplayInterval = 3200;
+
+  // Keep the ref in sync so the autoplay interval can stay stable
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
 
   const getLimit = useCallback(() => {
     if (!trackRef.current) return 0;
@@ -75,9 +81,9 @@ export default function Services({ onOpenService }) {
   const startAutoplay = useCallback(() => {
     stopAutoplay();
     autoplayTimerRef.current = setInterval(() => {
-      goToSlide(currentIndex + 1);
+      goToSlide(currentIndexRef.current + 1);
     }, autoplayInterval);
-  }, [currentIndex, goToSlide, stopAutoplay]);
+  }, [goToSlide, stopAutoplay]);
 
   const triggerResumeAutoplay = useCallback(() => {
     stopAutoplay();
@@ -168,7 +174,6 @@ export default function Services({ onOpenService }) {
                 data-service={service.id}
                 key={service.id}
                 onClick={() => onOpenService(service.id)}
-                style={{ cursor: 'pointer' }}
               >
                 <div
                   className={`slide-img ${service.imgClass}`}
@@ -180,13 +185,13 @@ export default function Services({ onOpenService }) {
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm btn-service-select"
-                  aria-label={`${data.cta || 'Solicitar Proposta'}: ${data.title}`}
+                  aria-label={`${data.cta || t('header.cta')}: ${data.title}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     onOpenService(service.id);
                   }}
                 >
-                  {data.cta || 'Solicitar Proposta'}
+                  {data.cta || t('header.cta')}
                 </button>
               </div>
             );
@@ -219,15 +224,14 @@ export default function Services({ onOpenService }) {
             </svg>
           </button>
 
-          <div className="carousel-dots" role="tablist" aria-label="Indicadores do carrossel">
+          <div className="carousel-dots" role="group" aria-label={t('services.dotsLabel')}>
             {SERVICES.map((s, idx) => (
               <button
                 type="button"
                 key={s.id}
                 className={`carousel-dot ${idx === currentIndex ? 'active' : ''}`}
-                role="tab"
                 aria-label={`${t('services.goTo')} ${idx + 1}`}
-                aria-selected={idx === currentIndex}
+                aria-current={idx === currentIndex}
                 onClick={() => {
                   goToSlide(idx);
                   triggerResumeAutoplay();

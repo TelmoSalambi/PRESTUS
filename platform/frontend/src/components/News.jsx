@@ -3,15 +3,16 @@ import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
 
-const CATEGORIES_ALL = { pt: 'Todos', en: 'All' };
+const ALL_CATEGORIES = 'Todos';
 
-export default function News({ onRequestService }) {
+export default function News() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language.startsWith('pt') ? 'pt' : 'en';
 
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState('Todos');
+  const [loadError, setLoadError] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(ALL_CATEGORIES);
   const [openArticle, setOpenArticle] = useState(null);
 
   useEffect(() => {
@@ -19,12 +20,15 @@ export default function News({ onRequestService }) {
     (async () => {
       try {
         const res = await fetch('/api/news');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         if (!cancelled && json.success) {
           setArticles(json.data);
+        } else if (!cancelled) {
+          setLoadError(true);
         }
       } catch {
-        // silently ignore — component shows empty state
+        if (!cancelled) setLoadError(true);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -35,10 +39,10 @@ export default function News({ onRequestService }) {
   }, []);
 
   // Collect unique categories
-  const categories = ['Todos', ...new Set(articles.map((a) => a.category))];
+  const categories = [ALL_CATEGORIES, ...new Set(articles.map((a) => a.category))];
 
   const filtered =
-    activeCategory === 'Todos'
+    activeCategory === ALL_CATEGORIES
       ? articles
       : articles.filter((a) => a.category === activeCategory);
 
@@ -83,18 +87,21 @@ export default function News({ onRequestService }) {
               type="button"
               key={cat}
               className={`news-cat-btn ${activeCategory === cat ? 'active' : ''}`}
+              aria-pressed={activeCategory === cat}
               onClick={() => setActiveCategory(cat)}
             >
-              {cat === 'Todos' ? CATEGORIES_ALL[lang] : cat}
+              {cat === ALL_CATEGORIES ? t('news.allCategories') : cat}
             </button>
           ))}
         </div>
 
         {/* Articles Grid */}
         {loading ? (
-          <div className="news-loading">
+          <div className="news-loading" role="status" aria-label={t('news.label')}>
             <span className="btn-spinner" />
           </div>
+        ) : loadError ? (
+          <p className="news-empty">{t('news.error')}</p>
         ) : filtered.length === 0 ? (
           <p className="news-empty">{t('news.empty')}</p>
         ) : (
@@ -106,7 +113,7 @@ export default function News({ onRequestService }) {
               >
                 <div className="news-card-img">
                   <img src={article.image} alt={title(article)} loading="lazy" decoding="async" />
-                  {article.featured && <span className="news-badge">{lang === 'en' ? 'Featured' : 'Destaque'}</span>}
+                  {article.featured && <span className="news-badge">{t('news.featured')}</span>}
                 </div>
                 <div className="news-card-body">
                   <span className="news-card-category">{category(article)}</span>
@@ -153,9 +160,15 @@ export default function News({ onRequestService }) {
               <span className="section-label">{category(openArticle)}</span>
               <h3 id="news-modal-title">{title(openArticle)}</h3>
               <div className="news-modal-meta">
-                <span>{t('news.datePrefix')} {openArticle.date}</span>
-                <span>{t('news.authorPrefix')} {openArticle.author}</span>
-                <span>{t('news.readTimePrefix')} {openArticle.readTime}</span>
+                <span>
+                  {t('news.datePrefix')} {openArticle.date}
+                </span>
+                <span>
+                  {t('news.authorPrefix')} {openArticle.author}
+                </span>
+                <span>
+                  {t('news.readTimePrefix')} {openArticle.readTime}
+                </span>
               </div>
             </div>
             <div
@@ -163,16 +176,9 @@ export default function News({ onRequestService }) {
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content(openArticle)) }}
             />
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-accent"
-                onClick={() => {
-                  setOpenArticle(null);
-                  onRequestService?.('contacto');
-                }}
-              >
+              <a href="#contacto" className="btn btn-accent" onClick={() => setOpenArticle(null)}>
                 {t('news.modalCta')}
-              </button>
+              </a>
             </div>
           </div>
         </div>

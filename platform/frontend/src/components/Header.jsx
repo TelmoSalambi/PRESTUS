@@ -1,6 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
+
+/** Shared PT/EN language switcher — renders compact (PT|EN) or full-name variants. */
+function LangSwitcher({ i18n, t, variant, onChange }) {
+  const langs =
+    variant === 'full'
+      ? [
+          { code: 'pt', label: t('header.langPt') },
+          { code: 'en', label: t('header.langEn') },
+        ]
+      : [
+          { code: 'pt', label: 'PT', aria: t('header.switchToPt') },
+          { code: 'en', label: 'EN', aria: t('header.switchToEn') },
+        ];
+
+  return (
+    <div className={variant === 'full' ? 'mobile-lang-selector' : 'lang-selector'}>
+      {langs.map((lang, idx) => (
+        <Fragment key={lang.code}>
+          {variant !== 'full' && idx > 0 && <span className="lang-divider">|</span>}
+          <button
+            type="button"
+            className={`lang-btn ${i18n.language.startsWith(lang.code) ? 'active' : ''}`}
+            aria-label={lang.aria}
+            onClick={() => onChange(lang.code)}
+          >
+            {lang.label}
+          </button>
+        </Fragment>
+      ))}
+    </div>
+  );
+}
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -69,6 +101,7 @@ export default function Header() {
     { href: '#sobre', label: t('nav.about'), id: 'sobre' },
     { href: '#servicos', label: t('nav.services'), id: 'servicos' },
     { href: '#credenciais', label: t('nav.credentials'), id: 'credenciais' },
+    { href: '#faq', label: t('nav.faq'), id: 'faq' },
     { href: '#contacto', label: t('nav.contact'), id: 'contacto' },
   ];
 
@@ -81,7 +114,7 @@ export default function Header() {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="nav-desktop" aria-label={t('header.navDesktop', 'Main navigation')}>
+          <nav className="nav-desktop" aria-label={t('header.navDesktop')}>
             <ul className="nav-list">
               {navLinks.map((link) => (
                 <li key={link.id}>
@@ -98,25 +131,7 @@ export default function Header() {
 
           {/* Utility Actions (Language & CTA) */}
           <div className="header-utilities">
-            <div className="lang-selector">
-              <button
-                type="button"
-                className={`lang-btn ${i18n.language.startsWith('pt') ? 'active' : ''}`}
-                onClick={() => changeLang('pt')}
-                aria-label={t('header.switchToPt', 'Switch to Portuguese')}
-              >
-                PT
-              </button>
-              <span className="lang-divider">|</span>
-              <button
-                type="button"
-                className={`lang-btn ${i18n.language.startsWith('en') ? 'active' : ''}`}
-                onClick={() => changeLang('en')}
-                aria-label={t('header.switchToEn', 'Switch to English')}
-              >
-                EN
-              </button>
-            </div>
+            <LangSwitcher i18n={i18n} t={t} variant="compact" onChange={changeLang} />
             <a href="#contacto" className="btn btn-accent btn-header">
               {t('header.cta')}
             </a>
@@ -146,7 +161,7 @@ export default function Header() {
           if (e.target.id === 'mobile-nav') setIsMobileOpen(false);
         }}
       >
-        <nav className="nav-mobile" aria-label={t('header.navMobile', 'Mobile navigation')}>
+        <nav className="nav-mobile" aria-label={t('header.navMobile')}>
           <ul className="mobile-nav-list">
             {navLinks.map((link) => (
               <li key={`mob-${link.id}`}>
@@ -161,28 +176,15 @@ export default function Header() {
             ))}
           </ul>
           <div className="mobile-menu-footer">
-            <div className="mobile-lang-selector">
-              <button
-                type="button"
-                className={`lang-btn ${i18n.language.startsWith('pt') ? 'active' : ''}`}
-                onClick={() => {
-                  changeLang('pt');
-                  setIsMobileOpen(false);
-                }}
-              >
-                {t('header.langPt', 'Português')}
-              </button>
-              <button
-                type="button"
-                className={`lang-btn ${i18n.language.startsWith('en') ? 'active' : ''}`}
-                onClick={() => {
-                  changeLang('en');
-                  setIsMobileOpen(false);
-                }}
-              >
-                {t('header.langEn', 'English')}
-              </button>
-            </div>
+            <LangSwitcher
+              i18n={i18n}
+              t={t}
+              variant="full"
+              onChange={(code) => {
+                changeLang(code);
+                setIsMobileOpen(false);
+              }}
+            />
             <a
               href="#contacto"
               className="btn btn-accent mobile-cta-btn"

@@ -1,7 +1,8 @@
 ﻿/**
  * src/i18n/i18n.js
  * Configuração central do react-i18next.
- * Idioma padrão: 'pt' (Português), fallback: 'en' (Inglês).
+ * Idioma padrão e de fallback: 'pt' (Português).
+ * O atributo <html lang> é gerido por App.jsx.
  */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -26,7 +27,6 @@ i18n.use(initReactI18next).init({
 i18n.on('languageChanged', (lng) => {
   if (typeof window !== 'undefined') {
     localStorage.setItem('prestus_lang', lng);
-    document.documentElement.lang = lng;
   }
 });
 

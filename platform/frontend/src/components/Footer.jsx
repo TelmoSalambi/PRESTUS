@@ -48,13 +48,13 @@ export default function Footer() {
               <a href="#credenciais">{t('nav.credentials')}</a>
             </li>
             <li>
-              <a href="#faq">{t('faq.label', 'FAQ')}</a>
+              <a href="#faq">{t('nav.faq')}</a>
             </li>
             <li>
               <a href="#contacto">{t('nav.contact')}</a>
             </li>
             <li>
-              <a href={PORTFOLIO_FILE} download={PORTFOLIO_FILE}>
+              <a href={PORTFOLIO_FILE} download={PORTFOLIO_FILE.split('/').pop()}>
                 {t('footer.downloadPortfolio')}
               </a>
             </li>
@@ -67,14 +67,15 @@ export default function Footer() {
           <p>{t('footer.officeHuila')}</p>
           <p>{t('footer.officeLuanda')}</p>
           <p>
-            {t('footer.emailLabel', 'Email:')} <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+            {t('footer.emailLabel')} <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
           </p>
         </div>
       </div>
 
       <div className="container footer-bottom">
         <p className="copyright">
-          &copy; {currentYear} PRESTUS, (SU) LDA. {t('footer.copyright')}
+          &copy; {currentYear}
+          {t('footer.copyright')}
         </p>
         <p className="developer-credit">{t('footer.tagline')}</p>
       </div>

@@ -7,6 +7,7 @@ import enServices from './enServices.js';
 export default {
   translation: {
     skipLink: 'Skip to main content',
+    backToTop: 'Back to top',
 
     topbar: {
       phone: '+244 923 677 253',
@@ -22,6 +23,7 @@ export default {
       services: 'What We Do',
       credentials: 'Credentials',
       news: 'News & Projects',
+      faq: 'FAQ',
       contact: 'Contact',
     },
 
@@ -47,6 +49,8 @@ export default {
       ctaPrimary: 'Talk to an Expert',
       ctaSecondary: 'Explore Our Services',
       imgAlt: 'PRESTUS Development and Infrastructure in Angola',
+      scrollDown: 'Scroll down',
+      explore: 'Explore',
     },
 
     trust: [
@@ -108,6 +112,7 @@ export default {
       subtitle:
         'We offer a robust portfolio of services and supplies licensed by Angolan regulatory bodies.',
       regionLabel: 'Areas of expertise carousel',
+      dotsLabel: 'Carousel indicators',
       prev: 'Previous slide',
       next: 'Next slide',
       goTo: 'Go to slide',
@@ -160,8 +165,7 @@ export default {
       label: 'News & Projects',
       titleA: 'Ongoing Works & ',
       titleEm: 'News',
-      subtitle:
-        'Follow our on-site interventions, recent awards, and institutional updates.',
+      subtitle: 'Follow our on-site interventions, recent awards, and institutional updates.',
       allCategories: 'All',
       readMore: 'Read Article',
       readTimePrefix: 'Reading:',
@@ -170,6 +174,8 @@ export default {
       authorPrefix: 'Published by:',
       datePrefix: 'Date:',
       empty: 'No news found for this category.',
+      featured: 'Featured',
+      error: 'Unable to load the news. Please try again later.',
     },
 
     faq: {
@@ -261,11 +267,15 @@ export default {
         deadline: 'Desired Deadline',
         deadlinePlaceholder: 'E.g.: 3 months',
         submit: 'Send Message',
+        honeypotLabel: 'Website URL',
         errors: {
           name: 'Please enter your full name.',
           email: 'Please enter a valid e-mail address.',
           phone: 'Please enter a valid phone number.',
           service: 'Please select an area of interest.',
+          submission: 'Please check the form fields and try again.',
+          rateLimited: 'Too many attempts. Please wait a few minutes before trying again.',
+          server: 'Server error. Please try again in a moment or contact us via WhatsApp.',
         },
         successTitle: 'Message Sent!',
         successText:
@@ -292,6 +302,7 @@ export default {
       officesTitle: 'Offices',
       officeHuila: 'Huíla: Bairro Dr. António Agostinho Neto, Lubango (HQ)',
       officeLuanda: 'Luanda: Edifício Gabela, Kifica - Belas',
+      emailLabel: 'Email:',
       copyright: ' PRESTUS, (SU) LDA. All rights reserved.',
       tagline: 'Commitment • Rigor • Legal Compliance',
     },

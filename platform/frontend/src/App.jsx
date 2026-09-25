@@ -24,7 +24,7 @@ import WhatsAppButton from './components/WhatsAppButton.jsx';
 import ServiceModal from './components/ServiceModal.jsx';
 import { useScrollReveal } from './hooks/useScrollReveal.js';
 
-const HEADER_OFFSET_DEFAULT = 72;
+const HEADER_OFFSET_DEFAULT = 80;
 
 export default function App() {
   const { i18n, t } = useTranslation();
@@ -71,6 +71,10 @@ export default function App() {
       if (!id || !document.getElementById(id)) return;
       e.preventDefault();
       scrollToSection(id);
+      // Move keyboard focus to the target (skip-link and normal anchors alike)
+      const target = document.getElementById(id);
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
@@ -93,7 +97,7 @@ export default function App() {
   return (
     <>
       <a href="#main-content" className="skip-link">
-        {t('skipLink', 'Saltar para o conteúdo principal')}
+        {t('skipLink')}
       </a>
 
       <Topbar />

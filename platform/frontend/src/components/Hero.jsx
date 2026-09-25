@@ -31,13 +31,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <a
-        href="#sobre"
-        className="hero-scroll-indicator"
-        aria-label={t('hero.scrollDown', 'Rolar para baixo')}
-      >
+      <a href="#sobre" className="hero-scroll-indicator" aria-label={t('hero.scrollDown')}>
         <span className="scroll-mouse"></span>
-        <span className="scroll-text">EXPLORAR</span>
+        <span className="scroll-text">{t('hero.explore')}</span>
       </a>
     </section>
   );

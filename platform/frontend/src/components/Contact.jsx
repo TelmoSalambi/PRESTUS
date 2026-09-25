@@ -22,6 +22,7 @@ export default function Contact({ preselectedService }) {
   const [loading, setLoading] = useState(false);
   const [statusBanner, setStatusBanner] = useState(null); // 'success' | 'error' | null
   const [statusMessage, setStatusMessage] = useState(null);
+  const [serviceHighlighted, setServiceHighlighted] = useState(false);
 
   // Update selected service if parent triggers it (via cards or modal)
   const [prevPreselectedService, setPrevPreselectedService] = useState(preselectedService);
@@ -29,6 +30,7 @@ export default function Contact({ preselectedService }) {
     setPrevPreselectedService(preselectedService);
     setFormData((prev) => ({ ...prev, service: preselectedService }));
     setErrors((prev) => ({ ...prev, service: null }));
+    setServiceHighlighted(true);
   }
 
   const validateField = (name, value) => {
@@ -65,6 +67,7 @@ export default function Contact({ preselectedService }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === 'service') setServiceHighlighted(false);
 
     if (errors[name]) {
       const err = validateField(name, value);
@@ -119,12 +122,22 @@ export default function Contact({ preselectedService }) {
           budget: formData.budget.trim(),
           deadline: formData.deadline.trim(),
           description: formData.message.trim(),
+          // Anti-spam: field hidden from real users, checked server-side
+          honeypot: formData.honeypot,
         }),
       });
 
       if (!res.ok) {
-        const errorBody = await res.json().catch(() => ({}));
-        throw new Error(errorBody.message || errorBody.error || `HTTP ${res.status}`);
+        await res.json().catch(() => ({}));
+        let message;
+        if (res.status === 429) {
+          message = t('contact.form.errors.rateLimited');
+        } else if (res.status >= 500) {
+          message = t('contact.form.errors.server');
+        } else {
+          message = t('contact.form.errors.submission');
+        }
+        throw new Error(message);
       }
 
       setStatusBanner('success');
@@ -226,7 +239,7 @@ export default function Contact({ preselectedService }) {
             <form id="contact-form" noValidate onSubmit={handleSubmit}>
               {/* Anti-spam Honeypot field (hidden from real users) */}
               <div style={{ display: 'none' }} aria-hidden="true">
-                <label htmlFor="website_hp">Website URL</label>
+                <label htmlFor="website_hp">{t('contact.form.honeypotLabel')}</label>
                 <input
                   type="text"
                   id="website_hp"
@@ -251,6 +264,7 @@ export default function Contact({ preselectedService }) {
                   onBlur={handleBlur}
                   className={errors.name ? 'invalid' : ''}
                   aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? 'error-name' : undefined}
                 />
                 {errors.name && (
                   <span className="error-msg" id="error-name" aria-live="polite">
@@ -282,8 +296,9 @@ export default function Contact({ preselectedService }) {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={errors.email ? 'invalid' : ''}
-                  aria-invalid={!!errors.email}
+                  className={`${errors.service ? 'invalid' : ''} ${serviceHighlighted ? 'highlighted' : ''}`.trim()}
+                  aria-invalid={!!errors.service}
+                  aria-describedby={errors.service ? 'error-service' : undefined}
                 />
                 {errors.email && (
                   <span className="error-msg" id="error-email" aria-live="polite">
@@ -305,6 +320,7 @@ export default function Contact({ preselectedService }) {
                   onBlur={handleBlur}
                   className={errors.phone ? 'invalid' : ''}
                   aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? 'error-phone' : undefined}
                 />
                 {errors.phone && (
                   <span className="error-msg" id="error-phone" aria-live="polite">
@@ -391,6 +407,7 @@ export default function Contact({ preselectedService }) {
             {/* Success Notification */}
             <div
               id="form-status-success"
+              role="status"
               className={`form-status-banner success-banner ${
                 statusBanner === 'success' ? 'show' : ''
               }`}
@@ -403,6 +420,7 @@ export default function Contact({ preselectedService }) {
             {/* Error Notification */}
             <div
               id="form-status-error"
+              role="alert"
               className={`form-status-banner error-banner ${
                 statusBanner === 'error' ? 'show' : ''
               }`}

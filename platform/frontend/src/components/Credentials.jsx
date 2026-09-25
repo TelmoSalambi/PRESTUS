@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { PORTFOLIO_FILE } from '../config.js';
 
 export default function Credentials() {
   const { t } = useTranslation();
@@ -30,9 +31,9 @@ export default function Credentials() {
             <h3>{download.title}</h3>
             <p>{download.text}</p>
             <a
-              href="/PRESTUS_Portfolio_2026.pdf"
+              href={PORTFOLIO_FILE}
               className="btn btn-primary"
-              download="PRESTUS_Portfolio_2026.pdf"
+              download={PORTFOLIO_FILE.split('/').pop()}
               aria-label={download.button}
             >
               {download.button}

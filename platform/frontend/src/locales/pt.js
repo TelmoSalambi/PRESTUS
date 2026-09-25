@@ -7,6 +7,7 @@ import ptServices from './ptServices.js';
 export default {
   translation: {
     skipLink: 'Saltar para o conteúdo principal',
+    backToTop: 'Voltar ao topo',
 
     topbar: {
       phone: '+244 923 677 253',
@@ -22,6 +23,7 @@ export default {
       services: 'O que Fazemos',
       credentials: 'Credenciais',
       news: 'Notícias & Obras',
+      faq: 'FAQ',
       contact: 'Contactos',
     },
 
@@ -47,6 +49,8 @@ export default {
       ctaPrimary: 'Falar com Especialista',
       ctaSecondary: 'Conhecer Serviços',
       imgAlt: 'PRESTUS Empreendimento e Infraestrutura em Angola',
+      scrollDown: 'Rolar para baixo',
+      explore: 'Explorar',
     },
 
     trust: [
@@ -108,6 +112,7 @@ export default {
       subtitle:
         'Oferecemos um portfólio robusto de serviços e fornecimentos licenciados pelos órgãos reguladores angolanos.',
       regionLabel: 'Carrossel de áreas de atuação',
+      dotsLabel: 'Indicadores do carrossel',
       prev: 'Slide anterior',
       next: 'Slide seguinte',
       goTo: 'Ir para slide',
@@ -170,6 +175,8 @@ export default {
       authorPrefix: 'Publicado por:',
       datePrefix: 'Data:',
       empty: 'Nenhuma notícia encontrada para esta categoria.',
+      featured: 'Destaque',
+      error: 'Não foi possível carregar as notícias. Tente novamente mais tarde.',
     },
 
     faq: {
@@ -261,11 +268,16 @@ export default {
         deadline: 'Prazo Pretendido',
         deadlinePlaceholder: 'Ex: 3 meses',
         submit: 'Enviar Mensagem',
+        honeypotLabel: 'Website URL',
         errors: {
           name: 'Por favor, insira o seu nome completo.',
           email: 'Por favor, insira um e-mail válido.',
           phone: 'Por favor, insira um número de telefone válido.',
           service: 'Por favor, selecione uma área de interesse.',
+          submission: 'Verifique os campos do formulário e tente novamente.',
+          rateLimited: 'Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.',
+          server:
+            'Erro no servidor. Tente novamente dentro de momentos ou contacte-nos por WhatsApp.',
         },
         successTitle: 'Mensagem Enviada!',
         successText: 'Recebemos o seu pedido. A nossa equipa comercial responde em 24–48h úteis.',
@@ -291,6 +303,7 @@ export default {
       officesTitle: 'Escritórios',
       officeHuila: 'Huíla: Bairro Dr. António Agostinho Neto, Lubango (Sede)',
       officeLuanda: 'Luanda: Edifício Gabela, Kifica - Belas',
+      emailLabel: 'Email:',
       copyright: ' PRESTUS, (SU) LDA. Todos os direitos reservados.',
       tagline: 'Compromisso • Rigor • Conformidade Legal',
     },

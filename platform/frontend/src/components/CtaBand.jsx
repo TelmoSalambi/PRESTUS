@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { PORTFOLIO_FILE } from '../config.js';
 
 export default function CtaBand() {
   const { t } = useTranslation();
@@ -20,9 +21,9 @@ export default function CtaBand() {
             {t('cta.primary')}
           </a>
           <a
-            href="/PRESTUS_Portfolio_2026.pdf"
+            href={PORTFOLIO_FILE}
             className="btn btn-ghost btn-lg"
-            download="PRESTUS_Portfolio_2026.pdf"
+            download={PORTFOLIO_FILE.split('/').pop()}
           >
             {t('cta.secondary')}
           </a>

@@ -27,13 +27,11 @@ export default function Faq() {
           {items.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div
-                className={`faq-item ${isOpen ? 'active' : ''}`}
-                key={item.q?.slice(0, 60) || idx}
-              >
+              <div className={`faq-item ${isOpen ? 'active' : ''}`} key={`faq-item-${idx}`}>
                 <button
                   type="button"
                   className="faq-trigger"
+                  id={`faq-question-${idx}`}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${idx}`}
                   onClick={() => toggle(idx)}
@@ -54,7 +52,13 @@ export default function Faq() {
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </button>
-                <div className="faq-content" id={`faq-answer-${idx}`} role="region">
+                <div
+                  className="faq-content"
+                  id={`faq-answer-${idx}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${idx}`}
+                  aria-hidden={!isOpen}
+                >
                   <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.a || '') }} />
                 </div>
               </div>
