@@ -1,16 +1,22 @@
 ﻿/**
  * src/middleware/rateLimiter.js
  * Anti-spam rate limiting middleware for form submissions.
+ * Tunable via env: RATE_LIMIT_WINDOW_MS (ms) and RATE_LIMIT_MAX (reqs/window).
+ * Reads env after `import 'dotenv/config'` runs in src/server.js.
  */
 import rateLimit from 'express-rate-limit';
 
+const windowMs = parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10) || 15 * 60 * 1000;
+const max = parseInt(process.env.RATE_LIMIT_MAX, 10) || 15;
+const windowMinutes = Math.max(1, Math.round(windowMs / 60000));
+
 export const contactRateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 15, // limit each IP to 15 requests per windowMs
+  windowMs,
+  max,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
     success: false,
-    message: 'Muitos pedidos enviados a partir deste IP. Por favor tente novamente após 15 minutos.',
+    message: `Muitos pedidos enviados a partir deste IP. Por favor tente novamente após ${windowMinutes} minuto(s).`,
   },
 });

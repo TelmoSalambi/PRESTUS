@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
 
 const ALL_CATEGORIES = 'Todos';
+
+const FOCUSABLE_SELECTOR =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 export default function News() {
   const { t, i18n } = useTranslation();
@@ -14,6 +17,8 @@ export default function News() {
   const [loadError, setLoadError] = useState(false);
   const [activeCategory, setActiveCategory] = useState(ALL_CATEGORIES);
   const [openArticle, setOpenArticle] = useState(null);
+  const overlayRef = useRef(null);
+  const previousFocusRef = useRef(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -63,10 +68,72 @@ export default function News() {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [openArticle]);
 
+  // Focus management: focus the dialog on open, restore trigger on close
+  useEffect(() => {
+    if (!openArticle) return undefined;
+    const closeBtn = overlayRef.current?.querySelector('.modal-close');
+    closeBtn?.focus();
+    return () => {
+      const prev = previousFocusRef.current;
+      if (prev && typeof prev.focus === 'function') prev.focus();
+    };
+  }, [openArticle]);
+
+  // Tab focus trap inside the article dialog
+  useEffect(() => {
+    if (!openArticle) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key !== 'Tab') return;
+      const focusables = overlayRef.current?.querySelectorAll(FOCUSABLE_SELECTOR);
+      if (!focusables || !focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (!overlayRef.current.contains(active)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [openArticle]);
+
+  const openModal = (article) => {
+    previousFocusRef.current = document.activeElement;
+    setOpenArticle(article);
+  };
+
   const title = (a) => (lang === 'en' ? a.titleEn || a.titlePt : a.titlePt);
   const summary = (a) => (lang === 'en' ? a.summaryEn || a.summaryPt : a.summaryPt);
   const content = (a) => (lang === 'en' ? a.contentEn || a.contentPt : a.contentPt);
   const category = (a) => (lang === 'en' ? a.categoryEn || a.category : a.category);
+  const author = (a) => (lang === 'en' ? a.authorEn || a.author : a.author);
+
+  // Parse 'YYYY-MM-DD' manually to avoid timezone shifts from Date parsing.
+  const formatDate = (iso) => {
+    const [y, m, d] = String(iso).split('-').map(Number);
+    if (!y || !m || !d) return iso;
+    const locale = lang === 'en' ? 'en-GB' : 'pt-PT';
+    return new Date(y, m - 1, d).toLocaleDateString(locale, {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
+
+  // Category button labels in the active language (filtering stays on PT keys).
+  const categoryLabel = (cat) => {
+    if (cat === ALL_CATEGORIES) return t('news.allCategories');
+    const sample = articles.find((a) => a.category === cat);
+    return lang === 'en' ? sample?.categoryEn || cat : cat;
+  };
 
   return (
     <section id="noticias" className="news-section">
@@ -90,7 +157,7 @@ export default function News() {
               aria-pressed={activeCategory === cat}
               onClick={() => setActiveCategory(cat)}
             >
-              {cat === ALL_CATEGORIES ? t('news.allCategories') : cat}
+              {categoryLabel(cat)}
             </button>
           ))}
         </div>
@@ -120,13 +187,13 @@ export default function News() {
                   <h3 className="news-card-title">{title(article)}</h3>
                   <p className="news-card-summary">{summary(article)}</p>
                   <div className="news-card-meta">
-                    <span>{article.date}</span>
+                    <span>{formatDate(article.date)}</span>
                     <span>{article.readTime}</span>
                   </div>
                   <button
                     type="button"
                     className="btn btn-secondary btn-sm"
-                    onClick={() => setOpenArticle(article)}
+                    onClick={() => openModal(article)}
                   >
                     {t('news.readMore')}
                   </button>
@@ -141,7 +208,9 @@ export default function News() {
       {openArticle && (
         <div
           className="modal-overlay active"
+          ref={overlayRef}
           role="dialog"
+          aria-modal="true"
           aria-labelledby="news-modal-title"
           onClick={(e) => {
             if (e.target.classList.contains('modal-overlay')) setOpenArticle(null);
@@ -161,10 +230,10 @@ export default function News() {
               <h3 id="news-modal-title">{title(openArticle)}</h3>
               <div className="news-modal-meta">
                 <span>
-                  {t('news.datePrefix')} {openArticle.date}
+                  {t('news.datePrefix')} {formatDate(openArticle.date)}
                 </span>
                 <span>
-                  {t('news.authorPrefix')} {openArticle.author}
+                  {t('news.authorPrefix')} {author(openArticle)}
                 </span>
                 <span>
                   {t('news.readTimePrefix')} {openArticle.readTime}

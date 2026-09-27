@@ -3,8 +3,6 @@
  * Firebase Admin & Firestore initialization with graceful local in-memory fallback.
  */
 import admin from 'firebase-admin';
-import dotenv from 'dotenv';
-dotenv.config();
 
 let db;
 let isMock = false;
@@ -57,6 +55,20 @@ const hasEnvCredentials = Boolean(
   process.env.FIREBASE_PRIVATE_KEY
 );
 
+// In production the API must never silently accept leads into an in-memory
+// store that disappears on restart. ALLOW_MOCK_DB=1 is the explicit escape
+// hatch for staging/demo environments.
+const allowMockDb = process.env.ALLOW_MOCK_DB === '1';
+const isProduction = process.env.NODE_ENV === 'production';
+
+function failFast(message) {
+  if (isProduction && !allowMockDb) {
+    console.error(`❌ [Firebase] ${message}`);
+    console.error('   Defina credenciais Firebase (ver .env.example) ou ALLOW_MOCK_DB=1 para permitir o mock em produção.');
+    process.exit(1);
+  }
+}
+
 if (hasServiceAccount || hasEnvCredentials) {
   try {
     if (admin.apps.length === 0) {
@@ -80,11 +92,13 @@ if (hasEnvCredentials) {
     db = admin.firestore();
     console.log(' [Firebase] Connected successfully to Cloud Firestore.');
   } catch (err) {
+    failFast(`Initialization failed: ${err.message}`);
     console.warn('⚠️ [Firebase] Initialization failed, using local mock store:', err.message);
     db = new MockFirestore();
     isMock = true;
   }
 } else {
+  failFast('No credentials found in environment.');
   console.log('ℹ️ [Firebase] No credentials found in environment. Using local in-memory store for development.');
   db = new MockFirestore();
   isMock = true;

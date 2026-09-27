@@ -8,6 +8,8 @@ import assert from 'node:assert/strict';
 import supertest from 'supertest';
 
 process.env.NODE_ENV = 'test';
+// Keep the shared rate limiter out of the way of the suite (env read at import).
+process.env.RATE_LIMIT_MAX = '1000';
 
 const { default: app } = await import('../src/server.js');
 const request = supertest(app);
@@ -44,6 +46,28 @@ describe('GET /api/news', () => {
   it('filters by featured=true', async () => {
     const res = await request.get('/api/news?featured=true').expect(200);
     res.body.data.forEach((article) => assert.equal(article.featured, true));
+  });
+
+  it('filters by category (PT value)', async () => {
+    const res = await request.get('/api/news?category=Institucional').expect(200);
+    assert.ok(res.body.data.length >= 1);
+    res.body.data.forEach((article) => assert.equal(article.category, 'Institucional'));
+  });
+
+  it('filters by category (EN value)', async () => {
+    const res = await request.get('/api/news?category=Corporate').expect(200);
+    assert.ok(res.body.data.length >= 1);
+    res.body.data.forEach((article) => assert.equal(article.categoryEn, 'Corporate'));
+  });
+
+  it('returns a single article by slug', async () => {
+    const res = await request
+      .get('/api/news/renovacao-credenciais-sncp-conformidade-tributaria-agt')
+      .expect(200);
+    assert.equal(res.body.success, true);
+    assert.equal(res.body.data.slug, 'renovacao-credenciais-sncp-conformidade-tributaria-agt');
+    assert.equal(typeof res.body.data.authorEn, 'string');
+    assert.ok(res.body.data.authorEn.length > 0);
   });
 
   it('returns 404 for unknown slug', async () => {
@@ -112,6 +136,13 @@ describe('POST /api/contact', () => {
       .send({ ...validLead, message: 'x'.repeat(5001) })
       .expect(400);
   });
+
+  it('rejects overlong company name', async () => {
+    await request
+      .post('/api/contact')
+      .send({ ...validLead, company: 'x'.repeat(151) })
+      .expect(400);
+  });
 });
 
 describe('POST /api/quote', () => {
@@ -165,6 +196,59 @@ describe('POST /api/quote', () => {
       .post('/api/quote')
       .send({ ...validQuote, description: 'x'.repeat(5001) })
       .expect(400);
+  });
+
+  it('rejects overlong company name', async () => {
+    await request
+      .post('/api/quote')
+      .send({ ...validQuote, company: 'x'.repeat(151) })
+      .expect(400);
+  });
+});
+
+describe('malformed payloads', () => {
+  it('returns 400 (not 500) for invalid JSON bodies', async () => {
+    const res = await request
+      .post('/api/contact')
+      .set('Content-Type', 'application/json')
+      .send('{"nome": invalido')
+      .expect(400);
+    assert.equal(res.body.success, false);
+    assert.match(res.body.message, /JSON/i);
+  });
+});
+
+describe('payload limits', () => {
+  it('returns 413 for bodies over the 50kb limit', async () => {
+    const res = await request
+      .post('/api/contact')
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({ name: 'Too Big', junk: 'a'.repeat(60 * 1024) }))
+      .expect(413);
+    assert.equal(res.body.success, false);
+  });
+});
+
+describe('security headers & CORS', () => {
+  it('sets helmet security headers', async () => {
+    const res = await request.get('/api/health').expect(200);
+    assert.equal(res.headers['x-content-type-options'], 'nosniff');
+  });
+
+  it('allows requests from the configured origin', async () => {
+    const res = await request
+      .get('/api/health')
+      .set('Origin', 'http://localhost:5173')
+      .expect(200);
+    assert.equal(res.headers['access-control-allow-origin'], 'http://localhost:5173');
+  });
+
+  it('does not grant CORS to unknown origins', async () => {
+    const res = await request
+      .get('/api/health')
+      .set('Origin', 'https://evil.example')
+      .expect(200);
+    assert.equal(res.headers['access-control-allow-origin'], undefined);
   });
 });
 

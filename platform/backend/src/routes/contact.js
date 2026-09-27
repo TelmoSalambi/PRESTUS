@@ -3,10 +3,10 @@
  * Contact form endpoint: validates and saves incoming leads to Firestore.
  */
 import { Router } from 'express';
-import nodemailer from 'nodemailer';
 import { db } from '../config/firebase.js';
 import { contactRateLimiter } from '../middleware/rateLimiter.js';
-import { validateEmail, validatePhone, escapeHtml } from '../utils/validators.js';
+import { validateEmail, validatePhone, escapeHtml, sanitizeSubject, VALID_SERVICES } from '../utils/validators.js';
+import { sendNotificationEmail } from '../utils/mailer.js';
 
 const router = Router();
 
@@ -14,43 +14,15 @@ const MAX_NAME = 100;
 const MAX_COMPANY = 150;
 const MAX_EMAIL = 254;
 const MAX_PHONE = 20;
-const MAX_SERVICE = 50;
 const MAX_MESSAGE = 5000;
-
-const VALID_SERVICES = [
-  'construcao',
-  'fiscalizacao',
-  'saude',
-  'limpeza',
-  'informatica',
-  'escritorio',
-  'diversos',
-  'alimentacao',
-  'logistica',
-  'pesca',
-];
-
-// Nodemailer transport (only active if credentials configured)
-let transporter = null;
-if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-  transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.SMTP_PORT, 10) || 587,
-    secure: false,
-    requireTLS: true,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-}
 
 router.post('/', contactRateLimiter, async (req, res, next) => {
   try {
     const { name, company, email, phone, service, message, honeypot } = req.body;
 
-    // Silent trap for spam bots
+    // Trap for spam bots: acknowledge silently, but log it for visibility.
     if (honeypot) {
+      console.warn(`[Honeypot] Contact submission ignored from ${req.ip}`);
       return res.status(200).json({
         success: true,
         message: 'Mensagem recebida com sucesso.',
@@ -117,14 +89,9 @@ router.post('/', contactRateLimiter, async (req, res, next) => {
     const docRef = await db.collection('leads').add(leadData);
 
     // Send email notification asynchronously (non-blocking)
-    const recipient = process.env.NOTIFICATION_EMAIL;
-    if (transporter && recipient) {
-      transporter
-        .sendMail({
-          from: `"PRESTUS Website" <${process.env.SMTP_USER}>`,
-          to: recipient,
-          subject: `🔔 Novo Lead Recebido: ${leadData.name} (${leadData.service})`,
-          html: `
+    sendNotificationEmail({
+      subject: sanitizeSubject(`🔔 Novo Lead Recebido: ${leadData.name} (${leadData.service})`),
+      html: `
             <h2>Novo Pedido de Proposta / Contacto</h2>
             <p><strong>Nome:</strong> ${escapeHtml(leadData.name)}</p>
             <p><strong>Empresa:</strong> ${escapeHtml(leadData.company || 'N/A')}</p>
@@ -136,13 +103,7 @@ router.post('/', contactRateLimiter, async (req, res, next) => {
             <hr/>
             <p><small>ID do Lead no Firestore: ${escapeHtml(docRef.id)} | Data: ${escapeHtml(leadData.createdAt)}</small></p>
           `,
-        })
-        .catch((mailErr) => {
-          console.warn('[Nodemailer] Falha ao enviar email:', mailErr.message);
-        });
-    } else if (recipient === undefined) {
-      console.warn('[Contact] NOTIFICATION_EMAIL not configured; skipping email notification.');
-    }
+    });
 
     return res.status(201).json({
       success: true,

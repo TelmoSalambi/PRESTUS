@@ -20,6 +20,7 @@ import Faq from './components/Faq.jsx';
 import News from './components/News.jsx';
 import CtaBand from './components/CtaBand.jsx';
 import Contact from './components/Contact.jsx';
+import Legal from './components/Legal.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 import BackToTop from './components/BackToTop.jsx';
@@ -34,10 +35,20 @@ export default function App() {
   const [activeService, setActiveService] = useState(null);
   const [preselectedService, setPreselectedService] = useState('');
 
-  // Keep <html lang> and the document title in sync with the active language
+  // Keep <html lang>, document title and meta description in sync with the active language
   useEffect(() => {
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
+    const lang = i18n.language.startsWith('pt') ? 'pt' : 'en';
+    document.documentElement.lang = lang;
+    document.title = t('meta.title');
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', t('meta.description'));
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', t('meta.title'));
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) ogDescription.setAttribute('content', t('meta.description'));
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', lang === 'pt' ? 'pt_AO' : 'en_US');
+  }, [i18n.language, t]);
 
   // Scroll-reveal + staggered grid delays (re-run when language changes re-renders content)
   useScrollReveal([i18n.language]);
@@ -83,20 +94,6 @@ export default function App() {
     return () => document.removeEventListener('click', onClick);
   }, [scrollToSection]);
 
-  // Keyboard focus-visible handling (mirrors the original main.js behaviour)
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === 'Tab') document.body.classList.add('keyboard-nav');
-    };
-    const onMouseDown = () => document.body.classList.remove('keyboard-nav');
-    document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('mousedown', onMouseDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('mousedown', onMouseDown);
-    };
-  }, []);
-
   return (
     <>
       <ScrollProgress />
@@ -118,6 +115,7 @@ export default function App() {
         <News />
         <CtaBand />
         <Contact preselectedService={preselectedService} />
+        <Legal />
       </main>
 
       <Footer />

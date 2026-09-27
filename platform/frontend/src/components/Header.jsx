@@ -1,6 +1,9 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
+
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 /** Shared PT/EN language switcher — renders compact (PT|EN) or full-name variants. */
 function LangSwitcher({ i18n, t, variant, onChange }) {
@@ -39,6 +42,8 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
+  const menuRef = useRef(null);
+  const previousMenuFocusRef = useRef(null);
 
   // Sticky header on scroll
   useEffect(() => {
@@ -63,6 +68,44 @@ export default function Header() {
     const onKeyDown = (e) => {
       if (e.key === 'Escape' && isMobileOpen) {
         setIsMobileOpen(false);
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [isMobileOpen]);
+
+  // Focus management: focus first link on open, restore trigger on close
+  useEffect(() => {
+    if (!isMobileOpen) return undefined;
+    previousMenuFocusRef.current = document.activeElement;
+    const firstFocusable = menuRef.current?.querySelector(FOCUSABLE_SELECTOR);
+    firstFocusable?.focus();
+    return () => {
+      const prev = previousMenuFocusRef.current;
+      if (prev && typeof prev.focus === 'function') prev.focus();
+    };
+  }, [isMobileOpen]);
+
+  // Tab focus trap while the drawer is open
+  useEffect(() => {
+    if (!isMobileOpen) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key !== 'Tab') return;
+      const focusables = menuRef.current?.querySelectorAll(FOCUSABLE_SELECTOR);
+      if (!focusables || !focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (!menuRef.current.contains(active)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
     document.addEventListener('keydown', onKeyDown);
@@ -101,8 +144,8 @@ export default function Header() {
     { href: '#sobre', label: t('nav.about'), id: 'sobre' },
     { href: '#servicos', label: t('nav.services'), id: 'servicos' },
     { href: '#credenciais', label: t('nav.credentials'), id: 'credenciais' },
-    { href: '#noticias', label: t('nav.news'), id: 'noticias' },
     { href: '#faq', label: t('nav.faq'), id: 'faq' },
+    { href: '#noticias', label: t('nav.news'), id: 'noticias' },
     { href: '#contacto', label: t('nav.contact'), id: 'contacto' },
   ];
 
@@ -157,6 +200,7 @@ export default function Header() {
       <div
         className={`mobile-menu-overlay ${isMobileOpen ? 'open' : ''}`}
         id="mobile-nav"
+        ref={menuRef}
         aria-hidden={!isMobileOpen}
         onClick={(e) => {
           if (e.target.id === 'mobile-nav') setIsMobileOpen(false);

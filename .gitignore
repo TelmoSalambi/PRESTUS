@@ -29,3 +29,7 @@ npm-debug.log*
 # OS/extracted scratch files
 extracted_pdf_content.txt
 
+# Working/generated asset dirs (canonical copies live in platform/frontend/public)
+.previews/
+/IMG/
+

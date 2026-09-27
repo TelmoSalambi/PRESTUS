@@ -3,9 +3,7 @@ import { WHATSAPP_NUMBER } from '../config.js';
 
 export default function WhatsAppButton() {
   const { t } = useTranslation();
-  const encodedMsg = encodeURIComponent(
-    t('whatsapp.message') || 'Olá PRESTUS! Gostaria de solicitar uma proposta.',
-  );
+  const encodedMsg = encodeURIComponent(t('whatsapp.message'));
 
   return (
     <a
@@ -13,7 +11,7 @@ export default function WhatsAppButton() {
       className="whatsapp-float"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={t('whatsapp.ariaLabel') || 'Contactar PRESTUS via WhatsApp'}
+      aria-label={t('whatsapp.ariaLabel')}
     >
       <svg className="whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path

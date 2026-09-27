@@ -673,6 +673,47 @@
   background-color: var(--color-bg-surface-alt);
 }
 
+/* ============================================================
+   LEGAL SECTIONS (Privacy Policy & Terms of Use)
+   ============================================================ */
+.legal-section {
+  padding: var(--space-12) 0;
+  background-color: var(--color-bg-base);
+}
+
+.legal-section + .legal-section {
+  background-color: var(--color-bg-surface-alt);
+}
+
+.legal-content {
+  max-width: 75ch;
+}
+
+.legal-item {
+  margin-bottom: var(--space-5);
+}
+
+.legal-item h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.legal-item p {
+  font-size: var(--text-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.legal-updated {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-6);
+  font-style: italic;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -805,7 +846,7 @@
 
 .footer-tax-info p {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .footer-col h4 {
@@ -864,12 +905,12 @@
 
 .copyright {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .developer-credit {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
   font-family: var(--font-mono);
 }
 
@@ -1140,16 +1181,17 @@
 }
 
 .faq-content {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
   transition:
-    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 0 var(--space-6);
 }
 
 .faq-item.active .faq-content {
-  max-height: 300px;
+  grid-template-rows: 1fr;
   padding: 0 var(--space-6) var(--space-6) var(--space-6);
 }
 
@@ -1157,6 +1199,8 @@
   font-size: var(--text-sm);
   line-height: var(--lh-relaxed);
   color: var(--color-text-secondary);
+  overflow: hidden;
+  min-height: 0;
 }
 
 /* ============================================================

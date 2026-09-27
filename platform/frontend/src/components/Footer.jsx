@@ -58,6 +58,12 @@ export default function Footer() {
                 {t('footer.downloadPortfolio')}
               </a>
             </li>
+            <li>
+              <a href="#privacidade">{t('footer.privacy')}</a>
+            </li>
+            <li>
+              <a href="#termos">{t('footer.terms')}</a>
+            </li>
           </ul>
         </div>
 

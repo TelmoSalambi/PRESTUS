@@ -9,6 +9,12 @@ export default {
     skipLink: 'Skip to main content',
     backToTop: 'Back to top',
 
+    meta: {
+      title: 'PRESTUS | Construction, Healthcare & Services in Angola',
+      description:
+        'PRESTUS, (SU) LDA - Service provider and State supplier in Angola. 6th Class License in Construction and Works Supervision, Healthcare, Cleaning and IT.',
+    },
+
     topbar: {
       phone: '+244 923 677 253',
       email: 'prestuslda1@gmail.com',
@@ -286,6 +292,83 @@ export default {
       },
     },
 
+    legal: {
+      privacy: {
+        label: 'Legal & Compliance',
+        titleA: 'Privacy ',
+        titleEm: 'Policy',
+        intro: 'How PRESTUS collects, uses and protects your personal data.',
+        updated: 'Last updated: 26 September 2026',
+        sections: [
+          {
+            h: 'Data controller',
+            p: 'PRESTUS - Comércio & Prestação de Serviços, (SU), LDA (Tax ID 5001180177), headquartered in Lubango, Huíla Province, with an office in Luanda, is responsible for the personal data collected through this website. Contact: prestuslda1@gmail.com.',
+          },
+          {
+            h: 'Data we collect',
+            p: 'Through the contact and quote form we collect only: name, company or institution, e-mail, phone, area of interest, estimated budget, preferred deadline and the message you send.',
+          },
+          {
+            h: 'Purpose and legal basis',
+            p: "Data is used solely to respond to your proposal or quote request and related communications, based on your consent given when submitting the form, under Angola's Personal Data Protection Law (Law No. 22/11).",
+          },
+          {
+            h: 'Retention and recipients',
+            p: 'Data is kept for as long as necessary to handle your request. It is processed by technical providers handling hosting (Firebase/Google Cloud) and e-mail delivery (SMTP). We do not sell or share your data with third parties for marketing purposes.',
+          },
+          {
+            h: 'Third-party services',
+            p: "This website embeds a Google Maps widget and Google fonts, which may collect your IP address under their own privacy policies. The website does not use tracking cookies; we only store your language preference in the browser's local storage.",
+          },
+          {
+            h: 'Your rights',
+            p: 'You may request access, rectification, update or deletion of your data, as well as object to its processing, by e-mailing prestuslda1@gmail.com, in accordance with applicable legislation.',
+          },
+          {
+            h: 'Security',
+            p: 'We apply reasonable technical and organisational measures to protect data against unauthorised access, alteration or disclosure.',
+          },
+        ],
+      },
+      terms: {
+        label: 'Legal & Compliance',
+        titleA: 'Terms of ',
+        titleEm: 'Use',
+        intro: 'Conditions for accessing and using the PRESTUS institutional website.',
+        updated: 'Last updated: 26 September 2026',
+        sections: [
+          {
+            h: 'Purpose',
+            p: 'These Terms of Use govern access to and use of the PRESTUS - Comércio & Prestação de Serviços, (SU), LDA institutional website. By browsing this site you accept these conditions.',
+          },
+          {
+            h: 'Intellectual property',
+            p: 'All content (texts, logo, images, portfolio and the PRESTUS brand) is owned by PRESTUS or used with authorisation, and is protected by copyright and trademark legislation. Commercial reproduction requires prior written authorisation.',
+          },
+          {
+            h: 'Institutional information',
+            p: 'Information about licences, certifications and credentials is provided for institutional purposes and reflects official documents issued by the competent entities. Contact details and figures mentioned may be updated without prior notice.',
+          },
+          {
+            h: 'Permitted use',
+            p: 'You agree to use the website for lawful purposes, not attempting to interfere with its operation, gain unauthorised access, or introduce viruses or any malicious code.',
+          },
+          {
+            h: 'External links',
+            p: "The website may contain links to third-party services (Google Maps, WhatsApp). Those third parties' content and privacy practices are their own responsibility.",
+          },
+          {
+            h: 'Limitation of liability',
+            p: 'PRESTUS strives to keep the website accurate and available, but does not guarantee the absence of errors or interruptions and is not liable for damages resulting from the use of the site or its content.',
+          },
+          {
+            h: 'Changes and governing law',
+            p: 'These terms may be updated periodically and are governed by the legislation of the Republic of Angola. Questions: prestuslda1@gmail.com.',
+          },
+        ],
+      },
+    },
+
     footer: {
       description:
         'Building lasting partnerships and executing works and services with technical excellence and legal integrity in Angola.',
@@ -299,9 +382,11 @@ export default {
       ],
       linksTitle: 'Quick Links',
       downloadPortfolio: 'Download Portfolio (PDF)',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Use',
       officesTitle: 'Offices',
       officeHuila: 'Huíla: Bairro Dr. António Agostinho Neto, Lubango (HQ)',
-      officeLuanda: 'Luanda: Edifício Gabela, Kifica - Belas',
+      officeLuanda: 'Luanda: Gabela Building, Kifica - Belas',
       emailLabel: 'Email:',
       copyright: ' PRESTUS, (SU) LDA. All rights reserved.',
       tagline: 'Commitment • Rigor • Legal Compliance',

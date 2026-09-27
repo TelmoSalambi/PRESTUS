@@ -296,9 +296,9 @@ export default function Contact({ preselectedService }) {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`${errors.service ? 'invalid' : ''} ${serviceHighlighted ? 'highlighted' : ''}`.trim()}
-                  aria-invalid={!!errors.service}
-                  aria-describedby={errors.service ? 'error-service' : undefined}
+                  className={errors.email ? 'invalid' : ''}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? 'error-email' : undefined}
                 />
                 {errors.email && (
                   <span className="error-msg" id="error-email" aria-live="polite">
@@ -338,8 +338,9 @@ export default function Contact({ preselectedService }) {
                   value={formData.service}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={errors.service ? 'invalid' : ''}
+                  className={`${errors.service ? 'invalid' : ''} ${serviceHighlighted ? 'highlighted' : ''}`.trim()}
                   aria-invalid={!!errors.service}
+                  aria-describedby={errors.service ? 'error-service' : undefined}
                 >
                   <option value="" disabled>
                     {t('contact.form.servicePlaceholder')}

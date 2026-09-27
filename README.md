@@ -26,8 +26,8 @@ A plataforma é composta por uma arquitetura moderna e desacoplada:
 ## 🚀 Como Executar
 
 ### 1. Pré-requisitos
-- Node.js >= 18.x
-- npm >= 9.x
+- Node.js >= 20.x
+- npm >= 10.x
 
 ### 2. Instalação de Dependências
 Na raiz do projeto:

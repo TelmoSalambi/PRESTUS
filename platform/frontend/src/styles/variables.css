@@ -65,7 +65,7 @@
 
   --color-text-primary: #101820;
   --color-text-secondary: #45515e;
-  --color-text-muted: #8a94a0;
+  --color-text-muted: #6b7480; /* AA on white: 4.7:1 */
 
   --color-brand-primary: #0c3b66; /* PRESTUS Corporate Navy */
   --color-brand-dark: #07213c; /* Deep Navy */

@@ -3,7 +3,6 @@
  * Corporate News & Ongoing Projects (Obras em Curso) API endpoints.
  */
 import { Router } from 'express';
-import { db } from '../config/firebase.js';
 
 const router = Router();
 
@@ -21,6 +20,7 @@ const INITIAL_ARTICLES = [
     image: '/IMG/Construção Civil.webp',
     date: '2026-02-15',
     author: 'Direção de Engenharia e Obras',
+    authorEn: 'Engineering & Works Directorate',
     readTime: '4 min',
     featured: true,
     tags: ['Construção', 'Huíla', 'Alvará 6ª Classe', 'Infraestruturas'],
@@ -65,6 +65,7 @@ const INITIAL_ARTICLES = [
     image: '/IMG/Saúde.webp',
     date: '2026-01-28',
     author: 'Divisão de Saúde e Farmacêutica',
+    authorEn: 'Healthcare & Pharmaceutical Division',
     readTime: '3 min',
     featured: true,
     tags: ['Saúde', 'Material Hospitalar', 'SNCP Nº 671', 'Medicamentos'],
@@ -99,6 +100,7 @@ const INITIAL_ARTICLES = [
     image: '/IMG/Fiscalização.webp',
     date: '2026-01-10',
     author: 'Gabinete Pericial de Engenharia',
+    authorEn: 'Engineering Forensic Office',
     readTime: '5 min',
     featured: false,
     tags: ['Fiscalização', 'Engenharia', 'Auditoria', 'IRCOP'],
@@ -130,6 +132,7 @@ const INITIAL_ARTICLES = [
     image: '/IMG/Quem somos.webp',
     date: '2025-12-20',
     author: 'Gabinete Jurídico e Conformidade',
+    authorEn: 'Legal & Compliance Office',
     readTime: '3 min',
     featured: false,
     tags: ['SNCP', 'AGT', 'INSS', 'Conformidade'],

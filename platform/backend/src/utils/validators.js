@@ -3,6 +3,20 @@
  * Shared validation and sanitization helpers for form endpoints.
  */
 
+/** Service ids accepted by /api/contact and /api/quote. */
+export const VALID_SERVICES = [
+  'construcao',
+  'fiscalizacao',
+  'saude',
+  'limpeza',
+  'informatica',
+  'escritorio',
+  'diversos',
+  'alimentacao',
+  'logistica',
+  'pesca',
+];
+
 export function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).trim());
 }
@@ -20,4 +34,9 @@ export function escapeHtml(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+/** Strip CR/LF from email subjects to prevent SMTP header injection. */
+export function sanitizeSubject(value) {
+  return String(value).replace(/[\r\n]+/g, ' ').trim();
 }

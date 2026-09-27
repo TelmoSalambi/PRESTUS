@@ -21,24 +21,23 @@
     <meta name="geo.position" content="-14.92111;13.48779" />
     <meta name="ICBM" content="-14.92111, 13.48779" />
 
-    <title>
-      PRESTUS - Compromisso e Realização | Construção, Fiscalização, Saúde e Serviços em Angola
-    </title>
+    <title>PRESTUS | Construção, Saúde e Serviços em Angola</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/Logo.png" />
     <link rel="apple-touch-icon" href="/Logo.png" />
 
-    <!-- Canonical & Multilingual SEO -->
+    <!-- Canonical & Multilingual SEO (single-URL app: language toggled client-side) -->
     <link rel="canonical" href="https://www.prestus.ao/" />
     <link rel="alternate" hreflang="pt" href="https://www.prestus.ao/" />
-    <link rel="alternate" hreflang="en" href="https://www.prestus.ao/en/" />
     <link rel="alternate" hreflang="x-default" href="https://www.prestus.ao/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PRESTUS" />
+    <meta property="og:locale" content="pt_AO" />
     <meta property="og:url" content="https://www.prestus.ao/" />
-    <meta property="og:title" content="PRESTUS - Compromisso e Realização" />
+    <meta property="og:title" content="PRESTUS | Construção, Saúde e Serviços em Angola" />
     <meta
       property="og:description"
       content="Parceira estratégica de confiança em Angola. Serviços certificados de construção, fiscalização, saúde e fornecimentos gerais."
@@ -46,20 +45,21 @@
     <meta property="og:image" content="https://www.prestus.ao/Logo.png" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.prestus.ao/" />
-    <meta property="twitter:title" content="PRESTUS - Compromisso e Realização" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.prestus.ao/" />
+    <meta name="twitter:title" content="PRESTUS | Construção, Saúde e Serviços em Angola" />
     <meta
-      property="twitter:description"
+      name="twitter:description"
       content="Serviços certificados de construção, fiscalização, saúde e fornecimentos em Angola."
     />
-    <meta property="twitter:image" content="https://www.prestus.ao/Logo.png" />
+    <meta name="twitter:image" content="https://www.prestus.ao/Logo.png" />
 
     <!-- Structured Data JSON-LD (E-E-A-T & GEO AI-Search Optimization) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Corporation",
+        "@id": "https://www.prestus.ao/#organization",
         "name": "PRESTUS - Comércio & Prestação de Serviços, (SU), LDA",
         "alternateName": "PRESTUS",
         "taxID": "5001180177",
@@ -108,9 +108,58 @@
         "url": "https://www.prestus.ao/",
         "inLanguage": ["pt", "en"],
         "publisher": {
-          "@type": "Organization",
-          "name": "PRESTUS - Comércio & Prestação de Serviços, (SU), LDA"
+          "@id": "https://www.prestus.ao/#organization"
         }
+      }
+    </script>
+
+    <!-- FAQPage schema (mirrors the FAQ section rendered by the SPA) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qual é o limite de valor e capacidade dos Alvarás de Construção da PRESTUS?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A PRESTUS possui o Alvará de Construção Civil e Obras Públicas de 6ª Classe (Nº 1637/CCOP/IRCOP/SC/2026), emitido pelo IRCOP, que nos habilita legalmente a executar empreitadas com valor até 750.000.000,00 AKZ (Setecentos e Cinquenta Milhões de Kwanzas)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "A PRESTUS está habilitada a concorrer a Concursos Públicos do Estado Angolano?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. Somos fornecedor certificado oficial do Estado com registo no SNCP (Serviço Nacional da Contratação Pública) sob o Nº 671/SNCP/2025, habilitados a participar em concursos públicos para empreitadas, fiscalização e fornecimento de bens e serviços a órgãos da Administração Direta e Indireta do Estado."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funciona a Fiscalização Técnica de Obras Públicas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Detemos o Alvará de Fiscalização de 6ª Classe (Nº 99/FO/IRCOP/SC/2024), autorizando auditoria e controlo de qualidade técnico em edifícios, pontes e vias até 250.000.000,00 AKZ. A nossa equipa emite relatórios periciais e garante o cumprimento escrupuloso do caderno de encargos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual é o prazo médio de resposta para Propostas Técnicas e Cotações Corporativas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A nossa equipa comercial e técnica responde a solicitações de propostas corporativas no prazo de 24 a 48 horas úteis após a receção dos requisitos detalhados ou do caderno de encargos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como está estruturada a presença geográfica da PRESTUS em Angola?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Possuímos a nossa Sede na Província da Huíla (Lubango) e uma Sucursal Operacional na Província de Luanda (Belas/Kifica), permitindo cobertura logística e operacional eficiente no Sul e no Centro-Norte do país."
+            }
+          }
+        ]
       }
     </script>
   </head>
