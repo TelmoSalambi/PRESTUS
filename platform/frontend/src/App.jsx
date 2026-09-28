@@ -2,7 +2,6 @@
  * src/App.jsx
  * Root component. Owns global UI state:
  *  - activeService: which service modal is open (null = closed)
- *  - preselectedService: service key forwarded to the contact form
  * Also wires scroll-reveal animations and smooth anchor scrolling.
  */
 import { useEffect, useState, useCallback } from 'react';
@@ -17,10 +16,8 @@ import About from './components/About.jsx';
 import Services from './components/Services.jsx';
 import Credentials from './components/Credentials.jsx';
 import Faq from './components/Faq.jsx';
-import News from './components/News.jsx';
 import CtaBand from './components/CtaBand.jsx';
 import Contact from './components/Contact.jsx';
-import Legal from './components/Legal.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 import BackToTop from './components/BackToTop.jsx';
@@ -33,7 +30,6 @@ const HEADER_OFFSET_DEFAULT = 80;
 export default function App() {
   const { i18n, t } = useTranslation();
   const [activeService, setActiveService] = useState(null);
-  const [preselectedService, setPreselectedService] = useState('');
 
   // Keep <html lang>, document title and meta description in sync with the active language
   useEffect(() => {
@@ -65,16 +61,6 @@ export default function App() {
     const offsetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
     window.scrollTo({ top: offsetTop, behavior: 'smooth' });
   }, []);
-
-  /** Select a service in the contact form and scroll to it (used by cards & modal CTA) */
-  const requestService = useCallback(
-    (serviceKey) => {
-      setPreselectedService(serviceKey);
-      setActiveService(null);
-      scrollToSection('contacto');
-    },
-    [scrollToSection],
-  );
 
   // Global smooth-scroll for in-page anchor links (footer, hero, CTA buttons...)
   useEffect(() => {
@@ -112,21 +98,15 @@ export default function App() {
         <Services onOpenService={setActiveService} />
         <Credentials />
         <Faq />
-        <News />
         <CtaBand />
-        <Contact preselectedService={preselectedService} />
-        <Legal />
+        <Contact />
       </main>
 
       <Footer />
       <WhatsAppButton />
       <BackToTop />
 
-      <ServiceModal
-        serviceKey={activeService}
-        onClose={() => setActiveService(null)}
-        onRequestService={requestService}
-      />
+      <ServiceModal serviceKey={activeService} onClose={() => setActiveService(null)} />
     </>
   );
 }

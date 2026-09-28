@@ -1,25 +1,24 @@
-# PRESTUS — Plataforma Web Integrada
+# PRESTUS — Website Institucional
 
-> **Website Institucional e Plataforma Digital Corporativa da PRESTUS**  
-> Engenharia, Construção, Saúde, Tecnologias, Logística, Agronegócio, Pescas e Consultoria.
+> **Website Institucional da PRESTUS — Comércio & Prestação de Serviços (SU), LDA**  
+> Construção Civil, Fiscalização de Obras, Saúde, Tecnologias, Logística, Merenda Escolar, Pescas e Fornecimentos.  
+> Comunicação exclusiva via **WhatsApp** — sem formulários, sem servidor.
 
 ---
 
-## 🏛️ Arquitetura do Projeto
+## 🏛️ Arquitetura
 
-A plataforma é composta por uma arquitetura moderna e desacoplada:
+Site **100% estático** (SPA) — não requer backend, base de dados nem hospedagem de servidor:
 
-- **Frontend (`platform/frontend`)**:
-  - React 18 + Vite (SPA de alta performance)
-  - Internacionalização nativa (Português & Inglês via `i18next`)
-  - Design Tokens Institucionais (Navy & Gold, sem dependências de frameworks pesados de CSS)
-  - Sanitização de formulários contra XSS (`DOMPurify`)
-  - Modais interativos, acordeão de FAQs e botão de WhatsApp dinâmico
-- **Backend (`platform/backend`)**:
-  - API REST em Node.js / Express
-  - Base de dados Firebase Firestore (com fallback in-memory mock para desenvolvimento)
-  - Notificações por e-mail via Nodemailer / SMTP
-  - Proteção e segurança com Helmet, Rate Limiting e honeypots anti-spam
+- **React 18 + Vite** (SPA de alta performance)
+- Internacionalização nativa (Português & Inglês via `i18next`; suporta `?lang=en` na URL)
+- Design Tokens Institucionais (Navy & Gold, sem frameworks pesados de CSS)
+- Sanitização de conteúdo HTML contra XSS (`DOMPurify`)
+- Modais de serviços com CTA direto para WhatsApp (área pré-preenchida na mensagem)
+- Acordeão de FAQs, botão flutuante de WhatsApp, mapa Google embutido
+- SEO: JSON-LD (Corporation/WebSite/FAQ), Open Graph, sitemap.xml, robots.txt
+
+> ℹ️ O backend Node.js/Express + Firebase foi removido em setembro de 2026 — o contacto passou a ser feito exclusivamente via WhatsApp. O código histórico permanece disponível no histórico do git (commit anterior a `feat`: *remove News, Legal e formulário; contacto via WhatsApp*).
 
 ---
 
@@ -33,31 +32,42 @@ A plataforma é composta por uma arquitetura moderna e desacoplada:
 Na raiz do projeto:
 ```bash
 npm install
-cd platform/frontend && npm install
-cd ../backend && npm install
+npm --prefix platform/frontend install
 ```
 
-### 3. Iniciar Toda a Plataforma (Frontend + Backend)
-Na pasta raiz do projeto:
+### 3. Ambiente de Desenvolvimento
 ```bash
 npm run dev
 ```
 - **Frontend**: `http://localhost:5173`
-- **Backend API**: `http://localhost:5000`
 
 ---
 
-## 🧪 Testes e Build
+## 📦 Build de Produção
 
-### Testes da API (Backend):
 ```bash
-cd platform/backend
-npm test
+npm run build:frontend
+```
+Os ficheiros otimizados são gerados em `platform/frontend/dist` — basta alojar essa pasta em qualquer hospedagem estática (Netlify, Vercel, Cloudflare Pages, GitHub Pages, Nginx, etc.).
+
+### Pré-visualizar o build localmente:
+```bash
+npm run preview
 ```
 
-### Build de Produção (Frontend):
+---
+
+## 🧪 Qualidade
+
 ```bash
-cd platform/frontend
-npm run build
+npm --prefix platform/frontend run lint
 ```
-Os ficheiros otimizados serão gerados na pasta `platform/frontend/dist`.
+
+---
+
+## 📞 Contacto no Site
+
+Todo o fluxo de conversão aponta para o WhatsApp (`+244 923 677 253`), configurado em `platform/frontend/src/config.js`:
+- Botão flutuante em todas as secções
+- CTA no bloco de contacto
+- CTA "Solicitar Proposta" em cada modal de serviço (com o serviço pré-preenchido na mensagem)

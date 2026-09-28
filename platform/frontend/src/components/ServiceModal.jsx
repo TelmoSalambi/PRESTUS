@@ -2,11 +2,12 @@
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
+import { WHATSAPP_NUMBER } from '../config.js';
 
 const FOCUSABLE_SELECTOR =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-export default function ServiceModal({ serviceKey, onClose, onRequestService }) {
+export default function ServiceModal({ serviceKey, onClose }) {
   const { t } = useTranslation();
   const overlayRef = useRef(null);
   const previousFocusRef = useRef(null);
@@ -111,14 +112,18 @@ export default function ServiceModal({ serviceKey, onClose, onRequestService }) 
         />
 
         <div className="modal-footer">
-          <button
+          <a
             type="button"
             className="btn btn-accent modal-cta-btn"
             id="modal-cta"
-            onClick={() => onRequestService(serviceKey)}
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+              t('whatsapp.serviceMessage', { service: serviceData?.title || '' }),
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t('services.modalCta')}
-          </button>
+          </a>
         </div>
       </div>
     </div>

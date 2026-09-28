@@ -1,172 +1,18 @@
-﻿import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SERVICES } from '../data/services.js';
-import { OFFICE_COORDINATES } from '../config.js';
+import { OFFICE_COORDINATES, WHATSAPP_NUMBER } from '../config.js';
 
-export default function Contact({ preselectedService }) {
+/**
+ * Contact section — information panel only.
+ * Communication happens exclusively via WhatsApp (no form).
+ */
+export default function Contact() {
   const { t } = useTranslation();
-
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    service: '',
-    budget: '',
-    deadline: '',
-    message: '',
-    honeypot: '',
-  });
-
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [statusBanner, setStatusBanner] = useState(null); // 'success' | 'error' | null
-  const [statusMessage, setStatusMessage] = useState(null);
-  const [serviceHighlighted, setServiceHighlighted] = useState(false);
-
-  // Update selected service if parent triggers it (via cards or modal)
-  const [prevPreselectedService, setPrevPreselectedService] = useState(preselectedService);
-  if (preselectedService && preselectedService !== prevPreselectedService) {
-    setPrevPreselectedService(preselectedService);
-    setFormData((prev) => ({ ...prev, service: preselectedService }));
-    setErrors((prev) => ({ ...prev, service: null }));
-    setServiceHighlighted(true);
-  }
-
-  const validateField = (name, value) => {
-    let error = null;
-    switch (name) {
-      case 'name':
-        if (!value.trim() || value.trim().length < 2) {
-          error = t('contact.form.errors.name');
-        }
-        break;
-      case 'email':
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
-          error = t('contact.form.errors.email');
-        }
-        break;
-      case 'phone': {
-        const digits = value.replace(/[\s\-+()/]/g, '');
-        if (digits.length < 7 || !/^\d+$/.test(digits)) {
-          error = t('contact.form.errors.phone');
-        }
-        break;
-      }
-      case 'service':
-        if (!value) {
-          error = t('contact.form.errors.service');
-        }
-        break;
-      default:
-        break;
-    }
-    return error;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (name === 'service') setServiceHighlighted(false);
-
-    if (errors[name]) {
-      const err = validateField(name, value);
-      setErrors((prev) => ({ ...prev, [name]: err }));
-    }
-  };
-
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    const err = validateField(name, value);
-    setErrors((prev) => ({ ...prev, [name]: err }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatusBanner(null);
-    setStatusMessage(null);
-
-    // Trap bots: silent drop if honeypot is filled
-    if (formData.honeypot) {
-      setStatusBanner('success');
-      return;
-    }
-
-    // Validate all required fields
-    const newErrors = {};
-    ['name', 'email', 'phone', 'service'].forEach((key) => {
-      const err = validateField(key, formData[key]);
-      if (err) newErrors[key] = err;
-    });
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      const firstKey = Object.keys(newErrors)[0];
-      const el = document.getElementById(`form-${firstKey}`);
-      if (el) el.focus();
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const res = await fetch('/api/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          company: formData.company.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          service: formData.service,
-          budget: formData.budget.trim(),
-          deadline: formData.deadline.trim(),
-          description: formData.message.trim(),
-          // Anti-spam: field hidden from real users, checked server-side
-          honeypot: formData.honeypot,
-        }),
-      });
-
-      if (!res.ok) {
-        await res.json().catch(() => ({}));
-        let message;
-        if (res.status === 429) {
-          message = t('contact.form.errors.rateLimited');
-        } else if (res.status >= 500) {
-          message = t('contact.form.errors.server');
-        } else {
-          message = t('contact.form.errors.submission');
-        }
-        throw new Error(message);
-      }
-
-      setStatusBanner('success');
-      setFormData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        service: '',
-        budget: '',
-        deadline: '',
-        message: '',
-        honeypot: '',
-      });
-      setErrors({});
-    } catch (err) {
-      console.warn('Form submission error:', err.message);
-      setStatusMessage(err.message);
-      setStatusBanner('error');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const waMessage = encodeURIComponent(t('whatsapp.message'));
 
   return (
     <section id="contacto" className="contact-section">
       <div className="container">
-        <div className="contact-grid">
-          {/* Contact Info and Map */}
+        <div className="contact-grid contact-grid-single">
           <div className="contact-info-panel reveal">
             <div className="section-header">
               <span className="section-label">{t('contact.label')}</span>
@@ -190,24 +36,47 @@ export default function Contact({ preselectedService }) {
               <div className="contact-method">
                 <h4>{t('contact.info.phonesTitle')}</h4>
                 <p className="mono">
-                  {t('contact.info.phone1')} <strong>({t('contact.info.phone1Label')})</strong>
+                  <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`} target="_blank" rel="noopener noreferrer">
+                    {t('contact.info.phone1')}
+                  </a>{' '}
+                  <strong>({t('contact.info.phone1Label')})</strong>
                 </p>
                 <p className="mono">
-                  {t('contact.info.phone2')} ({t('contact.info.phone2Label')})
+                  <a href={`tel:${t('contact.info.phone2').replace(/\s/g, '')}`}>{t('contact.info.phone2')}</a> (
+                  {t('contact.info.phone2Label')})
                 </p>
                 <p className="mono">
-                  {t('contact.info.phone3')} ({t('contact.info.phone3Label')})
+                  <a href={`tel:${t('contact.info.phone3').replace(/\s/g, '')}`}>{t('contact.info.phone3')}</a> (
+                  {t('contact.info.phone3Label')})
                 </p>
               </div>
               <div className="contact-method">
                 <h4>{t('contact.info.emailTitle')}</h4>
-                <p>{t('contact.info.email')}</p>
+                <p>
+                  <a href={`mailto:${t('contact.info.email')}`}>{t('contact.info.email')}</a>
+                </p>
               </div>
               <div className="contact-method">
                 <h4>{t('contact.info.nifTitle')}</h4>
                 <p className="mono">{t('contact.info.nif')}</p>
               </div>
             </div>
+
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`}
+              className="btn btn-whatsapp btn-lg contact-whatsapp-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t('whatsapp.ariaLabel')}
+            >
+              <svg viewBox="0 0 24 24" className="btn-whatsapp-icon" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12.04 2a9.9 9.9 0 0 0-8.51 14.93L2 22l5.19-1.5A9.9 9.9 0 1 0 12.04 2zm5.77 14.06c-.24.68-1.22 1.3-1.68 1.35-.42.05-.93.24-2.61-.54-2.31-.94-3.79-3.29-3.91-3.44-.11-.16-.94-1.26-.94-2.4 0-1.14.59-1.7.8-1.93.21-.22.46-.28.62-.28h.44c.14 0 .33-.05.51.4.18.44.62 1.52.68 1.63.05.1.08.22.01.35-.06.13-.1.21-.19.33l-.29.34c-.1.1-.2.21-.09.42.12.2.52.86 1.11 1.4.76.68 1.4.89 1.6.99.2.1.32.09.44-.05.12-.14.5-.59.64-.79.13-.2.27-.17.45-.1.18.06 1.13.53 1.32.63.19.1.32.15.37.23.05.09.05.5-.19 1.17z"
+                />
+              </svg>
+              <span>{t('contact.whatsappCta')}</span>
+            </a>
 
             {/* Real Interactive Map */}
             <div className="map-container">
@@ -231,204 +100,6 @@ export default function Contact({ preselectedService }) {
                   {t('contact.info.mapOpen')}
                 </a>
               </div>
-            </div>
-          </div>
-
-          {/* Contact Form Container */}
-          <div className="contact-form-panel reveal">
-            <form id="contact-form" noValidate onSubmit={handleSubmit}>
-              {/* Anti-spam Honeypot field (hidden from real users) */}
-              <div style={{ display: 'none' }} aria-hidden="true">
-                <label htmlFor="website_hp">{t('contact.form.honeypotLabel')}</label>
-                <input
-                  type="text"
-                  id="website_hp"
-                  name="honeypot"
-                  tabIndex={-1}
-                  value={formData.honeypot}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-name">{t('contact.form.name')}</label>
-                <input
-                  type="text"
-                  id="form-name"
-                  name="name"
-                  required
-                  placeholder={t('contact.form.namePlaceholder')}
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={errors.name ? 'invalid' : ''}
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? 'error-name' : undefined}
-                />
-                {errors.name && (
-                  <span className="error-msg" id="error-name" aria-live="polite">
-                    {errors.name}
-                  </span>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-company">{t('contact.form.company')}</label>
-                <input
-                  type="text"
-                  id="form-company"
-                  name="company"
-                  placeholder={t('contact.form.companyPlaceholder')}
-                  value={formData.company}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-email">{t('contact.form.email')}</label>
-                <input
-                  type="email"
-                  id="form-email"
-                  name="email"
-                  required
-                  placeholder={t('contact.form.emailPlaceholder')}
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={errors.email ? 'invalid' : ''}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? 'error-email' : undefined}
-                />
-                {errors.email && (
-                  <span className="error-msg" id="error-email" aria-live="polite">
-                    {errors.email}
-                  </span>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-phone">{t('contact.form.phone')}</label>
-                <input
-                  type="tel"
-                  id="form-phone"
-                  name="phone"
-                  required
-                  placeholder={t('contact.form.phonePlaceholder')}
-                  value={formData.phone}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={errors.phone ? 'invalid' : ''}
-                  aria-invalid={!!errors.phone}
-                  aria-describedby={errors.phone ? 'error-phone' : undefined}
-                />
-                {errors.phone && (
-                  <span className="error-msg" id="error-phone" aria-live="polite">
-                    {errors.phone}
-                  </span>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-service">{t('contact.form.service')}</label>
-                <select
-                  id="form-service"
-                  name="service"
-                  required
-                  value={formData.service}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={`${errors.service ? 'invalid' : ''} ${serviceHighlighted ? 'highlighted' : ''}`.trim()}
-                  aria-invalid={!!errors.service}
-                  aria-describedby={errors.service ? 'error-service' : undefined}
-                >
-                  <option value="" disabled>
-                    {t('contact.form.servicePlaceholder')}
-                  </option>
-                  {SERVICES.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {t(`services.items.${s.id}.title`)}
-                    </option>
-                  ))}
-                </select>
-                {errors.service && (
-                  <span className="error-msg" id="error-service" aria-live="polite">
-                    {errors.service}
-                  </span>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="form-message">{t('contact.form.message')}</label>
-                <textarea
-                  id="form-message"
-                  name="message"
-                  rows={5}
-                  placeholder={t('contact.form.messagePlaceholder')}
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-group form-group-half">
-                  <label htmlFor="form-budget">{t('contact.form.budget')}</label>
-                  <input
-                    type="text"
-                    id="form-budget"
-                    name="budget"
-                    placeholder={t('contact.form.budgetPlaceholder')}
-                    value={formData.budget}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group form-group-half">
-                  <label htmlFor="form-deadline">{t('contact.form.deadline')}</label>
-                  <input
-                    type="text"
-                    id="form-deadline"
-                    name="deadline"
-                    placeholder={t('contact.form.deadlinePlaceholder')}
-                    value={formData.deadline}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className={`btn btn-primary btn-submit ${loading ? 'loading' : ''}`}
-                disabled={loading}
-              >
-                <span className="btn-text">{t('contact.form.submit')}</span>
-                <span className="btn-spinner" aria-hidden="true" />
-              </button>
-            </form>
-
-            {/* Success Notification */}
-            <div
-              id="form-status-success"
-              role="status"
-              className={`form-status-banner success-banner ${
-                statusBanner === 'success' ? 'show' : ''
-              }`}
-              aria-hidden={statusBanner !== 'success'}
-            >
-              <h4>{t('contact.form.successTitle')}</h4>
-              <p>{t('contact.form.successText')}</p>
-            </div>
-
-            {/* Error Notification */}
-            <div
-              id="form-status-error"
-              role="alert"
-              className={`form-status-banner error-banner ${
-                statusBanner === 'error' ? 'show' : ''
-              }`}
-              aria-hidden={statusBanner !== 'error'}
-            >
-              <h4>{t('contact.form.errorTitle')}</h4>
-              <p>{statusMessage || t('contact.form.errorText')}</p>
             </div>
           </div>
         </div>

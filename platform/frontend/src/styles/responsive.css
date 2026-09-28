@@ -195,11 +195,6 @@
     grid-column: span 1;
   }
 
-  /* Contact form */
-  .contact-form-panel {
-    padding: var(--space-5);
-  }
-
   /* Hero block returns to full width on mobile */
   .hero-content {
     margin-left: 0;
@@ -250,10 +245,6 @@
     border-right: 1px solid var(--color-border);
   }
 
-  .contact-form-panel {
-    padding: var(--space-4);
-  }
-
   .footer-grid {
     gap: var(--space-6);
   }
@@ -289,7 +280,6 @@
   .whatsapp-float,
   .mobile-menu-overlay,
   .hero-actions,
-  .contact-form-panel,
   .btn-service-select,
   .cta-section {
     display: none !important;

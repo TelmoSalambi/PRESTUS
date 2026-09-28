@@ -28,7 +28,6 @@ export default {
       about: 'Sobre Nós',
       services: 'O que Fazemos',
       credentials: 'Credenciais',
-      news: 'Notícias & Obras',
       faq: 'FAQ',
       contact: 'Contactos',
     },
@@ -167,24 +166,6 @@ export default {
       },
     },
 
-    news: {
-      label: 'Atualidade e Projetos',
-      titleA: 'Obras em Curso & ',
-      titleEm: 'Notícias',
-      subtitle:
-        'Acompanhe as nossas intervenções no terreno, adjudicações recentes e atualizações institucionais.',
-      allCategories: 'Todos',
-      readMore: 'Ler Artigo',
-      readTimePrefix: 'Leitura:',
-      modalCta: 'Solicitar Proposta para Projeto Semelhante',
-      closeModal: 'Fechar artigo',
-      authorPrefix: 'Publicado por:',
-      datePrefix: 'Data:',
-      empty: 'Nenhuma notícia encontrada para esta categoria.',
-      featured: 'Destaque',
-      error: 'Não foi possível carregar as notícias. Tente novamente mais tarde.',
-    },
-
     faq: {
       label: 'Esclarecimentos Institucionais',
       titleA: 'Perguntas ',
@@ -229,7 +210,7 @@ export default {
       label: 'Contacto',
       titleA: 'Fale ',
       titleEm: 'Connosco',
-      subtitle: 'Entre em contacto para parcerias ou orçamentos.',
+      subtitle: 'Fale connosco diretamente pelo WhatsApp para parcerias, orçamentos e esclarecimentos.',
       info: {
         hqTitle: 'Sede (Lubango, Huíla):',
         hqLine1:
@@ -256,118 +237,7 @@ export default {
         mapOpen: 'Abrir no Google Maps',
         mapOpenAria: 'Abrir a localização da PRESTUS no Google Maps',
       },
-      form: {
-        name: 'Nome Completo',
-        namePlaceholder: 'Ex: Manuel Silva',
-        company: 'Empresa / Instituição',
-        companyPlaceholder: 'Ex: Ministério das Finanças',
-        email: 'E-mail de Contacto',
-        emailPlaceholder: 'Ex: contacto@empresa.ao',
-        phone: 'Telemóvel (com indicativo)',
-        phonePlaceholder: 'Ex: +244 923 677 253',
-        service: 'Área de Interesse',
-        servicePlaceholder: 'Selecione uma área...',
-        message: 'Mensagem / Requisitos',
-        messagePlaceholder: 'Descreva os requisitos gerais do seu projeto...',
-        budget: 'Orçamento Estimado',
-        budgetPlaceholder: 'Ex: 50.000.000 AKZ',
-        deadline: 'Prazo Pretendido',
-        deadlinePlaceholder: 'Ex: 3 meses',
-        submit: 'Enviar Mensagem',
-        honeypotLabel: 'Website URL',
-        errors: {
-          name: 'Por favor, insira o seu nome completo.',
-          email: 'Por favor, insira um e-mail válido.',
-          phone: 'Por favor, insira um número de telefone válido.',
-          service: 'Por favor, selecione uma área de interesse.',
-          submission: 'Verifique os campos do formulário e tente novamente.',
-          rateLimited: 'Demasiadas tentativas. Aguarde alguns minutos antes de tentar novamente.',
-          server:
-            'Erro no servidor. Tente novamente dentro de momentos ou contacte-nos por WhatsApp.',
-        },
-        successTitle: 'Mensagem Enviada!',
-        successText: 'Recebemos o seu pedido. A nossa equipa comercial responde em 24–48h úteis.',
-        errorTitle: 'Erro ao Enviar',
-        errorText:
-          'Verifique o formulário e tente novamente. Se persistir, contacte-nos por WhatsApp.',
-      },
-    },
-
-    legal: {
-      privacy: {
-        label: 'Legal & Compliance',
-        titleA: 'Política de ',
-        titleEm: 'Privacidade',
-        intro: 'Como a PRESTUS recolhe, utiliza e protege os seus dados pessoais.',
-        updated: 'Última atualização: 26 de setembro de 2026',
-        sections: [
-          {
-            h: 'Responsável pelo tratamento',
-            p: 'A PRESTUS - Comércio & Prestação de Serviços, (SU), LDA (NIF 5001180177), com sede no Lubango, Província da Huíla, e escritório em Luanda, é responsável pelo tratamento dos dados pessoais recolhidos neste website. Contacto: prestuslda1@gmail.com.',
-          },
-          {
-            h: 'Dados que recolhemos',
-            p: 'Através do formulário de contacto e orçamento recolhemos apenas: nome, empresa ou instituição, e-mail, telefone, área de interesse, orçamento estimado, prazo pretendido e a mensagem enviada por si.',
-          },
-          {
-            h: 'Finalidade e fundamento',
-            p: 'Os dados são utilizados exclusivamente para responder ao seu pedido de proposta ou orçamento e para comunicações associadas, com base no seu consentimento manifestado no momento do envio do formulário, nos termos da Lei n.º 22/11 de Proteção de Dados Pessoais.',
-          },
-          {
-            h: 'Conservação e destinatários',
-            p: 'Os dados são conservados pelo tempo necessário ao tratamento do seu pedido. São tratados por prestadores técnicos que asseguram o alojamento (Firebase/Google Cloud) e o envio de e-mails (SMTP). Não vendemos nem cedemos os seus dados a terceiros para fins de marketing.',
-          },
-          {
-            h: 'Serviços de terceiros',
-            p: 'Este website integra um mapa Google Maps e tipografias do Google, que podem recolher o seu endereço IP conforme as próprias políticas de privacidade. O website não utiliza cookies de rastreamento; apenas guardamos a sua preferência de idioma no armazenamento local do navegador.',
-          },
-          {
-            h: 'Os seus direitos',
-            p: 'Pode solicitar acesso, retificação, atualização ou eliminação dos seus dados, bem como opor-se ao seu tratamento, através do e-mail prestuslda1@gmail.com, nos termos da legislação aplicável.',
-          },
-          {
-            h: 'Segurança',
-            p: 'Aplicamos medidas técnicas e organizativas razoáveis para proteger os dados contra acesso, alteração ou divulgação não autorizados.',
-          },
-        ],
-      },
-      terms: {
-        label: 'Legal & Compliance',
-        titleA: 'Termos de ',
-        titleEm: 'Utilização',
-        intro: 'Condições de acesso e uso do website institucional da PRESTUS.',
-        updated: 'Última atualização: 26 de setembro de 2026',
-        sections: [
-          {
-            h: 'Objeto',
-            p: 'Os presentes Termos de Utilização regulam o acesso e a utilização do website institucional da PRESTUS - Comércio & Prestação de Serviços, (SU), LDA. Ao navegar neste site aceita estas condições.',
-          },
-          {
-            h: 'Propriedade intelectual',
-            p: 'Todos os conteúdos (textos, logótipo, imagens, portfólio e marca PRESTUS) são propriedade da PRESTUS ou usados com autorização, estando protegidos pela legislação de direitos de autor e marcas. A reprodução comercial requer autorização prévia por escrito.',
-          },
-          {
-            h: 'Informação institucional',
-            p: 'A informação sobre alvarás, certificações e credenciais é prestada a título institucional e reflete os documentos oficiais emitidos pelas entidades competentes. Os dados de contacto e valores referidos podem ser atualizados sem aviso prévio.',
-          },
-          {
-            h: 'Uso permitido',
-            p: 'Compromete-se a utilizar o website para fins lícitos, não tentando interferir com o seu funcionamento, obter acesso não autorizado ou introduzir vírus ou qualquer código malicioso.',
-          },
-          {
-            h: 'Links externos',
-            p: 'O website pode conter links para serviços de terceiros (Google Maps, WhatsApp). O conteúdo e as práticas de privacidade desses terceiros são da sua responsabilidade.',
-          },
-          {
-            h: 'Limitação de responsabilidade',
-            p: 'A PRESTUS procura manter o website correto e disponível, mas não garante a ausência de erros ou interrupções e não se responsabiliza por danos resultantes do uso do site ou da informação nele contida.',
-          },
-          {
-            h: 'Alterações e lei aplicável',
-            p: 'Estes termos podem ser atualizados periodicamente e são regidos pela legislação da República de Angola. Para dúvidas, contacte: prestuslda1@gmail.com.',
-          },
-        ],
-      },
+      whatsappCta: 'Falar no WhatsApp',
     },
 
     footer: {
@@ -383,8 +253,6 @@ export default {
       ],
       linksTitle: 'Links Rápidos',
       downloadPortfolio: 'Descarregar Portfólio (PDF)',
-      privacy: 'Política de Privacidade',
-      terms: 'Termos de Utilização',
       officesTitle: 'Escritórios',
       officeHuila: 'Huíla: Bairro Dr. António Agostinho Neto, Lubango (Sede)',
       officeLuanda: 'Luanda: Edifício Gabela, Kifica - Belas',
@@ -396,6 +264,7 @@ export default {
     whatsapp: {
       ariaLabel: 'Falar connosco no WhatsApp',
       message: 'Olá PRESTUS! Gostaria de solicitar uma proposta.',
+      serviceMessage: 'Olá PRESTUS! Gostaria de solicitar uma proposta na área de: {{service}}.',
     },
   },
 };

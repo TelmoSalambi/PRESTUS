@@ -145,7 +145,6 @@ export default function Header() {
     { href: '#servicos', label: t('nav.services'), id: 'servicos' },
     { href: '#credenciais', label: t('nav.credentials'), id: 'credenciais' },
     { href: '#faq', label: t('nav.faq'), id: 'faq' },
-    { href: '#noticias', label: t('nav.news'), id: 'noticias' },
     { href: '#contacto', label: t('nav.contact'), id: 'contacto' },
   ];
 

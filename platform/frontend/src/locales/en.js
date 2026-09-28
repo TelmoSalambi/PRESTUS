@@ -28,7 +28,6 @@ export default {
       about: 'About Us',
       services: 'What We Do',
       credentials: 'Credentials',
-      news: 'News & Projects',
       faq: 'FAQ',
       contact: 'Contact',
     },
@@ -167,23 +166,6 @@ export default {
       },
     },
 
-    news: {
-      label: 'News & Projects',
-      titleA: 'Ongoing Works & ',
-      titleEm: 'News',
-      subtitle: 'Follow our on-site interventions, recent awards, and institutional updates.',
-      allCategories: 'All',
-      readMore: 'Read Article',
-      readTimePrefix: 'Reading:',
-      modalCta: 'Request a Proposal for a Similar Project',
-      closeModal: 'Close article',
-      authorPrefix: 'Published by:',
-      datePrefix: 'Date:',
-      empty: 'No news found for this category.',
-      featured: 'Featured',
-      error: 'Unable to load the news. Please try again later.',
-    },
-
     faq: {
       label: 'Institutional Clarifications',
       titleA: 'Frequently Asked ',
@@ -228,7 +210,7 @@ export default {
       label: 'Contact',
       titleA: 'Get in ',
       titleEm: 'Touch',
-      subtitle: 'Contact us for partnerships or quotations.',
+      subtitle: 'Reach us directly on WhatsApp for partnerships, quotations and clarifications.',
       info: {
         hqTitle: 'Headquarters (Lubango, Huíla):',
         hqLine1:
@@ -255,118 +237,7 @@ export default {
         mapOpen: 'Open in Google Maps',
         mapOpenAria: 'Open PRESTUS location in Google Maps',
       },
-      form: {
-        name: 'Full Name',
-        namePlaceholder: 'E.g.: Manuel Silva',
-        company: 'Company / Institution',
-        companyPlaceholder: 'E.g.: Ministry of Finance',
-        email: 'Contact Email',
-        emailPlaceholder: 'E.g.: contact@company.ao',
-        phone: 'Mobile (with country code)',
-        phonePlaceholder: 'E.g.: +244 923 677 253',
-        service: 'Area of Interest',
-        servicePlaceholder: 'Select an area...',
-        message: 'Message / Requirements',
-        messagePlaceholder: 'Describe the general requirements of your project...',
-        budget: 'Estimated Budget',
-        budgetPlaceholder: 'E.g.: 50,000,000 AKZ',
-        deadline: 'Desired Deadline',
-        deadlinePlaceholder: 'E.g.: 3 months',
-        submit: 'Send Message',
-        honeypotLabel: 'Website URL',
-        errors: {
-          name: 'Please enter your full name.',
-          email: 'Please enter a valid e-mail address.',
-          phone: 'Please enter a valid phone number.',
-          service: 'Please select an area of interest.',
-          submission: 'Please check the form fields and try again.',
-          rateLimited: 'Too many attempts. Please wait a few minutes before trying again.',
-          server: 'Server error. Please try again in a moment or contact us via WhatsApp.',
-        },
-        successTitle: 'Message Sent!',
-        successText:
-          'We have received your request. Our commercial team replies within 24–48 business hours.',
-        errorTitle: 'Error Sending',
-        errorText:
-          'Please check the form and try again. If the problem persists, contact us via WhatsApp.',
-      },
-    },
-
-    legal: {
-      privacy: {
-        label: 'Legal & Compliance',
-        titleA: 'Privacy ',
-        titleEm: 'Policy',
-        intro: 'How PRESTUS collects, uses and protects your personal data.',
-        updated: 'Last updated: 26 September 2026',
-        sections: [
-          {
-            h: 'Data controller',
-            p: 'PRESTUS - Comércio & Prestação de Serviços, (SU), LDA (Tax ID 5001180177), headquartered in Lubango, Huíla Province, with an office in Luanda, is responsible for the personal data collected through this website. Contact: prestuslda1@gmail.com.',
-          },
-          {
-            h: 'Data we collect',
-            p: 'Through the contact and quote form we collect only: name, company or institution, e-mail, phone, area of interest, estimated budget, preferred deadline and the message you send.',
-          },
-          {
-            h: 'Purpose and legal basis',
-            p: "Data is used solely to respond to your proposal or quote request and related communications, based on your consent given when submitting the form, under Angola's Personal Data Protection Law (Law No. 22/11).",
-          },
-          {
-            h: 'Retention and recipients',
-            p: 'Data is kept for as long as necessary to handle your request. It is processed by technical providers handling hosting (Firebase/Google Cloud) and e-mail delivery (SMTP). We do not sell or share your data with third parties for marketing purposes.',
-          },
-          {
-            h: 'Third-party services',
-            p: "This website embeds a Google Maps widget and Google fonts, which may collect your IP address under their own privacy policies. The website does not use tracking cookies; we only store your language preference in the browser's local storage.",
-          },
-          {
-            h: 'Your rights',
-            p: 'You may request access, rectification, update or deletion of your data, as well as object to its processing, by e-mailing prestuslda1@gmail.com, in accordance with applicable legislation.',
-          },
-          {
-            h: 'Security',
-            p: 'We apply reasonable technical and organisational measures to protect data against unauthorised access, alteration or disclosure.',
-          },
-        ],
-      },
-      terms: {
-        label: 'Legal & Compliance',
-        titleA: 'Terms of ',
-        titleEm: 'Use',
-        intro: 'Conditions for accessing and using the PRESTUS institutional website.',
-        updated: 'Last updated: 26 September 2026',
-        sections: [
-          {
-            h: 'Purpose',
-            p: 'These Terms of Use govern access to and use of the PRESTUS - Comércio & Prestação de Serviços, (SU), LDA institutional website. By browsing this site you accept these conditions.',
-          },
-          {
-            h: 'Intellectual property',
-            p: 'All content (texts, logo, images, portfolio and the PRESTUS brand) is owned by PRESTUS or used with authorisation, and is protected by copyright and trademark legislation. Commercial reproduction requires prior written authorisation.',
-          },
-          {
-            h: 'Institutional information',
-            p: 'Information about licences, certifications and credentials is provided for institutional purposes and reflects official documents issued by the competent entities. Contact details and figures mentioned may be updated without prior notice.',
-          },
-          {
-            h: 'Permitted use',
-            p: 'You agree to use the website for lawful purposes, not attempting to interfere with its operation, gain unauthorised access, or introduce viruses or any malicious code.',
-          },
-          {
-            h: 'External links',
-            p: "The website may contain links to third-party services (Google Maps, WhatsApp). Those third parties' content and privacy practices are their own responsibility.",
-          },
-          {
-            h: 'Limitation of liability',
-            p: 'PRESTUS strives to keep the website accurate and available, but does not guarantee the absence of errors or interruptions and is not liable for damages resulting from the use of the site or its content.',
-          },
-          {
-            h: 'Changes and governing law',
-            p: 'These terms may be updated periodically and are governed by the legislation of the Republic of Angola. Questions: prestuslda1@gmail.com.',
-          },
-        ],
-      },
+      whatsappCta: 'Chat on WhatsApp',
     },
 
     footer: {
@@ -382,8 +253,6 @@ export default {
       ],
       linksTitle: 'Quick Links',
       downloadPortfolio: 'Download Portfolio (PDF)',
-      privacy: 'Privacy Policy',
-      terms: 'Terms of Use',
       officesTitle: 'Offices',
       officeHuila: 'Huíla: Bairro Dr. António Agostinho Neto, Lubango (HQ)',
       officeLuanda: 'Luanda: Gabela Building, Kifica - Belas',
@@ -395,6 +264,7 @@ export default {
     whatsapp: {
       ariaLabel: 'Chat with us on WhatsApp',
       message: 'Hello PRESTUS! I would like to request a proposal.',
+      serviceMessage: 'Hello PRESTUS! I would like to request a proposal in the area of: {{service}}.',
     },
   },
 };
