@@ -8,9 +8,12 @@
     "dev": "npm run dev:frontend",
     "dev:frontend": "npm --prefix platform/frontend run dev",
     "build:frontend": "npm --prefix platform/frontend run build",
-    "preview": "npm --prefix platform/frontend run preview"
+    "preview": "npm --prefix platform/frontend run preview",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "vercel": "^60.1.3"
   }
 }

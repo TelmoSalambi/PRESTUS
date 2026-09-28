@@ -48,12 +48,30 @@ npm run dev
 ```bash
 npm run build:frontend
 ```
-Os ficheiros otimizados são gerados em `platform/frontend/dist` — basta alojar essa pasta em qualquer hospedagem estática (Netlify, Vercel, Cloudflare Pages, GitHub Pages, Nginx, etc.).
+Os ficheiros otimizados são gerados em `platform/frontend/dist`.
 
 ### Pré-visualizar o build localmente:
 ```bash
 npm run preview
 ```
+
+---
+
+## ▲ Deploy no Vercel
+
+O projeto já inclui `vercel.json` (build, SPA rewrites, cache e security headers).
+
+### Opção 1 — Dashboard (recomendado, com CI/CD automático)
+1. Aceda a [vercel.com/new](https://vercel.com/new) e importe o repositório `TelmoSalambi/PRESTUS`
+2. O Vercel deteta as configurações automaticamente (framework: Vite)
+3. Clique em **Deploy** — cada push no `main` gera um novo deploy em produção
+
+### Opção 2 — CLI
+```bash
+npm run deploy          # produção
+npm run deploy:preview  # preview (draft URL)
+```
+Na primeira vez o CLI pede login e cria o projeto automaticamente.
 
 ---
 

@@ -128,7 +128,12 @@ section {
   border: 2px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: all var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
   border-radius: var(--radius-sm);
 }
 
@@ -223,6 +228,15 @@ section {
   opacity: 0;
   transform: translateY(28px);
   will-change: opacity, transform;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  touch-action: manipulation;
+  overscroll-behavior-y: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {

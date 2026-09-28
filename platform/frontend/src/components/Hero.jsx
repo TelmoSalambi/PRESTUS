@@ -6,7 +6,14 @@ export default function Hero() {
   return (
     <section id="inicio" className="hero-section">
       <div className="hero-bg-image">
-        <img src="/IMG/Banner 01.webp" alt={t('hero.imgAlt')} loading="eager" decoding="async" />
+        <img
+          src="/IMG/Banner 01.webp"
+          alt={t('hero.imgAlt')}
+          width="1920"
+          height="1080"
+          fetchPriority="high"
+          decoding="async"
+        />
       </div>
       <div className="container">
         <div className="hero-content reveal">
