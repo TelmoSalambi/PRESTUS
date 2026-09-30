@@ -13,8 +13,10 @@ desktop.ini
 # Dependencies
 node_modules/
 
-# Build output
+# Build output & deployment artifacts
 platform/frontend/dist/
+.vercel
+
 
 # Environment files (secrets: SMTP, Firebase keys)
 .env

@@ -36,18 +36,26 @@ export default function Contact() {
               <div className="contact-method">
                 <h4>{t('contact.info.phonesTitle')}</h4>
                 <p className="mono">
-                  <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {t('contact.info.phone1')}
                   </a>{' '}
                   <strong>({t('contact.info.phone1Label')})</strong>
                 </p>
                 <p className="mono">
-                  <a href={`tel:${t('contact.info.phone2').replace(/\s/g, '')}`}>{t('contact.info.phone2')}</a> (
-                  {t('contact.info.phone2Label')})
+                  <a href={`tel:${t('contact.info.phone2').replace(/\s/g, '')}`}>
+                    {t('contact.info.phone2')}
+                  </a>{' '}
+                  ({t('contact.info.phone2Label')})
                 </p>
                 <p className="mono">
-                  <a href={`tel:${t('contact.info.phone3').replace(/\s/g, '')}`}>{t('contact.info.phone3')}</a> (
-                  {t('contact.info.phone3Label')})
+                  <a href={`tel:${t('contact.info.phone3').replace(/\s/g, '')}`}>
+                    {t('contact.info.phone3')}
+                  </a>{' '}
+                  ({t('contact.info.phone3Label')})
                 </p>
               </div>
               <div className="contact-method">

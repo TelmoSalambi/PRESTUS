@@ -264,7 +264,8 @@ export default {
     whatsapp: {
       ariaLabel: 'Chat with us on WhatsApp',
       message: 'Hello PRESTUS! I would like to request a proposal.',
-      serviceMessage: 'Hello PRESTUS! I would like to request a proposal in the area of: {{service}}.',
+      serviceMessage:
+        'Hello PRESTUS! I would like to request a proposal in the area of: {{service}}.',
     },
   },
 };

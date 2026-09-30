@@ -210,7 +210,8 @@ export default {
       label: 'Contacto',
       titleA: 'Fale ',
       titleEm: 'Connosco',
-      subtitle: 'Fale connosco diretamente pelo WhatsApp para parcerias, orçamentos e esclarecimentos.',
+      subtitle:
+        'Fale connosco diretamente pelo WhatsApp para parcerias, orçamentos e esclarecimentos.',
       info: {
         hqTitle: 'Sede (Lubango, Huíla):',
         hqLine1:
